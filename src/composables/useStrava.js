@@ -5,6 +5,13 @@ const STRAVA_AUTH_URL = 'https://www.strava.com/oauth/authorize'
 const STRAVA_TOKEN_URL = 'https://www.strava.com/oauth/token'
 const STRAVA_API_URL = 'https://www.strava.com/api/v3'
 
+// Shared state (module-level so it's shared across all components)
+const loading = ref(false)
+const error = ref(null)
+const activities = ref([])
+const isConnected = ref(false)
+const athlete = ref(null)
+
 export function useStrava() {
   const { db, user } = useSupabase()
 
@@ -13,11 +20,6 @@ export function useStrava() {
   const redirectUri = import.meta.env.VITE_STRAVA_REDIRECT_URI
 
   const isConfigured = computed(() => !!clientId && !!clientSecret)
-  const loading = ref(false)
-  const error = ref(null)
-  const activities = ref([])
-  const isConnected = ref(false)
-  const athlete = ref(null)
 
   // Generate OAuth URL for Strava authorization
   function getAuthUrl() {
