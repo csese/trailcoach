@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
 import { useUserStore } from '@/stores/user'
@@ -32,8 +32,15 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
-const { isConnected: stravaConnected, isConfigured: stravaConfigured } = useStrava()
+const { isConnected: stravaConnected, isConfigured: stravaConfigured, checkConnection } = useStrava()
 const showStravaImport = ref(false)
+
+// Check Strava connection on mount
+onMounted(() => {
+  if (stravaConfigured.value) {
+    checkConnection()
+  }
+})
 
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
