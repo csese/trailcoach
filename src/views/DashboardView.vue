@@ -84,6 +84,11 @@ function formatWorkoutDate(date) {
   return format(date, 'EEE, MMM d')
 }
 
+function formatDayName(date) {
+  if (!date) return ''
+  return format(date, 'EEE')
+}
+
 const workoutColors = {
   easy: 'bg-workout-easy',
   long: 'bg-workout-long',
@@ -213,7 +218,7 @@ const workoutColors = {
 
             <!-- Day -->
             <div class="text-right flex-shrink-0">
-              <p class="text-sm font-medium text-text-primary">{{ workout.Day }}</p>
+              <p class="text-sm font-medium text-text-primary">{{ formatDayName(workout.date) }}</p>
               <p class="text-xs text-text-muted">{{ formatWorkoutDate(workout.date) }}</p>
             </div>
           </div>
