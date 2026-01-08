@@ -1,3 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <path d="M256 96L128 320h80l-16 96 128-192h-80l16-128z" fill="black"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Back mountain -->
+  <path d="M46 384 L161 161 L276 384 Z" fill="black"/>
+  <!-- Front mountain -->
+  <path d="M138 384 L266 115 L395 384 Z" fill="black"/>
+  <!-- Snow cap (negative space) -->
+  <path d="M266 115 L230 184 L266 168 L302 184 Z" fill="black"/>
+  <!-- Trail path -->
+  <path d="M207 384 Q240 300 215 266 Q190 235 230 207 Q270 175 250 148"
+        stroke="black" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <!-- Runner dot -->
+  <circle cx="230" cy="207" r="20" fill="black"/>
 </svg>
