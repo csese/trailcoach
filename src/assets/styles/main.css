@@ -1,0 +1,118 @@
+/* Import Inter font - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-bg-primary text-text-primary;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border-light;
+  }
+}
+
+@layer components {
+  /* Card component */
+  .card {
+    @apply bg-bg-secondary rounded-xl border border-border p-4 shadow-card;
+  }
+
+  /* Button variants */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2 focus:ring-offset-bg-primary;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent-primary text-white hover:bg-accent-secondary active:bg-accent-dark;
+  }
+
+  .btn-secondary {
+    @apply btn bg-bg-tertiary text-text-primary border border-border hover:bg-bg-hover;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-text-secondary hover:bg-bg-tertiary hover:text-text-primary;
+  }
+
+  /* Badge component */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium;
+  }
+
+  /* Workout type badges */
+  .badge-easy {
+    @apply badge bg-workout-easy/20 text-workout-easy;
+  }
+
+  .badge-long {
+    @apply badge bg-workout-long/20 text-workout-long;
+  }
+
+  .badge-tempo {
+    @apply badge bg-workout-tempo/20 text-workout-tempo;
+  }
+
+  .badge-intervals {
+    @apply badge bg-workout-intervals/20 text-workout-intervals;
+  }
+
+  .badge-strength {
+    @apply badge bg-workout-strength/20 text-workout-strength;
+  }
+
+  .badge-rest {
+    @apply badge bg-workout-rest/20 text-workout-rest;
+  }
+
+  .badge-race {
+    @apply badge bg-workout-race/20 text-workout-race;
+  }
+
+  .badge-recovery {
+    @apply badge bg-workout-recovery/20 text-workout-recovery;
+  }
+
+  /* Input styles */
+  .input {
+    @apply w-full px-3 py-2 bg-bg-tertiary border border-border rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-accent-primary focus:border-transparent;
+  }
+
+  /* Stats number styling */
+  .stat-number {
+    @apply font-mono text-2xl font-semibold tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* Glass effect for modals */
+  .glass {
+    @apply bg-bg-secondary/95 backdrop-blur-sm;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent;
+  }
+}
