@@ -7,6 +7,10 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 // Create Supabase client (singleton)
 let supabase = null
 
+// Shared state (module-level so it's shared across all components)
+const user = ref(null)
+const loading = ref(true)
+
 export function useSupabase() {
   // Initialize client if not already done
   if (!supabase && supabaseUrl && supabaseAnonKey) {
@@ -18,8 +22,6 @@ export function useSupabase() {
     })
   }
 
-  const user = ref(null)
-  const loading = ref(true)
   const isConfigured = computed(() => !!supabaseUrl && !!supabaseAnonKey && supabaseUrl !== 'https://your-project.supabase.co')
 
   // Get current user
@@ -188,6 +190,16 @@ export function useSupabase() {
         notes: logData.notes,
         external_link: logData.externalLink,
         strava_activity_id: logData.stravaActivityId,
+        felt_vs_planned: logData.feltVsPlanned,
+        pain: logData.pain,
+        terrain: logData.terrain,
+        conditions: logData.conditions,
+        fueling: logData.fueling,
+        issues: logData.issues,
+        avg_pace: logData.avgPace,
+        max_hr: logData.maxHr,
+        training_load: logData.trainingLoad,
+        relative_effort: logData.relativeEffort,
         completed_at: new Date().toISOString()
       }
 
@@ -305,6 +317,240 @@ export function useSupabase() {
         .update({ linked_workout_id: workoutId })
         .eq('user_id', user.value.id)
         .eq('strava_id', stravaActivityId)
+        .select()
+
+      if (error) throw error
+      return data[0]
+    },
+
+    // Workout Date Overrides (for swapping workouts between days)
+    async getDateOverrides() {
+      if (!supabase || !user.value) return []
+
+      const { data, error } = await supabase
+        .from('workout_date_overrides')
+        .select('*')
+        .eq('user_id', user.value.id)
+
+      if (error) throw error
+      return data || []
+    },
+
+    async saveDateOverride(workoutId, customDate) {
+      if (!supabase || !user.value) return
+
+      const { data, error } = await supabase
+        .from('workout_date_overrides')
+        .upsert({
+          user_id: user.value.id,
+          workout_id: workoutId,
+          custom_date: customDate instanceof Date
+            ? customDate.toISOString().split('T')[0]
+            : customDate,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'user_id,workout_id' })
+        .select()
+
+      if (error) throw error
+      return data[0]
+    },
+
+    async saveDateOverrides(overrides) {
+      if (!supabase || !user.value || !overrides.length) return
+
+      const overridesWithUser = overrides.map(o => ({
+        user_id: user.value.id,
+        workout_id: o.workoutId,
+        custom_date: o.date instanceof Date
+          ? o.date.toISOString().split('T')[0]
+          : o.date,
+        updated_at: new Date().toISOString()
+      }))
+
+      const { data, error } = await supabase
+        .from('workout_date_overrides')
+        .upsert(overridesWithUser, { onConflict: 'user_id,workout_id' })
+        .select()
+
+      if (error) throw error
+      return data
+    },
+
+    async clearDateOverrides() {
+      if (!supabase || !user.value) return
+
+      const { error } = await supabase
+        .from('workout_date_overrides')
+        .delete()
+        .eq('user_id', user.value.id)
+
+      if (error) throw error
+    },
+
+    // Workout Overrides (date + content)
+    async getWorkoutOverrides() {
+      if (!supabase || !user.value) return []
+
+      const { data, error } = await supabase
+        .from('workout_overrides')
+        .select('*')
+        .eq('user_id', user.value.id)
+
+      if (error) throw error
+      return data || []
+    },
+
+    async saveWorkoutOverrides(overrides) {
+      if (!supabase || !user.value || !overrides.length) return
+
+      const overridesWithUser = overrides.map(o => ({
+        user_id: user.value.id,
+        workout_id: o.workoutId,
+        custom_date: o.customDate || o.custom_date || null,
+        custom_session_type: o.customSessionType || o.custom_session_type || null,
+        custom_planned_duration: o.customPlannedDuration || o.custom_planned_duration || null,
+        custom_target_hr_zone: o.customTargetHrZone || o.custom_target_hr_zone || null,
+        custom_details: o.customDetails || o.custom_details || null,
+        custom_focus: o.customFocus || o.custom_focus || null,
+        custom_workout_description: o.customWorkoutDescription || o.custom_workout_description || null,
+        source: o.source || 'manual',
+        updated_at: new Date().toISOString()
+      }))
+
+      const { data, error } = await supabase
+        .from('workout_overrides')
+        .upsert(overridesWithUser, { onConflict: 'user_id,workout_id' })
+        .select()
+
+      if (error) throw error
+      return data
+    },
+
+    async clearWorkoutOverrides() {
+      if (!supabase || !user.value) return
+
+      const { error } = await supabase
+        .from('workout_overrides')
+        .delete()
+        .eq('user_id', user.value.id)
+
+      if (error) throw error
+    },
+
+    // Readiness Entries
+    async getReadinessEntries() {
+      if (!supabase || !user.value) return []
+
+      const { data, error } = await supabase
+        .from('readiness_entries')
+        .select('*')
+        .eq('user_id', user.value.id)
+        .order('entry_date', { ascending: false })
+
+      if (error) throw error
+      return data || []
+    },
+
+    async saveReadinessEntry(entry) {
+      if (!supabase || !user.value) return
+
+      const payload = {
+        user_id: user.value.id,
+        entry_date: entry.date,
+        sleep: entry.sleep,
+        soreness: entry.soreness,
+        stress: entry.stress,
+        mood: entry.mood,
+        motivation: entry.motivation,
+        pain: entry.pain,
+        notes: entry.notes,
+        readiness_score: entry.readinessScore
+      }
+
+      const { data, error } = await supabase
+        .from('readiness_entries')
+        .upsert(payload, { onConflict: 'user_id,entry_date' })
+        .select()
+
+      if (error) throw error
+      return data[0]
+    },
+
+    // Adaptation Proposals
+    async getAdaptationProposals() {
+      if (!supabase || !user.value) return []
+
+      const { data: proposals, error } = await supabase
+        .from('adaptation_proposals')
+        .select('*')
+        .eq('user_id', user.value.id)
+        .order('created_at', { ascending: false })
+
+      if (error) throw error
+      return proposals || []
+    },
+
+    async getAdaptationChanges(proposalIds) {
+      if (!supabase || !user.value || !proposalIds?.length) return []
+
+      const { data, error } = await supabase
+        .from('adaptation_changes')
+        .select('*')
+        .in('proposal_id', proposalIds)
+
+      if (error) throw error
+      return data || []
+    },
+
+    async saveAdaptationProposal(proposal) {
+      if (!supabase || !user.value) return null
+
+      const { data, error } = await supabase
+        .from('adaptation_proposals')
+        .insert({
+          user_id: user.value.id,
+          week_start: proposal.weekStart,
+          window_days: proposal.windowDays,
+          status: proposal.status,
+          summary: proposal.summary,
+          algorithm_version: proposal.algorithmVersion || 'v1',
+          signals_json: proposal.signals || {}
+        })
+        .select()
+
+      if (error) throw error
+      return data[0]
+    },
+
+    async saveAdaptationChanges(changes) {
+      if (!supabase || !user.value || !changes?.length) return
+
+      const payload = changes.map(change => ({
+        proposal_id: change.proposalId,
+        workout_id: change.workoutId,
+        change_type: change.changeType,
+        from_state: change.from,
+        to_state: change.to,
+        reason_code: change.reasonCode,
+        reason_text: change.reasonText
+      }))
+
+      const { data, error } = await supabase
+        .from('adaptation_changes')
+        .insert(payload)
+        .select()
+
+      if (error) throw error
+      return data
+    },
+
+    async updateAdaptationProposalStatus(proposalId, status) {
+      if (!supabase || !user.value) return
+
+      const { data, error } = await supabase
+        .from('adaptation_proposals')
+        .update({ status })
+        .eq('id', proposalId)
         .select()
 
       if (error) throw error

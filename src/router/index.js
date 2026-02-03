@@ -26,6 +26,12 @@ const routes = [
     meta: { title: 'Statistics' }
   },
   {
+    path: '/adaptations',
+    name: 'adaptations',
+    component: () => import('@/views/AdaptationsView.vue'),
+    meta: { title: 'Plan Adaptations' }
+  },
+  {
     path: '/settings',
     name: 'settings',
     component: () => import('@/views/SettingsView.vue'),

@@ -44,7 +44,10 @@ function exportData() {
       displayName: userStore.displayName,
       hrZones: userStore.hrZones
     },
-    logs: JSON.parse(localStorage.getItem('trailcoach-logs') || '[]')
+    logs: JSON.parse(localStorage.getItem('trailcoach-logs') || '[]'),
+    readiness: JSON.parse(localStorage.getItem('trailcoach-readiness') || '[]'),
+    adaptations: JSON.parse(localStorage.getItem('trailcoach-adaptations') || '[]'),
+    workoutOverrides: JSON.parse(localStorage.getItem('trailcoach-workout-overrides') || '{}')
   }
 
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })

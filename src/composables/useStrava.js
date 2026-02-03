@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { useSupabase } from './useSupabase'
+import { formatPaceMinPerKm } from '@/utils/duration'
 
 const STRAVA_AUTH_URL = 'https://www.strava.com/oauth/authorize'
 const STRAVA_TOKEN_URL = 'https://www.strava.com/oauth/token'
@@ -284,11 +285,18 @@ export function useStrava() {
   // Import activity data to workout log
   async function importActivityToWorkout(stravaActivity, workoutId) {
     // Convert Strava activity to workout log format
+    const avgPace = formatPaceMinPerKm(stravaActivity.average_speed)
+    const trainingLoad = stravaActivity.suffer_score || stravaActivity.training_load || null
+    const relativeEffort = stravaActivity.relative_effort || null
     const logData = {
       actualDuration: Math.round(stravaActivity.moving_time / 60), // seconds to minutes
       actualHrAvg: stravaActivity.average_heartrate ? Math.round(stravaActivity.average_heartrate) : null,
       actualDistance: stravaActivity.distance ? stravaActivity.distance / 1000 : null, // meters to km
       actualElevation: stravaActivity.total_elevation_gain ? Math.round(stravaActivity.total_elevation_gain) : null,
+      avgPace,
+      maxHr: stravaActivity.max_heartrate ? Math.round(stravaActivity.max_heartrate) : null,
+      trainingLoad,
+      relativeEffort,
       externalLink: `https://www.strava.com/activities/${stravaActivity.id}`,
       stravaActivityId: stravaActivity.id.toString(),
       notes: `Imported from Strava: ${stravaActivity.name}`

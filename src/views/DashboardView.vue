@@ -3,7 +3,9 @@ import { ref, computed, onMounted } from 'vue'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
 import { useUserStore } from '@/stores/user'
-import { format, differenceInDays } from 'date-fns'
+import { useReadinessStore } from '@/stores/readiness'
+import { useAdaptationsStore } from '@/stores/adaptations'
+import { format, differenceInDays, startOfWeek, addDays, isToday } from 'date-fns'
 import {
   Calendar,
   Clock,
@@ -16,14 +18,19 @@ import {
   Circle
 } from 'lucide-vue-next'
 import WorkoutModal from '@/components/workout/WorkoutModal.vue'
+import ReadinessCheckin from '@/components/readiness/ReadinessCheckin.vue'
 
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
 const userStore = useUserStore()
+const readinessStore = useReadinessStore()
+const adaptationsStore = useAdaptationsStore()
 
 onMounted(() => {
   logsStore.loadLogs()
   userStore.loadSettings()
+  readinessStore.loadEntries()
+  adaptationsStore.loadProposals()
 })
 
 const selectedWorkout = ref(null)
@@ -35,6 +42,27 @@ const todaysWorkout = computed(() => workoutsStore.todaysWorkout)
 const nextWorkout = computed(() => workoutsStore.nextWorkout)
 const currentPhase = computed(() => workoutsStore.currentPhase)
 const races = computed(() => userStore.races)
+const pendingProposal = computed(() => adaptationsStore.pendingProposal)
+
+// Full week with all 7 days (including rest days)
+const fullWeekDays = computed(() => {
+  const today = new Date()
+  const weekStart = startOfWeek(today, { weekStartsOn: 1 }) // Monday
+  const days = []
+
+  for (let i = 0; i < 7; i++) {
+    const date = addDays(weekStart, i)
+    const workout = workoutsStore.getWorkoutByDate(date)
+    days.push({
+      date,
+      workout,
+      isToday: isToday(date),
+      isRest: !workout
+    })
+  }
+
+  return days
+})
 
 // Stats
 const completionRate = computed(() => {
@@ -103,6 +131,20 @@ const workoutColors = {
 
 <template>
   <div class="space-y-6">
+    <!-- Pending Adaptations -->
+    <div v-if="pendingProposal" class="card border border-accent-primary/30 bg-accent-primary/10">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-text-muted">Plan updates ready</p>
+          <p class="text-lg font-semibold text-text-primary">Review this week’s adaptations</p>
+          <p class="text-xs text-text-muted mt-1">
+            {{ pendingProposal.changes.length }} proposed changes · {{ pendingProposal.summary }}
+          </p>
+        </div>
+        <router-link to="/adaptations" class="btn-primary">Review</router-link>
+      </div>
+    </div>
+
     <!-- Stats Overview -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
       <div class="card">
@@ -156,6 +198,8 @@ const workoutColors = {
       </div>
     </div>
 
+    <ReadinessCheckin />
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- This Week -->
       <div class="lg:col-span-2 card">
@@ -172,59 +216,76 @@ const workoutColors = {
 
         <div class="space-y-3">
           <div
-            v-for="workout in currentWeekWorkouts"
-            :key="workout.id"
-            @click="selectWorkout(workout)"
-            class="flex items-center gap-4 p-3 rounded-lg bg-bg-tertiary hover:bg-bg-hover cursor-pointer transition-colors"
-            :class="{ 'ring-2 ring-accent-primary': todaysWorkout?.id === workout.id }"
+            v-for="day in fullWeekDays"
+            :key="day.date.toISOString()"
+            @click="day.workout ? selectWorkout(day.workout) : null"
+            class="flex items-center gap-4 p-3 rounded-lg transition-colors"
+            :class="[
+              day.workout ? 'bg-bg-tertiary hover:bg-bg-hover cursor-pointer' : 'bg-bg-tertiary/50',
+              { 'ring-2 ring-accent-primary': day.isToday && day.workout }
+            ]"
           >
-            <!-- Completion status -->
+            <!-- Completion status / Rest indicator -->
             <div class="flex-shrink-0">
               <CheckCircle2
-                v-if="isWorkoutCompleted(workout)"
+                v-if="day.workout && isWorkoutCompleted(day.workout)"
                 class="w-6 h-6 text-status-completed"
               />
               <Circle
-                v-else
+                v-else-if="day.workout"
                 class="w-6 h-6 text-text-muted"
               />
+              <div
+                v-else
+                class="w-6 h-6 flex items-center justify-center text-text-muted/50"
+              >
+                —
+              </div>
             </div>
 
             <!-- Workout type indicator -->
             <div
               :class="[
                 'w-3 h-12 rounded-full flex-shrink-0',
-                workoutColors[getWorkoutType(workout['Session Type'] || workout.SessionType)]
+                day.workout
+                  ? workoutColors[getWorkoutType(day.workout['Session Type'] || day.workout.SessionType)]
+                  : 'bg-workout-rest'
               ]"
             ></div>
 
             <!-- Workout info -->
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2">
-                <span class="font-medium text-text-primary">
-                  {{ workout['Session Type'] || workout.SessionType }}
+                <span
+                  class="font-medium"
+                  :class="day.workout ? 'text-text-primary' : 'text-text-muted'"
+                >
+                  {{ day.workout ? (day.workout['Session Type'] || day.workout.SessionType) : 'Rest Day' }}
                 </span>
                 <span
-                  v-if="todaysWorkout?.id === workout.id"
+                  v-if="day.isToday"
                   class="badge bg-accent-primary/20 text-accent-primary text-xs"
                 >
                   Today
                 </span>
               </div>
               <p class="text-sm text-text-muted truncate">
-                {{ workout['Planned Duration'] || workout.PlannedDuration }} • {{ workout.Focus }}
+                <template v-if="day.workout">
+                  {{ day.workout['Planned Duration'] || day.workout.PlannedDuration }} • {{ day.workout.Focus }}
+                </template>
+                <template v-else>
+                  Recovery & adaptation
+                </template>
               </p>
             </div>
 
             <!-- Day -->
             <div class="text-right flex-shrink-0">
-              <p class="text-sm font-medium text-text-primary">{{ formatDayName(workout.date) }}</p>
-              <p class="text-xs text-text-muted">{{ formatWorkoutDate(workout.date) }}</p>
+              <p class="text-sm font-medium" :class="day.isToday ? 'text-accent-primary' : 'text-text-primary'">
+                {{ formatDayName(day.date) }}
+              </p>
+              <p class="text-xs text-text-muted">{{ formatWorkoutDate(day.date) }}</p>
             </div>
-          </div>
-
-          <div v-if="currentWeekWorkouts.length === 0" class="text-center py-8 text-text-muted">
-            No workouts scheduled for this week
           </div>
         </div>
       </div>

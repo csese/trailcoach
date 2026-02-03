@@ -2,13 +2,16 @@
 import { computed, onMounted } from 'vue'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
+import { useReadinessStore } from '@/stores/readiness'
 import { BarChart3, Clock, Mountain, TrendingUp, Target, Activity } from 'lucide-vue-next'
 
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
+const readinessStore = useReadinessStore()
 
 onMounted(() => {
   logsStore.loadLogs()
+  readinessStore.loadEntries()
 })
 
 // Stats calculations
@@ -31,6 +34,7 @@ const totalDuration = computed(() => logsStore.totalActualDuration)
 const totalDistance = computed(() => logsStore.totalActualDistance)
 const totalElevation = computed(() => logsStore.totalActualElevation)
 const averageRpe = computed(() => logsStore.averageRpe)
+const readinessAverage = computed(() => readinessStore.recentAverage)
 
 // Hours breakdown
 const totalHours = computed(() => Math.round(totalDuration.value / 60))
@@ -140,6 +144,31 @@ const maxWeeklyDuration = computed(() => {
         </div>
         <p class="stat-number text-workout-intervals">{{ totalElevation.toLocaleString() }}m</p>
         <p class="text-xs text-text-muted mt-1">D+ accumulated</p>
+      </div>
+    </div>
+
+    <div v-if="readinessAverage" class="card">
+      <h3 class="text-lg font-semibold text-text-primary mb-2">Readiness (7-day average)</h3>
+      <div class="flex items-center gap-4">
+        <div class="text-4xl font-mono font-bold text-accent-primary">{{ readinessAverage.toFixed(1) }}</div>
+        <div class="flex-1">
+          <div class="h-3 bg-bg-tertiary rounded-full overflow-hidden">
+            <div
+              class="h-full rounded-full transition-all duration-500"
+              :class="[
+                readinessAverage <= 4 ? 'bg-status-missed' :
+                readinessAverage <= 6 ? 'bg-workout-long' :
+                'bg-status-completed'
+              ]"
+              :style="{ width: `${(readinessAverage / 10) * 100}%` }"
+            ></div>
+          </div>
+          <div class="flex justify-between text-xs text-text-muted mt-1">
+            <span>Low</span>
+            <span>Moderate</span>
+            <span>High</span>
+          </div>
+        </div>
       </div>
     </div>
 

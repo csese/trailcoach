@@ -1,29 +1,167 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { format, parseISO, startOfWeek, endOfWeek, isWithinInterval, addDays } from 'date-fns'
+import { format, startOfWeek, endOfWeek, isWithinInterval, addDays } from 'date-fns'
 import trainingPlan from '@/data/trainingPlan.json'
+import { useSupabase } from '@/composables/useSupabase'
 
 export const useWorkoutsStore = defineStore('workouts', () => {
   // State
   const workouts = ref([])
   const loading = ref(false)
   const error = ref(null)
+  const dateOverrides = ref({}) // Map of workoutId -> custom date (legacy)
+  const workoutOverrides = ref({}) // Map of workoutId -> override fields
+
+  const OVERRIDES_STORAGE_KEY = 'trailcoach-workout-overrides'
 
   // Load workouts from JSON
   function loadWorkouts() {
     loading.value = true
     try {
-      workouts.value = trainingPlan.map((workout, index) => ({
-        ...workout,
-        id: `workout-${index}`,
-        date: parseWorkoutDate(workout.Week, workout.Dates, workout.Day)
-      }))
+      workouts.value = trainingPlan.map((workout, index) => {
+        const id = `workout-${index}`
+        const originalDate = parseWorkoutDate(workout.Week, workout.Dates, workout.Day)
+        const override = workoutOverrides.value[id] || {}
+        // Apply any saved date override
+        const customDate = override.customDate || dateOverrides.value[id]
+        return {
+          ...workout,
+          id,
+          date: customDate ? new Date(customDate) : originalDate,
+          originalDate, // Keep original for reference
+          // Apply overrides to fields used in UI
+          SessionType: override.customSessionType || workout.SessionType,
+          PlannedDuration: override.customPlannedDuration || workout.PlannedDuration,
+          TargetHRZone: override.customTargetHrZone || workout.TargetHRZone,
+          Details: override.customDetails || workout.Details,
+          Focus: override.customFocus || workout.Focus,
+          WorkoutDescription: override.customWorkoutDescription || workout.WorkoutDescription,
+          override
+        }
+      })
       error.value = null
     } catch (e) {
       error.value = 'Failed to load training plan'
       console.error(e)
     } finally {
       loading.value = false
+    }
+  }
+
+  // Load date overrides from database
+  async function loadDateOverrides() {
+    try {
+      const { db, user } = useSupabase()
+      if (!user.value) return
+
+      let overrides = []
+      try {
+        overrides = await db.getWorkoutOverrides()
+      } catch (error) {
+        console.warn('Workout overrides table not available, falling back to date overrides.')
+        overrides = await db.getDateOverrides()
+      }
+
+      // Convert to a map for easy lookup
+      workoutOverrides.value = overrides.reduce((acc, o) => {
+        acc[o.workout_id] = {
+          workoutId: o.workout_id,
+          customDate: o.custom_date || null,
+          customSessionType: o.custom_session_type || null,
+          customPlannedDuration: o.custom_planned_duration || null,
+          customTargetHrZone: o.custom_target_hr_zone || null,
+          customDetails: o.custom_details || null,
+          customFocus: o.custom_focus || null,
+          customWorkoutDescription: o.custom_workout_description || null,
+          source: o.source || 'manual'
+        }
+        return acc
+      }, {})
+
+      dateOverrides.value = Object.entries(workoutOverrides.value).reduce((acc, [workoutId, override]) => {
+        if (override.customDate) acc[workoutId] = override.customDate
+        return acc
+      }, {})
+
+      persistOverridesLocal()
+
+      // Reload workouts to apply overrides
+      loadWorkouts()
+    } catch (e) {
+      console.error('Failed to load date overrides:', e)
+    }
+  }
+
+  function loadOverridesFromLocal() {
+    const stored = localStorage.getItem(OVERRIDES_STORAGE_KEY)
+    workoutOverrides.value = stored ? JSON.parse(stored) : {}
+    dateOverrides.value = Object.entries(workoutOverrides.value).reduce((acc, [workoutId, override]) => {
+      if (override.customDate) acc[workoutId] = override.customDate
+      return acc
+    }, {})
+  }
+
+  async function loadOverrides() {
+    try {
+      const { db, user, getUser, isConfigured } = useSupabase()
+      if (isConfigured.value) {
+        const currentUser = user.value || await getUser()
+        if (currentUser) {
+          await loadDateOverrides()
+          return
+        }
+      }
+      loadOverridesFromLocal()
+      loadWorkouts()
+    } catch (error) {
+      console.error('Failed to load overrides:', error)
+    }
+  }
+
+  function persistOverridesLocal() {
+    localStorage.setItem(OVERRIDES_STORAGE_KEY, JSON.stringify(workoutOverrides.value))
+  }
+
+  async function saveWorkoutOverrides(overrides) {
+    if (!overrides?.length) return
+
+    overrides.forEach(override => {
+      const normalizedDate = override.customDate instanceof Date
+        ? override.customDate.toISOString().split('T')[0]
+        : override.customDate
+
+      workoutOverrides.value[override.workoutId] = {
+        ...workoutOverrides.value[override.workoutId],
+        ...override,
+        customDate: normalizedDate
+      }
+
+      if (normalizedDate) {
+        dateOverrides.value[override.workoutId] = normalizedDate
+      }
+    })
+
+    const payloadOverrides = overrides.map(override => ({
+      ...override,
+      customDate: override.customDate instanceof Date
+        ? override.customDate.toISOString().split('T')[0]
+        : override.customDate
+    }))
+
+    persistOverridesLocal()
+    loadWorkouts()
+
+    try {
+      const { db, user, getUser, isConfigured } = useSupabase()
+      if (isConfigured.value) {
+        const currentUser = user.value || await getUser()
+        if (currentUser) {
+          await db.saveWorkoutOverrides(payloadOverrides)
+          return
+        }
+      }
+    } catch (error) {
+      console.warn('Failed to save workout overrides to Supabase:', error)
     }
   }
 
@@ -137,6 +275,71 @@ export const useWorkoutsStore = defineStore('workouts', () => {
     return 'easy'
   }
 
+  function isRaceSpecific(workout) {
+    if (!workout) return false
+    const fields = [
+      workout.SessionType,
+      workout.Focus,
+      workout.Details,
+      workout.Phase
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase()
+
+    return fields.includes('race') || fields.includes('race-specific') || fields.includes('race week')
+  }
+
+  // Swap two workouts' dates
+  async function swapWorkouts(workoutId1, workoutId2) {
+    const w1 = workouts.value.find(w => w.id === workoutId1)
+    const w2 = workouts.value.find(w => w.id === workoutId2)
+
+    if (w1 && w2) {
+      const tempDate = w1.date
+      w1.date = w2.date
+      w2.date = tempDate
+
+      await saveWorkoutOverrides([
+        { workoutId: workoutId1, customDate: w1.date.toISOString().split('T')[0], source: 'manual' },
+        { workoutId: workoutId2, customDate: w2.date.toISOString().split('T')[0], source: 'manual' }
+      ])
+    }
+  }
+
+  // Move a workout to a specific date (for swapping with rest days)
+  async function moveWorkoutToDate(workoutId, newDate) {
+    const workout = workouts.value.find(w => w.id === workoutId)
+    if (workout) {
+      workout.date = newDate
+
+      await saveWorkoutOverrides([
+        { workoutId, customDate: newDate instanceof Date ? newDate.toISOString().split('T')[0] : newDate, source: 'manual' }
+      ])
+    }
+  }
+
+  // Reset all date overrides (restore original plan)
+  async function resetToOriginalPlan() {
+    try {
+      const { db, user } = useSupabase()
+      if (user.value) {
+        try {
+          await db.clearWorkoutOverrides()
+        } catch (error) {
+          await db.clearDateOverrides()
+        }
+      }
+
+      dateOverrides.value = {}
+      workoutOverrides.value = {}
+      localStorage.removeItem(OVERRIDES_STORAGE_KEY)
+      loadWorkouts()
+    } catch (e) {
+      console.error('Failed to reset plan:', e)
+    }
+  }
+
   return {
     workouts,
     loading,
@@ -147,8 +350,15 @@ export const useWorkoutsStore = defineStore('workouts', () => {
     todaysWorkout,
     nextWorkout,
     loadWorkouts,
+    loadDateOverrides,
     getWorkoutsForMonth,
     getWorkoutByDate,
-    getWorkoutType
+    getWorkoutType,
+    isRaceSpecific,
+    swapWorkouts,
+    moveWorkoutToDate,
+    saveWorkoutOverrides,
+    loadOverrides,
+    resetToOriginalPlan
   }
 })

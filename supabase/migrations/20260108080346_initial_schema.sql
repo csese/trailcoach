@@ -1,5 +1,4 @@
 -- TrailCoach Database Schema
--- Run this SQL in your Supabase SQL Editor (Dashboard > SQL Editor)
 
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -196,4 +195,4 @@ CREATE TRIGGER update_user_settings_updated_at
 
 CREATE TRIGGER update_strava_activities_updated_at
   BEFORE UPDATE ON strava_activities
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();;

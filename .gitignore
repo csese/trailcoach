@@ -21,6 +21,8 @@ dist-ssr
 # Environment
 .env
 .env.local
+.env.production
+.env.preview
 .env.*.local
 
 # Logs
@@ -42,3 +44,7 @@ coverage
 
 # Vercel
 .vercel
+.env*.local
+
+# Supabase CLI temp files
+supabase/.temp

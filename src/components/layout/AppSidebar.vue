@@ -7,6 +7,7 @@ import {
   Calendar,
   TrendingUp,
   BarChart3,
+  Sparkles,
   Settings,
   Mountain,
   Trophy,
@@ -30,6 +31,7 @@ const navigation = [
   { name: 'Calendar', path: '/calendar', icon: Calendar },
   { name: 'Phases', path: '/phases', icon: TrendingUp },
   { name: 'Stats', path: '/stats', icon: BarChart3 },
+  { name: 'Adaptations', path: '/adaptations', icon: Sparkles },
   { name: 'Settings', path: '/settings', icon: Settings }
 ]
 
