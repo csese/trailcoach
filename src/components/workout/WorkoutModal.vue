@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
 import { useUserStore } from '@/stores/user'
+import { useReadinessStore } from '@/stores/readiness'
 import { useStrava } from '@/composables/useStrava'
 import StravaImportModal from '@/components/strava/StravaImportModal.vue'
 import ExerciseDetailModal from '@/components/workout/ExerciseDetailModal.vue'
@@ -80,6 +81,16 @@ onMounted(() => {
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
 const userStore = useUserStore()
+const readinessStore = useReadinessStore()
+
+// Leg feel options
+const legFeelOptions = [
+  { emoji: '💀', label: 'Wrecked', desc: 'Heavy, sore, struggling', value: 2 },
+  { emoji: '😴', label: 'Tired', desc: 'Sluggish but manageable', value: 4 },
+  { emoji: '👍', label: 'Good', desc: 'Feeling solid', value: 7 },
+  { emoji: '💪', label: 'Fresh', desc: 'Ready to go', value: 9 }
+]
+const legFeel = ref(null)
 
 // Form state
 const actualDuration = ref('')
@@ -193,6 +204,7 @@ function resetForm() {
   issues.value = ''
   notes.value = ''
   externalLink.value = ''
+  legFeel.value = null
 }
 
 async function saveLog() {
@@ -213,6 +225,22 @@ async function saveLog() {
     notes: notes.value,
     externalLink: externalLink.value
   })
+
+  // Save leg feel as readiness entry for this workout's date
+  if (legFeel.value && props.workout?.date) {
+    const dateStr = format(props.workout.date, 'yyyy-MM-dd')
+    await readinessStore.saveEntry({
+      date: dateStr,
+      sleep: 5,
+      soreness: 5,
+      stress: 5,
+      mood: 5,
+      motivation: 5,
+      pain: 1,
+      notes: '',
+      readinessScore: legFeel.value
+    })
+  }
 
   emit('close')
 }
@@ -471,6 +499,28 @@ function getField(field) {
                   <Download class="w-4 h-4" />
                   Connect Strava to import
                 </button>
+              </div>
+
+              <!-- Leg Feel Selector -->
+              <div class="mb-5">
+                <label class="block text-xs text-text-muted mb-2">How did your legs feel before this workout?</label>
+                <div class="grid grid-cols-4 gap-2">
+                  <button
+                    v-for="option in legFeelOptions"
+                    :key="option.value"
+                    type="button"
+                    @click="legFeel = option.value"
+                    class="flex flex-col items-center gap-1 p-3 rounded-xl border-2 transition-all duration-200"
+                    :class="[
+                      legFeel === option.value
+                        ? 'border-accent-primary bg-accent-primary/10'
+                        : 'border-border bg-bg-tertiary hover:border-text-muted'
+                    ]"
+                  >
+                    <span class="text-2xl">{{ option.emoji }}</span>
+                    <span class="text-xs font-medium text-text-primary">{{ option.label }}</span>
+                  </button>
+                </div>
               </div>
 
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">

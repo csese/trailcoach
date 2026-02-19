@@ -56,14 +56,6 @@ function buildChangePayload(workout, overrides) {
   return { from, to }
 }
 
-function getRecentEntries(entries, days) {
-  const cutoff = subDays(new Date(), days - 1)
-  return entries.filter(entry => {
-    const entryDate = new Date(entry.date)
-    return entryDate >= cutoff
-  })
-}
-
 export function generateAdaptationProposal({
   workouts,
   logs,
@@ -81,24 +73,44 @@ export function generateAdaptationProposal({
 
   const completedSet = new Set(logs.map(log => log.workoutId))
 
-  const recentReadiness = getRecentEntries(readinessEntries, 3)
-  const readinessAvg = recentReadiness.length
-    ? recentReadiness.reduce((sum, entry) => sum + (entry.readinessScore || 0), 0) / recentReadiness.length
+  // Recent logs sorted by date descending
+  const recentLogs = logs
+    .filter(log => new Date(log.completedAt) >= subDays(today, 14))
+    .sort((a, b) => new Date(b.completedAt) - new Date(a.completedAt))
+
+  // Signal 1: Average RPE from last 3 logs
+  const last3Logs = recentLogs.slice(0, 3).filter(l => l.rpe != null)
+  const avgRpe = last3Logs.length >= 2
+    ? last3Logs.reduce((sum, l) => sum + l.rpe, 0) / last3Logs.length
     : null
 
-  const recentPainReadiness = Math.max(
-    0,
-    ...recentReadiness.map(entry => entry.pain || 0)
-  )
-
-  const recentLogs = logs.filter(log => new Date(log.completedAt) >= subDays(today, 6))
-  const recentPainLogs = Math.max(0, ...recentLogs.map(log => log.pain || 0))
-  const recentPain = Math.max(recentPainReadiness, recentPainLogs)
-  const recentRpe = recentLogs.length
-    ? recentLogs.reduce((sum, log) => sum + (log.rpe || 0), 0) / recentLogs.length
+  // Signal 2: Latest leg feel score from readiness entries
+  const sortedReadiness = [...readinessEntries]
+    .sort((a, b) => b.date.localeCompare(a.date))
+  const recentLegFeel = sortedReadiness.length > 0
+    ? (sortedReadiness[0].readinessScore || null)
     : null
 
-  const recentLoad = recentLogs.reduce((sum, log) => sum + (log.trainingLoad || log.actualDuration || 0), 0)
+  // Check for consecutive tired days (value 4 = Tired)
+  let consecutiveTiredDays = 0
+  for (const entry of sortedReadiness) {
+    if (entry.readinessScore === 4) {
+      consecutiveTiredDays++
+    } else {
+      break
+    }
+  }
+
+  // Signal 3: Pain from logs and readiness
+  const recentPainLogs = Math.max(0, ...recentLogs.slice(0, 5).map(log => log.pain || 0))
+  const recentPainReadiness = sortedReadiness.length > 0
+    ? (sortedReadiness[0].pain || 0)
+    : 0
+  const recentPain = Math.max(recentPainLogs, recentPainReadiness)
+
+  // Signal 4: Load spike (current week vs prior week)
+  const weekLogs = logs.filter(log => new Date(log.completedAt) >= subDays(today, 6))
+  const recentLoad = weekLogs.reduce((sum, log) => sum + (log.trainingLoad || log.actualDuration || 0), 0)
   const priorLogs = logs.filter(log => {
     const completedAt = new Date(log.completedAt)
     return completedAt >= subDays(today, 13) && completedAt < subDays(today, 6)
@@ -106,6 +118,7 @@ export function generateAdaptationProposal({
   const priorLoad = priorLogs.reduce((sum, log) => sum + (log.trainingLoad || log.actualDuration || 0), 0)
   const loadSpike = priorLoad > 0 ? recentLoad / priorLoad : null
 
+  // Signal 5: Missed key workouts
   const missedKeyWorkouts = workouts.filter(workout => {
     if (!workout.date || workout.date >= today) return false
     if (completedSet.has(workout.id)) return false
@@ -139,25 +152,85 @@ export function generateAdaptationProposal({
     return formatMinutesToDuration(Math.max(15, minutes * (1 - percent)))
   }
 
-  const isLowReadiness = readinessAvg !== null && readinessAvg <= 4
+  const isVeryHighRpe = avgRpe !== null && avgRpe >= 8.5
+  const isHighRpe = avgRpe !== null && avgRpe >= 7.5
+  const isWrecked = recentLegFeel !== null && recentLegFeel <= 2
+  const isTiredStreak = consecutiveTiredDays >= 3
   const isHighPain = recentPain >= 7
-  const isHighRpe = recentRpe !== null && recentRpe >= 7
-  const hasLoadSpike = loadSpike !== null && loadSpike >= 1.2
+  const hasLoadSpike = loadSpike !== null && loadSpike >= 1.3
 
-  // Rule 1: Low readiness or high pain => reduce next 2 sessions
-  if (isLowReadiness || isHighPain) {
+  // Rule 1: Very high RPE (≥8.5) → convert next hard session to easy
+  if (isVeryHighRpe) {
+    const nextHard = upcomingWorkouts.find(workout => {
+      if (changedWorkouts.has(workout.id)) return false
+      if (isRaceSpecific(workout)) {
+        preservedRaceSpecific += 1
+        return false
+      }
+      const type = getWorkoutType(getSessionType(workout))
+      return ['tempo', 'intervals', 'long'].includes(type)
+    })
+
+    if (nextHard) {
+      const reducedDuration = reduceDuration(getPlannedDuration(nextHard), 0.3) || getPlannedDuration(nextHard)
+      applyOverrideChange(
+        nextHard,
+        {
+          workoutId: nextHard.id,
+          customSessionType: 'Easy / Recovery Run',
+          customTargetHrZone: 'Z1-Z2',
+          customPlannedDuration: reducedDuration,
+          customDetails: 'Converted to easy: RPE has been very high (≥8.5). Time to recover.',
+          source: 'adaptation'
+        },
+        'VERY_HIGH_RPE',
+        'Very high RPE detected (≥8.5 avg). Converting next hard session to easy recovery.'
+      )
+    }
+  }
+  // Rule 2: High RPE (≥7.5) → reduce next hard session
+  else if (isHighRpe) {
+    const nextHard = upcomingWorkouts.find(workout => {
+      if (changedWorkouts.has(workout.id)) return false
+      if (isRaceSpecific(workout)) {
+        preservedRaceSpecific += 1
+        return false
+      }
+      const type = getWorkoutType(getSessionType(workout))
+      return ['tempo', 'intervals', 'long'].includes(type)
+    })
+
+    if (nextHard) {
+      const reducedDuration = reduceDuration(getPlannedDuration(nextHard), 0.2) || getPlannedDuration(nextHard)
+      applyOverrideChange(
+        nextHard,
+        {
+          workoutId: nextHard.id,
+          customSessionType: 'Controlled Aerobic Run',
+          customTargetHrZone: 'Z2-Z3',
+          customPlannedDuration: reducedDuration,
+          customDetails: 'Adapted from high RPE: keep effort controlled and smooth.',
+          source: 'adaptation'
+        },
+        'HIGH_RPE',
+        'Recent RPE has been high (≥7.5 avg). Reducing intensity on next hard session.'
+      )
+    }
+  }
+
+  // Rule 3: Leg feel Wrecked or high pain → reduce next 2 sessions
+  if (isWrecked || isHighPain) {
     let applied = 0
     for (const workout of upcomingWorkouts) {
       if (applied >= 2) break
+      if (changedWorkouts.has(workout.id)) continue
       const type = getWorkoutType(getSessionType(workout))
       const raceSpecific = isRaceSpecific(workout)
       if (raceSpecific && !isHighPain) {
         preservedRaceSpecific += 1
         continue
       }
-      if (raceSpecific && isHighPain && applied < 1) {
-        // Apply to race-specific only if no other option for safety
-      }
+
       let customSessionType = getSessionType(workout)
       let customTargetHrZone = getTargetHrZone(workout)
       let customPlannedDuration = getPlannedDuration(workout)
@@ -183,46 +256,42 @@ export function generateAdaptationProposal({
           customDetails,
           source: 'adaptation'
         },
-        isHighPain ? 'HIGH_PAIN' : 'LOW_READINESS',
+        isHighPain ? 'HIGH_PAIN' : 'WRECKED',
         isHighPain
           ? 'High pain or discomfort detected. Reducing intensity to protect recovery.'
-          : 'Low readiness trend detected. Reducing intensity to support recovery.'
+          : 'Legs feeling wrecked. Reducing next 2 sessions for recovery.'
       )
       applied += 1
     }
   }
 
-  // Rule 2: High RPE => reduce next hard session
-  if (isHighRpe) {
+  // Rule 4: Tired for 3+ consecutive days → suggest recovery day
+  if (isTiredStreak && !isWrecked) {
     const nextHard = upcomingWorkouts.find(workout => {
       if (changedWorkouts.has(workout.id)) return false
-      if (isRaceSpecific(workout)) {
-        preservedRaceSpecific += 1
-        return false
-      }
+      if (isRaceSpecific(workout)) return false
       const type = getWorkoutType(getSessionType(workout))
       return ['tempo', 'intervals', 'long'].includes(type)
     })
 
     if (nextHard) {
-      const reducedDuration = reduceDuration(getPlannedDuration(nextHard), 0.2) || getPlannedDuration(nextHard)
       applyOverrideChange(
         nextHard,
         {
           workoutId: nextHard.id,
-          customSessionType: 'Controlled Aerobic Run',
-          customTargetHrZone: 'Z2-Z3',
-          customPlannedDuration: reducedDuration,
-          customDetails: 'Adapted from high RPE: keep effort controlled and smooth.',
+          customSessionType: 'Easy / Recovery Run',
+          customTargetHrZone: 'Z1-Z2',
+          customPlannedDuration: reduceDuration(getPlannedDuration(nextHard), 0.3) || getPlannedDuration(nextHard),
+          customDetails: 'Legs have felt tired for 3+ days. Taking it easy to recharge.',
           source: 'adaptation'
         },
-        'HIGH_RPE',
-        'Recent RPE has been high. Reducing intensity on the next hard session.'
+        'TIRED_STREAK',
+        'Legs have felt tired for 3+ consecutive days. Converting hard session to recovery.'
       )
     }
   }
 
-  // Rule 3: Load spike => reduce longest upcoming run
+  // Rule 5: Load spike ≥1.3 → reduce longest session by 20%
   if (hasLoadSpike) {
     const longest = upcomingWorkouts
       .filter(workout => !changedWorkouts.has(workout.id))
@@ -244,13 +313,13 @@ export function generateAdaptationProposal({
           source: 'adaptation'
         },
         'LOAD_SPIKE',
-        'Recent training load increased sharply. Reducing longest session to prevent overload.'
+        'Recent training load increased sharply (≥1.3x). Reducing longest session to prevent overload.'
       )
     }
   }
 
-  // Rule 4: Missed key session => convert next easy session to make-up
-  if (missedKeyWorkouts.length > 0 && !isHighPain) {
+  // Rule 6: Missed key session → convert next easy session to make-up
+  if (missedKeyWorkouts.length > 0 && !isHighPain && !isWrecked) {
     const missed = missedKeyWorkouts[missedKeyWorkouts.length - 1]
     const makeUp = upcomingWorkouts.find(workout => {
       if (changedWorkouts.has(workout.id)) return false
@@ -282,11 +351,13 @@ export function generateAdaptationProposal({
   if (changes.length === 0) {
     summaryParts.push('No adaptations needed. Training load and readiness look stable.')
   } else {
-    if (isLowReadiness) summaryParts.push('Low readiness trend triggered recovery adjustments.')
+    if (isVeryHighRpe) summaryParts.push('Very high RPE — converted hard session to easy.')
+    else if (isHighRpe) summaryParts.push('High RPE trend reduced intensity on hard sessions.')
+    if (isWrecked) summaryParts.push('Legs feeling wrecked — reducing next sessions.')
     if (isHighPain) summaryParts.push('High pain reported, prioritizing recovery.')
-    if (isHighRpe) summaryParts.push('High RPE trend reduced intensity on hard sessions.')
+    if (isTiredStreak && !isWrecked) summaryParts.push('Tired streak detected — added recovery day.')
     if (hasLoadSpike) summaryParts.push('Load spike detected; reduced volume to stabilize.')
-    if (missedKeyWorkouts.length > 0 && !isHighPain) summaryParts.push('Missed key session was rescheduled into an easy day.')
+    if (missedKeyWorkouts.length > 0 && !isHighPain && !isWrecked) summaryParts.push('Missed key session was rescheduled into an easy day.')
   }
   if (preservedRaceSpecific > 0) {
     summaryParts.push(`${preservedRaceSpecific} race-specific sessions were preserved.`)
@@ -296,10 +367,11 @@ export function generateAdaptationProposal({
     changes,
     summary: summaryParts.join(' '),
     signals: {
-      readinessAvg: readinessAvg ? Math.round(readinessAvg * 10) / 10 : null,
+      avgRpe: avgRpe ? Math.round(avgRpe * 10) / 10 : null,
+      recentLegFeel,
       recentPain,
-      recentRpe: recentRpe ? Math.round(recentRpe * 10) / 10 : null,
-      loadSpike: loadSpike ? Math.round(loadSpike * 100) : null
+      loadSpike: loadSpike ? Math.round(loadSpike * 100) : null,
+      missedKeyCount: missedKeyWorkouts.length
     }
   }
 }
