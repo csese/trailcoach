@@ -5,6 +5,8 @@ import { useLogsStore } from '@/stores/logs'
 import { useUserStore } from '@/stores/user'
 import { useStrava } from '@/composables/useStrava'
 import StravaImportModal from '@/components/strava/StravaImportModal.vue'
+import ExerciseDetailModal from '@/components/workout/ExerciseDetailModal.vue'
+import { parseExercises, getExerciseById } from '@/utils/exerciseParser'
 import { format, startOfWeek, addDays } from 'date-fns'
 import {
   X,
@@ -17,7 +19,9 @@ import {
   Trash2,
   ExternalLink,
   Download,
-  ArrowLeftRight
+  ArrowLeftRight,
+  Dumbbell,
+  ChevronRight
 } from 'lucide-vue-next'
 
 const props = defineProps({
@@ -37,6 +41,32 @@ const { isConnected: stravaConnected, isConfigured: stravaConfigured, checkConne
 const showStravaImport = ref(false)
 const showSwapSelector = ref(false)
 const selectedSwapDay = ref(null)
+const showExerciseDetail = ref(false)
+const selectedExercise = ref(null)
+
+// Parsed exercises for strength workouts
+const parsedExercises = computed(() => {
+  if (workoutType.value !== 'strength') return []
+  const desc = getField('Workout Description') || getField('WorkoutDescription')
+  return parseExercises(desc)
+})
+
+const isStrengthWorkout = computed(() => {
+  return workoutType.value === 'strength' && parsedExercises.value.length > 0
+})
+
+function openExerciseDetail(exerciseId) {
+  const exercise = getExerciseById(exerciseId)
+  if (exercise) {
+    selectedExercise.value = exercise
+    showExerciseDetail.value = true
+  }
+}
+
+function closeExerciseDetail() {
+  showExerciseDetail.value = false
+  selectedExercise.value = null
+}
 
 // Check Strava connection on mount
 onMounted(() => {
@@ -305,7 +335,31 @@ function getField(field) {
             <!-- Full Description -->
             <div>
               <h3 class="text-sm font-semibold text-text-primary mb-2">Workout Description</h3>
-              <div class="card bg-bg-tertiary">
+
+              <!-- Structured exercise list for strength workouts -->
+              <div v-if="isStrengthWorkout" class="space-y-2">
+                <div
+                  v-for="(ex, i) in parsedExercises"
+                  :key="i"
+                  :class="[
+                    'card bg-bg-tertiary flex items-center gap-3',
+                    ex.exerciseId ? 'cursor-pointer hover:bg-bg-hover transition-colors' : ''
+                  ]"
+                  @click="ex.exerciseId && openExerciseDetail(ex.exerciseId)"
+                >
+                  <Dumbbell class="w-4 h-4 text-text-muted shrink-0" />
+                  <div class="flex-1 min-w-0">
+                    <span v-if="ex.sets" class="text-xs font-mono text-accent-primary mr-2">{{ ex.sets }}×{{ ex.reps }}</span>
+                    <span :class="['text-sm', ex.exerciseId ? 'text-text-primary font-medium' : 'text-text-muted']">
+                      {{ ex.exerciseName }}
+                    </span>
+                  </div>
+                  <ChevronRight v-if="ex.exerciseId" class="w-4 h-4 text-text-muted shrink-0" />
+                </div>
+              </div>
+
+              <!-- Plain text fallback for non-strength workouts -->
+              <div v-else class="card bg-bg-tertiary">
                 <p class="text-sm text-text-secondary whitespace-pre-wrap leading-relaxed">
                   {{ getField('Workout Description') || getField('WorkoutDescription') || 'No detailed description available.' }}
                 </p>
@@ -589,6 +643,13 @@ function getField(field) {
       :workout="workout"
       @close="showStravaImport = false"
       @imported="handleStravaImport"
+    />
+
+    <!-- Exercise Detail Modal -->
+    <ExerciseDetailModal
+      :show="showExerciseDetail"
+      :exercise="selectedExercise"
+      @close="closeExerciseDetail"
     />
   </Teleport>
 </template>

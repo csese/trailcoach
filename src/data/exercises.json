@@ -1,0 +1,236 @@
+[
+  {
+    "id": "back-squat",
+    "name": "Back Squat",
+    "category": "legs",
+    "muscles": ["quadriceps", "glutes", "hamstrings", "core"],
+    "description": "A foundational lower body exercise where a barbell is placed across the upper back. Stand with feet shoulder-width apart, brace your core, and lower your hips until thighs are parallel to the ground, then drive back up.",
+    "cues": ["Keep chest tall and proud", "Drive knees out over toes", "Brace core before descending", "Push through full foot, not just toes"],
+    "trailBenefit": "Builds the raw leg strength needed for sustained climbs and power hiking on steep terrain."
+  },
+  {
+    "id": "bulgarian-split-squat",
+    "name": "Bulgarian Split Squat",
+    "category": "legs",
+    "muscles": ["quadriceps", "glutes", "hip flexors"],
+    "description": "A single-leg squat with your rear foot elevated on a bench behind you. Lower your body until your front thigh is parallel to the ground, keeping your torso upright throughout.",
+    "cues": ["Keep front knee tracking over toes", "Torso stays upright", "Control the descent — don't drop", "Push through the front heel"],
+    "trailBenefit": "Develops single-leg strength and balance critical for navigating uneven, rocky trail terrain."
+  },
+  {
+    "id": "walking-lunge",
+    "name": "Walking Lunges",
+    "category": "legs",
+    "muscles": ["quadriceps", "glutes", "hamstrings"],
+    "description": "Step forward into a lunge, lowering your back knee toward the ground. Push off the front foot to step into the next lunge, alternating legs as you walk forward.",
+    "cues": ["Long stride — don't rush steps", "Back knee nearly touches ground", "Keep torso upright", "Drive through front heel"],
+    "trailBenefit": "Mimics the forward propulsion of uphill hiking and builds endurance strength for long climbs."
+  },
+  {
+    "id": "box-step-up",
+    "name": "Box Step-Ups",
+    "category": "legs",
+    "muscles": ["quadriceps", "glutes", "calves"],
+    "description": "Step onto a box or bench with one foot, driving through that leg to stand on top. Step back down with control and repeat. Use a height that challenges you without losing form.",
+    "cues": ["Drive through the top foot — no push off the bottom", "Stand fully tall at the top", "Control the step down", "Keep hips level throughout"],
+    "trailBenefit": "Directly mimics the motion of climbing steep steps and rocky sections on trail."
+  },
+  {
+    "id": "calf-raise",
+    "name": "Calf Raises",
+    "category": "legs",
+    "muscles": ["gastrocnemius", "soleus"],
+    "description": "Stand on the edge of a step with heels hanging off. Rise up onto your toes as high as possible, pause at the top, then lower slowly below the step level for a full stretch.",
+    "cues": ["Full range of motion — go high and low", "Pause at the top for 1 second", "Slow and controlled on the way down", "Keep legs straight"],
+    "trailBenefit": "Strengthens the calves to handle repeated uphill pushes and rocky terrain without cramping."
+  },
+  {
+    "id": "single-leg-calf-raise",
+    "name": "Single-Leg Calf Raises",
+    "category": "legs",
+    "muscles": ["gastrocnemius", "soleus"],
+    "description": "Same as a calf raise but performed on one leg at a time. Stand on one foot on a step edge, rise up fully, then lower with control. Switch legs after completing all reps.",
+    "cues": ["Hold a wall for balance if needed", "Full range — drop heel below step level", "Squeeze hard at the top", "Control the negative"],
+    "trailBenefit": "Builds single-leg calf endurance essential for long mountain descents and technical terrain."
+  },
+  {
+    "id": "plank",
+    "name": "Plank",
+    "category": "core",
+    "muscles": ["rectus abdominis", "transverse abdominis", "obliques", "shoulders"],
+    "description": "Hold a push-up position with forearms on the ground, body in a straight line from head to heels. Engage your entire core and hold for the prescribed time without letting hips sag or pike.",
+    "cues": ["Squeeze glutes to keep hips level", "Pull belly button toward spine", "Don't let hips sag or pike up", "Breathe steadily throughout"],
+    "trailBenefit": "A strong core stabilizes your torso during long runs, improving efficiency and reducing injury risk on technical terrain."
+  },
+  {
+    "id": "dead-bug",
+    "name": "Dead Bugs",
+    "category": "core",
+    "muscles": ["rectus abdominis", "transverse abdominis", "hip flexors"],
+    "description": "Lie on your back with arms extended toward the ceiling and knees bent at 90 degrees. Slowly extend opposite arm and leg toward the floor while keeping your lower back pressed flat against the ground.",
+    "cues": ["Press lower back into the floor — no arching", "Move slowly and with control", "Exhale as you extend", "Return to start before switching sides"],
+    "trailBenefit": "Teaches anti-extension core control that prevents energy-wasting trunk movement during long runs."
+  },
+  {
+    "id": "side-plank",
+    "name": "Side Plank",
+    "category": "core",
+    "muscles": ["obliques", "glute medius", "shoulders"],
+    "description": "Lie on your side supported by your forearm and the side of your foot. Lift your hips off the ground to create a straight line from head to feet. Hold for the prescribed time, then switch sides.",
+    "cues": ["Stack hips — don't let the top hip roll forward", "Push the ground away with your forearm", "Keep neck neutral", "Breathe steadily"],
+    "trailBenefit": "Strengthens the lateral core and hip stabilizers crucial for maintaining balance on cambered and technical trails."
+  },
+  {
+    "id": "push-up",
+    "name": "Push-Ups",
+    "category": "upper",
+    "muscles": ["chest", "triceps", "anterior deltoids", "core"],
+    "description": "Start in a high plank position with hands slightly wider than shoulder-width. Lower your chest to the ground by bending elbows, then press back up to full extension.",
+    "cues": ["Body stays in a straight line", "Elbows at 45 degrees — not flared out", "Full lockout at the top", "Lower chest all the way down"],
+    "trailBenefit": "Upper body strength aids pole usage and arm drive on steep climbs during ultra-trail races."
+  },
+  {
+    "id": "row",
+    "name": "Rows",
+    "category": "upper",
+    "muscles": ["lats", "rhomboids", "biceps", "rear deltoids"],
+    "description": "Hinge at the hips with a flat back, holding dumbbells or a barbell. Pull the weight toward your lower ribcage by squeezing your shoulder blades together, then lower with control.",
+    "cues": ["Flat back — hinge at hips", "Squeeze shoulder blades together at the top", "Don't use momentum to swing the weight", "Control the lowering phase"],
+    "trailBenefit": "A strong back and posterior chain maintains upright posture during the late stages of ultra-distance races."
+  },
+  {
+    "id": "shoulder-press",
+    "name": "Shoulder Press",
+    "category": "upper",
+    "muscles": ["deltoids", "triceps", "upper trapezius"],
+    "description": "Stand or sit with dumbbells at shoulder height, palms facing forward. Press the weights overhead until arms are fully extended, then lower with control back to shoulder level.",
+    "cues": ["Core braced throughout", "Press straight up — not forward", "Full lockout at the top", "Don't arch your lower back"],
+    "trailBenefit": "Shoulder endurance is essential for sustained pole usage during long climbs in mountain ultras."
+  },
+  {
+    "id": "russian-twist",
+    "name": "Russian Twists",
+    "category": "core",
+    "muscles": ["obliques", "rectus abdominis", "hip flexors"],
+    "description": "Sit with knees bent and feet slightly off the ground, leaning back at about 45 degrees. Rotate your torso side to side, touching the ground beside each hip. Hold a weight for added difficulty.",
+    "cues": ["Lean back to engage core — don't slouch", "Rotate from the torso, not just the arms", "Keep feet elevated for more challenge", "Control the movement — don't rush"],
+    "trailBenefit": "Rotational core strength improves stability on twisting, technical single-track trails."
+  },
+  {
+    "id": "romanian-deadlift",
+    "name": "Romanian Deadlift",
+    "category": "legs",
+    "muscles": ["hamstrings", "glutes", "lower back"],
+    "description": "Hold a barbell or dumbbells in front of your thighs. Hinge at the hips, pushing them back while keeping a slight knee bend, lowering the weight along your legs until you feel a deep hamstring stretch. Drive hips forward to return.",
+    "cues": ["Hips push back — it's a hinge, not a squat", "Keep the bar close to your legs", "Slight bend in knees — don't lock out", "Squeeze glutes hard at the top"],
+    "trailBenefit": "Builds the posterior chain strength needed for powerful uphill hiking and resilient knees on descents."
+  },
+  {
+    "id": "hip-thrust",
+    "name": "Hip Thrust",
+    "category": "legs",
+    "muscles": ["glutes", "hamstrings"],
+    "description": "Sit with your upper back against a bench, feet flat on the floor. Drive through your heels to lift your hips until your body forms a straight line from shoulders to knees. Squeeze glutes at the top and lower with control.",
+    "cues": ["Drive through heels", "Squeeze glutes hard at the top", "Chin tucked — don't hyperextend neck", "Full hip extension at the top"],
+    "trailBenefit": "Powerful glutes are the primary engine for steep mountain climbing and maintaining pace on long ultras."
+  },
+  {
+    "id": "glute-bridge",
+    "name": "Glute Bridge",
+    "category": "legs",
+    "muscles": ["glutes", "hamstrings", "core"],
+    "description": "Lie on your back with knees bent and feet flat on the floor. Push through your heels to lift your hips toward the ceiling until your body forms a straight line from shoulders to knees.",
+    "cues": ["Push through heels, not toes", "Squeeze glutes at the top", "Don't arch your lower back", "Hold the top position for 1-2 seconds"],
+    "trailBenefit": "Activates and strengthens the glutes to prevent them from shutting down during long mountain efforts."
+  },
+  {
+    "id": "nordic-hamstring-curl",
+    "name": "Nordic Hamstring Curl",
+    "category": "legs",
+    "muscles": ["hamstrings"],
+    "description": "Kneel on the ground with someone holding your ankles or anchor your feet. Slowly lower your body toward the ground by extending at the knees, using your hamstrings to control the descent. Push off the ground to help return to the start.",
+    "cues": ["Keep hips extended — don't bend at the waist", "Lower as slowly as you can", "Use hands to catch yourself at the bottom", "Fight gravity the whole way down"],
+    "trailBenefit": "Eccentric hamstring strength is critical for protecting knees during long, steep descents."
+  },
+  {
+    "id": "box-jump",
+    "name": "Box Jumps",
+    "category": "plyometric",
+    "muscles": ["quadriceps", "glutes", "calves"],
+    "description": "Stand facing a sturdy box or platform. Bend into a quarter squat, swing your arms, and jump explosively onto the box. Land softly with both feet, stand tall, then step back down.",
+    "cues": ["Swing arms for momentum", "Land softly — absorb with bent knees", "Stand fully tall on the box", "Step down — don't jump down"],
+    "trailBenefit": "Develops explosive power for bounding over obstacles and powering up steep technical sections."
+  },
+  {
+    "id": "broad-jump",
+    "name": "Broad Jumps",
+    "category": "plyometric",
+    "muscles": ["quadriceps", "glutes", "hamstrings", "calves"],
+    "description": "Stand with feet shoulder-width apart. Bend into a quarter squat, swing arms forward, and jump as far as possible horizontally. Land softly with bent knees and absorb the impact.",
+    "cues": ["Explode through the hips", "Swing arms forward aggressively", "Land softly with bent knees", "Stick the landing before resetting"],
+    "trailBenefit": "Builds horizontal power and landing mechanics useful for crossing gaps and technical trail features."
+  },
+  {
+    "id": "single-leg-squat",
+    "name": "Single-Leg Squat",
+    "category": "legs",
+    "muscles": ["quadriceps", "glutes", "hip stabilizers"],
+    "description": "Stand on one leg and lower into a squat, extending the other leg forward. Go as low as you can with control, then drive back up. Use a box behind you as a target if needed.",
+    "cues": ["Keep knee tracking over toes", "Arms forward for counterbalance", "Sit back like reaching for a chair", "Control the entire movement"],
+    "trailBenefit": "Single-leg strength and balance directly translates to stability on uneven, rocky mountain trails."
+  },
+  {
+    "id": "hip-flexor-stretch",
+    "name": "Hip Flexor Stretch",
+    "category": "mobility",
+    "muscles": ["hip flexors", "psoas", "quadriceps"],
+    "description": "Kneel in a lunge position with one knee on the ground. Shift your hips forward while keeping your torso upright until you feel a deep stretch in the front of your back hip. Hold for 30-60 seconds per side.",
+    "cues": ["Squeeze the glute of the kneeling leg", "Don't arch your lower back", "Shift hips forward gently", "Breathe deeply into the stretch"],
+    "trailBenefit": "Tight hip flexors limit stride length and climbing power — keeping them mobile improves uphill efficiency."
+  },
+  {
+    "id": "hamstring-stretch",
+    "name": "Hamstring Stretch",
+    "category": "mobility",
+    "muscles": ["hamstrings"],
+    "description": "Stand and place one heel on a low surface in front of you. Keep your leg straight and hinge at the hips, leaning forward until you feel a stretch in the back of your thigh. Hold for 30-60 seconds per side.",
+    "cues": ["Hinge at the hips — don't round your back", "Keep the stretching leg straight", "Flex the foot to deepen the stretch", "Breathe and relax into it"],
+    "trailBenefit": "Flexible hamstrings allow a full running stride and reduce strain during steep descents."
+  },
+  {
+    "id": "single-leg-deadlift",
+    "name": "Single-Leg Deadlift",
+    "category": "legs",
+    "muscles": ["hamstrings", "glutes", "lower back", "hip stabilizers"],
+    "description": "Stand on one leg, hinge at the hips and lower a weight toward the ground while extending the free leg behind you. Keep your back flat and return to standing by driving your hips forward.",
+    "cues": ["Hips stay square — don't rotate", "Flat back throughout", "Reach the free leg back like a counterbalance", "Squeeze glute to return to standing"],
+    "trailBenefit": "Builds single-leg posterior chain strength and balance for navigating uneven mountain terrain."
+  },
+  {
+    "id": "step-down",
+    "name": "Step-Downs",
+    "category": "legs",
+    "muscles": ["quadriceps", "glutes", "hip stabilizers"],
+    "description": "Stand on a box or step on one leg. Slowly lower the other foot toward the ground by bending the standing knee, then drive back up. Focus on a controlled, slow descent.",
+    "cues": ["Slow and controlled descent", "Keep knee tracking over toes", "Don't let the lowering foot slam down", "Drive through the standing heel to return"],
+    "trailBenefit": "Eccentric quad control is essential for protecting knees during long, technical descents."
+  },
+  {
+    "id": "pigeon-pose",
+    "name": "Pigeon Pose",
+    "category": "mobility",
+    "muscles": ["glutes", "hip rotators", "hip flexors"],
+    "description": "From a kneeling position, bring one knee forward and place it behind the same-side wrist with shin angled across. Extend the back leg behind you and lower your hips toward the floor. Hold and breathe.",
+    "cues": ["Keep hips square to the ground", "Ease into it — don't force depth", "Use hands for support", "Breathe deeply and relax"],
+    "trailBenefit": "Opens tight hips from hours of running, improving stride freedom and reducing hip pain on long efforts."
+  },
+  {
+    "id": "ninety-ninety-stretch",
+    "name": "90/90 Stretch",
+    "category": "mobility",
+    "muscles": ["hip rotators", "glutes", "hip flexors"],
+    "description": "Sit on the floor with one leg in front bent at 90 degrees and the other leg behind also at 90 degrees. Keep your torso tall and lean forward over the front shin to deepen the stretch.",
+    "cues": ["Both knees at 90 degrees", "Sit tall — don't slouch", "Lean forward from the hips", "Switch sides and compare mobility"],
+    "trailBenefit": "Improves hip internal and external rotation for better movement efficiency on technical, twisting trails."
+  }
+]
