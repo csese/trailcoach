@@ -58,8 +58,34 @@ const isStrengthWorkout = computed(() => {
   return workoutType.value === 'strength' && parsedExercises.value.length > 0
 })
 
-function openExerciseDetail(exerciseId) {
-  const exercise = getExerciseById(exerciseId)
+// Group parsed exercises by section for rendering
+const groupedExercises = computed(() => {
+  const groups = []
+  let currentSection = null
+  for (const ex of parsedExercises.value) {
+    if (ex.section !== currentSection) {
+      currentSection = ex.section
+      groups.push({ section: currentSection, exercises: [] })
+    }
+    groups[groups.length - 1].exercises.push(ex)
+  }
+  return groups
+})
+
+const sectionLabels = {
+  warmup: 'Warm-Up',
+  main: 'Main Block',
+  core: 'Core Circuit',
+  cooldown: 'Cool-Down'
+}
+
+// Pre-resolve exercise objects for click handling
+function resolveExercise(ex) {
+  if (!ex.exerciseId) return null
+  return getExerciseById(ex.exerciseId)
+}
+
+function openExerciseDetail(exercise) {
   if (exercise) {
     selectedExercise.value = exercise
     showExerciseDetail.value = true
@@ -372,24 +398,34 @@ function getField(field) {
               <h3 class="text-sm font-semibold text-text-primary mb-2">Workout Description</h3>
 
               <!-- Structured exercise list for strength workouts -->
-              <div v-if="isStrengthWorkout" class="space-y-2">
-                <div
-                  v-for="(ex, i) in parsedExercises"
-                  :key="i"
-                  :class="[
-                    'card bg-bg-tertiary flex items-center gap-3',
-                    ex.exerciseId ? 'cursor-pointer hover:bg-bg-hover transition-colors' : ''
-                  ]"
-                  @click="ex.exerciseId && openExerciseDetail(ex.exerciseId)"
-                >
-                  <Dumbbell class="w-4 h-4 text-text-muted shrink-0" />
-                  <div class="flex-1 min-w-0">
-                    <span v-if="ex.sets" class="text-xs font-mono text-accent-primary mr-2">{{ ex.sets }}×{{ ex.reps }}</span>
-                    <span :class="['text-sm', ex.exerciseId ? 'text-text-primary font-medium' : 'text-text-muted']">
-                      {{ ex.exerciseName }}
-                    </span>
+              <div v-if="isStrengthWorkout" class="space-y-3">
+                <div v-for="(group, gi) in groupedExercises" :key="gi">
+                  <!-- Section header -->
+                  <p class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-1.5" :class="{ 'mt-2': gi > 0 }">
+                    {{ sectionLabels[group.section] || group.section }}
+                  </p>
+                  <div class="space-y-1.5">
+                    <div
+                      v-for="(ex, i) in group.exercises"
+                      :key="i"
+                      :class="[
+                        'card bg-bg-tertiary flex items-center gap-3 py-2.5',
+                        resolveExercise(ex) ? 'cursor-pointer hover:bg-bg-hover transition-colors' : ''
+                      ]"
+                      @click="resolveExercise(ex) && openExerciseDetail(resolveExercise(ex))"
+                    >
+                      <Dumbbell class="w-4 h-4 text-text-muted shrink-0" />
+                      <div class="flex-1 min-w-0">
+                        <span v-if="ex.sets" class="text-xs font-mono text-accent-primary mr-2">{{ ex.sets }}×{{ ex.reps }}</span>
+                        <span v-else-if="ex.reps" class="text-xs font-mono text-accent-primary mr-2">{{ ex.reps }}</span>
+                        <span :class="['text-sm', ex.exerciseId ? 'text-text-primary font-medium' : 'text-text-muted']">
+                          {{ ex.exerciseName }}
+                        </span>
+                        <span v-if="ex.notes" class="text-xs text-text-muted ml-1">{{ ex.notes }}</span>
+                      </div>
+                      <ChevronRight v-if="ex.exerciseId" class="w-4 h-4 text-text-muted shrink-0" />
+                    </div>
                   </div>
-                  <ChevronRight v-if="ex.exerciseId" class="w-4 h-4 text-text-muted shrink-0" />
                 </div>
               </div>
 
