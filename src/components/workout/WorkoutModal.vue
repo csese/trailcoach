@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
 import { useUserStore } from '@/stores/user'
@@ -37,6 +38,7 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
+const router = useRouter()
 const { isConnected: stravaConnected, isConfigured: stravaConfigured, checkConnection } = useStrava()
 const showStravaImport = ref(false)
 const showSwapSelector = ref(false)
@@ -253,6 +255,11 @@ function confirmSwap() {
   emit('close')
 }
 
+function goToSettings() {
+  router.push('/settings')
+  emit('close')
+}
+
 function handleStravaImport(logData) {
   // Update form with imported data
   actualDuration.value = logData.actualDuration || ''
@@ -455,6 +462,14 @@ function getField(field) {
                 >
                   <Download class="w-4 h-4" />
                   Import from Strava
+                </button>
+                <button
+                  v-else-if="stravaConfigured && !stravaConnected"
+                  @click="goToSettings"
+                  class="btn-secondary text-sm flex items-center gap-2 opacity-60"
+                >
+                  <Download class="w-4 h-4" />
+                  Connect Strava to import
                 </button>
               </div>
 
