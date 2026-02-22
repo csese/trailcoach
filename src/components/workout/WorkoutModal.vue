@@ -8,6 +8,7 @@ import { useReadinessStore } from '@/stores/readiness'
 import { useStrava } from '@/composables/useStrava'
 import StravaImportModal from '@/components/strava/StravaImportModal.vue'
 import ExerciseDetailModal from '@/components/workout/ExerciseDetailModal.vue'
+import RunSessionDisplay from '@/components/workout/RunSessionDisplay.vue'
 import { parseExercises, getExerciseById } from '@/utils/exerciseParser'
 import { format, startOfWeek, addDays } from 'date-fns'
 import {
@@ -53,6 +54,12 @@ const parsedExercises = computed(() => {
   const desc = getField('Workout Description') || getField('WorkoutDescription')
   return parseExercises(desc)
 })
+
+const hasRunMeta = computed(() => {
+  return !!props.workout?.runMeta && workoutType.value !== 'strength' && workoutType.value !== 'rest'
+})
+
+const showFullNotes = ref(false)
 
 const isStrengthWorkout = computed(() => {
   return workoutType.value === 'strength' && parsedExercises.value.length > 0
@@ -395,10 +402,29 @@ function getField(field) {
 
             <!-- Full Description -->
             <div>
-              <h3 class="text-sm font-semibold text-text-primary mb-2">Workout Description</h3>
+              <!-- Structured run session display -->
+              <div v-if="hasRunMeta">
+                <RunSessionDisplay :workout="workout" />
+                <!-- Collapsible full notes -->
+                <div class="mt-3">
+                  <button
+                    @click="showFullNotes = !showFullNotes"
+                    class="text-xs text-text-muted hover:text-text-secondary transition-colors flex items-center gap-1"
+                  >
+                    <ChevronRight class="w-3 h-3 transition-transform" :class="{ 'rotate-90': showFullNotes }" />
+                    Full notes
+                  </button>
+                  <div v-if="showFullNotes" class="mt-2 card bg-bg-tertiary">
+                    <p class="text-sm text-text-secondary whitespace-pre-wrap leading-relaxed">
+                      {{ getField('Workout Description') || getField('WorkoutDescription') || 'No detailed description available.' }}
+                    </p>
+                  </div>
+                </div>
+              </div>
 
               <!-- Structured exercise list for strength workouts -->
-              <div v-if="isStrengthWorkout" class="space-y-3">
+              <div v-else-if="isStrengthWorkout" class="space-y-3">
+                <h3 class="text-sm font-semibold text-text-primary mb-2">Workout Description</h3>
                 <div v-for="(group, gi) in groupedExercises" :key="gi">
                   <!-- Section header -->
                   <p class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-1.5" :class="{ 'mt-2': gi > 0 }">
@@ -429,11 +455,14 @@ function getField(field) {
                 </div>
               </div>
 
-              <!-- Plain text fallback for non-strength workouts -->
-              <div v-else class="card bg-bg-tertiary">
-                <p class="text-sm text-text-secondary whitespace-pre-wrap leading-relaxed">
-                  {{ getField('Workout Description') || getField('WorkoutDescription') || 'No detailed description available.' }}
-                </p>
+              <!-- Plain text fallback -->
+              <div v-else>
+                <h3 class="text-sm font-semibold text-text-primary mb-2">Workout Description</h3>
+                <div class="card bg-bg-tertiary">
+                  <p class="text-sm text-text-secondary whitespace-pre-wrap leading-relaxed">
+                    {{ getField('Workout Description') || getField('WorkoutDescription') || 'No detailed description available.' }}
+                  </p>
+                </div>
               </div>
             </div>
 
