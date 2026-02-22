@@ -374,6 +374,148 @@ export function useStrava() {
     })
   }
 
+  // ── Weekly Adaptation: Stream & Analysis Functions ──
+
+  /**
+   * Fetch time-series streams for a single activity.
+   * Only call for runs > 30 min to conserve API quota.
+   */
+  async function fetchActivityStreams(activityId) {
+    try {
+      const token = await getValidToken()
+      const keys = 'heartrate,velocity_smooth,distance,altitude,grade_smooth'
+      const response = await fetch(
+        `${STRAVA_API_URL}/activities/${activityId}/streams?keys=${keys}&key_by_type=true`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      if (!response.ok) {
+        if (response.status === 404) return null // no streams available
+        throw new Error('Failed to fetch activity streams')
+      }
+      const data = await response.json()
+      // Strava returns an array of stream objects; convert to keyed map
+      const streams = {}
+      const keyMap = { heartrate: 'heartrate', velocity_smooth: 'velocity', distance: 'distance', altitude: 'altitude', grade_smooth: 'grade' }
+      if (Array.isArray(data)) {
+        for (const s of data) {
+          const mapped = keyMap[s.type]
+          if (mapped) streams[mapped] = s.data
+        }
+      } else {
+        // key_by_type format
+        for (const [k, v] of Object.entries(data)) {
+          const mapped = keyMap[k]
+          if (mapped && v?.data) streams[mapped] = v.data
+        }
+      }
+      return streams
+    } catch (err) {
+      error.value = err.message
+      console.warn('fetchActivityStreams error:', err)
+      return null
+    }
+  }
+
+  /**
+   * Aerobic decoupling: how much pace:HR ratio drifts between first and second half.
+   * Positive = drifting (fatiguing). <5% excellent, 5-10% moderate, >10% significant.
+   */
+  function calculateDecoupling(streams) {
+    if (!streams?.heartrate?.length || !streams?.velocity?.length || !streams?.distance?.length) return null
+    const n = streams.distance.length
+    const totalDist = streams.distance[n - 1]
+    const halfDist = totalDist / 2
+
+    let splitIdx = 0
+    for (let i = 0; i < n; i++) {
+      if (streams.distance[i] >= halfDist) { splitIdx = i; break }
+    }
+    if (splitIdx < 2 || splitIdx >= n - 2) return null
+
+    const avgRatio = (velocities, heartrates, start, end) => {
+      let sumV = 0, sumHR = 0, count = 0
+      for (let i = start; i < end; i++) {
+        if (heartrates[i] > 0) {
+          sumV += velocities[i]
+          sumHR += heartrates[i]
+          count++
+        }
+      }
+      if (count === 0 || sumHR === 0) return 0
+      return (sumV / count) / (sumHR / count)
+    }
+
+    const firstRatio = avgRatio(streams.velocity, streams.heartrate, 0, splitIdx)
+    const secondRatio = avgRatio(streams.velocity, streams.heartrate, splitIdx, n)
+
+    if (firstRatio === 0) return null
+    return Math.round(((firstRatio - secondRatio) / firstRatio) * 1000) / 10
+  }
+
+  /**
+   * Calculate % time spent in each HR zone.
+   * hrZones: { z1: [min, max], z2: [min, max], ... z5: [min, max] }
+   */
+  function calculateZoneDistribution(streams, hrZones) {
+    if (!streams?.heartrate?.length || !hrZones) return null
+    const counts = { z1: 0, z2: 0, z3: 0, z4: 0, z5: 0 }
+    const total = streams.heartrate.length
+
+    for (const hr of streams.heartrate) {
+      if (hrZones.z5 && hr >= hrZones.z5[0]) counts.z5++
+      else if (hrZones.z4 && hr >= hrZones.z4[0]) counts.z4++
+      else if (hrZones.z3 && hr >= hrZones.z3[0]) counts.z3++
+      else if (hrZones.z2 && hr >= hrZones.z2[0]) counts.z2++
+      else counts.z1++
+    }
+
+    return {
+      z1: Math.round((counts.z1 / total) * 100),
+      z2: Math.round((counts.z2 / total) * 100),
+      z3: Math.round((counts.z3 / total) * 100),
+      z4: Math.round((counts.z4 / total) * 100),
+      z5: Math.round((counts.z5 / total) * 100)
+    }
+  }
+
+  /**
+   * Fetch all activities in a date range, returning a simplified load-oriented list.
+   */
+  async function fetchWeeklyLoad(weekStartDate, weekEndDate) {
+    try {
+      const allActivities = await fetchActivities({
+        after: weekStartDate,
+        before: weekEndDate,
+        perPage: 50
+      })
+
+      return (allActivities || []).map(a => {
+        const sport = (a.sport_type || a.type || '').toLowerCase()
+        let type = 'other'
+        if (sport.includes('run') || sport.includes('trail')) type = 'run'
+        else if (sport.includes('weight') || sport.includes('workout') || sport.includes('crossfit')) type = 'strength'
+
+        return {
+          id: a.id,
+          date: a.start_date_local || a.start_date,
+          name: a.name,
+          sport_type: a.sport_type || a.type,
+          distance: a.distance ? Math.round(a.distance) : 0,
+          duration: a.moving_time || 0,
+          elevation_gain: a.total_elevation_gain ? Math.round(a.total_elevation_gain) : 0,
+          avg_hr: a.average_heartrate ? Math.round(a.average_heartrate) : null,
+          suffer_score: a.suffer_score || null,
+          relative_effort: a.relative_effort || null,
+          perceived_exertion: a.perceived_exertion || null,
+          type
+        }
+      })
+    } catch (err) {
+      error.value = err.message
+      return []
+    }
+  }
+
   return {
     isConfigured,
     isConnected,
@@ -389,6 +531,10 @@ export function useStrava() {
     fetchAthlete,
     getActivity,
     importActivityToWorkout,
-    findMatchingActivities
+    findMatchingActivities,
+    fetchActivityStreams,
+    calculateDecoupling,
+    calculateZoneDistribution,
+    fetchWeeklyLoad
   }
 }

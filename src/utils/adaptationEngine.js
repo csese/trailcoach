@@ -1,4 +1,4 @@
-import { addDays, format, startOfDay, subDays } from 'date-fns'
+import { addDays, format, startOfDay, subDays, parseISO } from 'date-fns'
 import { parseDurationToMinutes, formatMinutesToDuration } from '@/utils/duration'
 
 function sortByDate(a, b) {
@@ -372,6 +372,269 @@ export function generateAdaptationProposal({
       recentPain,
       loadSpike: loadSpike ? Math.round(loadSpike * 100) : null,
       missedKeyCount: missedKeyWorkouts.length
+    }
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Weekly Adaptation Engine (batch system — runs once per week)
+// ════════════════════════════════════════════════════════════════════════════
+
+import { interpretTSB, compareLoadVsPlan } from '@/utils/loadCalculator'
+
+const LEG_FEEL_MAP = { '💀': 1, '😴': 2, '👍': 3, '💪': 4 }
+const LEG_FEEL_LABELS = { 1: 'Wrecked', 2: 'Tired', 3: 'Good', 4: 'Strong' }
+
+function avgLegFeelLabel(entries) {
+  if (!entries || entries.length === 0) return 'N/A'
+  const scores = entries
+    .map(e => e.readinessScore || LEG_FEEL_MAP[e.legFeel] || null)
+    .filter(Boolean)
+  if (scores.length === 0) return 'N/A'
+  const avg = scores.reduce((a, b) => a + b, 0) / scores.length
+  if (avg <= 2) return 'Wrecked'
+  if (avg <= 4) return 'Tired'
+  if (avg <= 7) return 'Good'
+  return 'Strong'
+}
+
+/**
+ * Generate a weekly adaptation based on the completed week's data.
+ * Returns a proposal in the same format as generateAdaptationProposal
+ * plus a weekSummary object for the WeeklySummaryCard.
+ */
+export async function generateWeeklyAdaptation({
+  weekStart,
+  activities,
+  loadMetrics,
+  plannedWorkouts,
+  legFeelEntries,
+  upcomingWorkouts,
+  hrZones,
+  // Optional: stream analysis results (pre-fetched to avoid API calls here)
+  streamAnalysis // { decoupling: number|null, easyRunZoneViolation: boolean }
+}) {
+  const changes = []
+  const changedWorkouts = new Set()
+  const messages = []
+
+  const { atl, ctl, tsb } = loadMetrics || { atl: 0, ctl: 0, tsb: 0 }
+  const tsbInfo = interpretTSB(tsb)
+
+  // Actual load from activities (use suffer_score, fall back to relative_effort, then duration/10)
+  const actualLoad = (activities || []).reduce((sum, a) => {
+    return sum + (a.suffer_score || a.relative_effort || Math.round((a.duration || 0) / 360))
+  }, 0)
+
+  // Planned load estimate from planned workouts
+  const plannedLoad = (plannedWorkouts || []).reduce((sum, w) => {
+    const dur = parseDurationToMinutes(getPlannedDuration(w)) || 0
+    const type = getSessionType(w).toLowerCase()
+    // Rough load estimation: easy ~1x, tempo ~1.5x, intervals ~2x, long ~1.2x
+    let factor = 1
+    if (type.includes('tempo') || type.includes('threshold')) factor = 1.5
+    else if (type.includes('interval') || type.includes('speed')) factor = 2
+    else if (type.includes('long')) factor = 1.2
+    else if (type.includes('strength')) factor = 0.8
+    return sum + Math.round(dur * factor / 10)
+  }, 0)
+
+  const loadComparison = compareLoadVsPlan(plannedLoad, actualLoad)
+
+  // Count sessions
+  const keyTypes = ['tempo', 'intervals', 'long', 'race', 'threshold', 'speed']
+  const keySessionsPlanned = (plannedWorkouts || []).filter(w => {
+    const st = getSessionType(w).toLowerCase()
+    return keyTypes.some(t => st.includes(t))
+  }).length
+  // Count completed key sessions by matching dates
+  const activityDates = new Set((activities || []).map(a => {
+    const d = new Date(a.date)
+    return format(d, 'yyyy-MM-dd')
+  }))
+  const keySessionsCompleted = (plannedWorkouts || []).filter(w => {
+    const st = getSessionType(w).toLowerCase()
+    if (!keyTypes.some(t => st.includes(t))) return false
+    const wd = w.date ? format(w.date, 'yyyy-MM-dd') : null
+    return wd && activityDates.has(wd)
+  }).length
+
+  const totalDistance = (activities || []).reduce((s, a) => s + (a.distance || 0), 0)
+  const totalElevation = (activities || []).reduce((s, a) => s + (a.elevation_gain || 0), 0)
+
+  // Leg feel analysis
+  const legFeelScores = (legFeelEntries || [])
+    .map(e => e.readinessScore || LEG_FEEL_MAP[e.legFeel] || null)
+    .filter(Boolean)
+  const tiredDays = legFeelScores.filter(s => s <= 3).length // readiness <=3 ~ 💀 or 😴
+  const strongDays = legFeelScores.filter(s => s >= 8).length // readiness >=8 ~ 💪
+
+  // Helper to create a change
+  const addChange = (workout, overrides, reasonCode, reasonText) => {
+    if (!workout || changedWorkouts.has(workout.id)) return
+    const from = {
+      date: workout.date ? format(workout.date, 'yyyy-MM-dd') : null,
+      sessionType: getSessionType(workout),
+      plannedDuration: getPlannedDuration(workout),
+      targetHrZone: getTargetHrZone(workout),
+      details: getDetails(workout)
+    }
+    const to = { ...from, ...overrides }
+    changes.push({
+      id: `weekly-${workout.id}-${Date.now()}`,
+      workoutId: workout.id,
+      changeType: 'override',
+      from,
+      to,
+      reasonCode,
+      reasonText,
+      override: { workoutId: workout.id, ...overrides, source: 'weekly-adaptation' }
+    })
+    changedWorkouts.add(workout.id)
+  }
+
+  const upcoming = [...(upcomingWorkouts || [])].sort(sortByDate)
+  const findUpcoming = (filter) => upcoming.find(w => !changedWorkouts.has(w.id) && filter(w))
+  const findUpcomingByDay = (dayName) => findUpcoming(w => {
+    if (!w.date) return false
+    return format(w.date, 'EEEE').toLowerCase() === dayName.toLowerCase()
+  })
+
+  // ── Rule 1: Overreached (TSB < -20) ──
+  if (tsb < -20) {
+    const tuesday = findUpcomingByDay('tuesday')
+    if (tuesday) {
+      const st = getSessionType(tuesday).toLowerCase()
+      if (keyTypes.some(t => st.includes(t))) {
+        addChange(tuesday, {
+          sessionType: 'Easy / Recovery Run',
+          targetHrZone: 'Z1-Z2',
+          details: 'Converted to easy: overreached state detected.'
+        }, 'OVERREACHED', 'TSB indicates overreaching. Converting hard session to easy.')
+      }
+    }
+    const thursday = findUpcomingByDay('thursday')
+    if (thursday) {
+      const dur = parseDurationToMinutes(getPlannedDuration(thursday))
+      if (dur) {
+        addChange(thursday, {
+          plannedDuration: formatMinutesToDuration(Math.round(dur * 0.7)),
+          details: 'Shortened by 30%: overreached state detected.'
+        }, 'OVERREACHED', 'TSB indicates overreaching. Reducing Thursday session by 30%.')
+      }
+    }
+    messages.push('Your body is carrying significant fatigue from recent training. Protecting next week.')
+  }
+
+  // ── Rule 2: Undertrained (actual < 70% of planned) ──
+  if (loadComparison.ratio < 0.7 && tiredDays < 3) {
+    const longest = upcoming
+      .filter(w => !changedWorkouts.has(w.id))
+      .map(w => ({ w, dur: parseDurationToMinutes(getPlannedDuration(w)) || 0 }))
+      .sort((a, b) => b.dur - a.dur)[0]
+    if (longest && longest.dur > 0) {
+      addChange(longest.w, {
+        plannedDuration: formatMinutesToDuration(longest.dur + 15),
+        details: 'Added 15min: lighter week than planned.'
+      }, 'UNDERTRAINED', 'Lighter week than planned — slight volume bump on the weekend long run.')
+    }
+    messages.push('Lighter week than planned — slight volume bump on the weekend long run.')
+  }
+
+  // ── Rule 3: Zone adherence (easy runs too fast) ──
+  if (streamAnalysis?.easyRunZoneViolation) {
+    messages.push('Your easy runs are too fast. Slow down — this is limiting your aerobic adaptation.')
+  }
+
+  // ── Rule 4: High aerobic decoupling on long run (>10%) ──
+  if (streamAnalysis?.decoupling != null && streamAnalysis.decoupling > 10) {
+    const nextLong = findUpcoming(w => {
+      const st = getSessionType(w).toLowerCase()
+      return st.includes('long')
+    })
+    if (nextLong) {
+      const dur = parseDurationToMinutes(getPlannedDuration(nextLong))
+      if (dur) {
+        addChange(nextLong, {
+          plannedDuration: formatMinutesToDuration(Math.round(dur * 0.8)),
+          details: 'Shortened by 20%: high aerobic decoupling on last long run.'
+        }, 'HIGH_DECOUPLING', 'Last long run showed significant fatigue drift. Backing off slightly.')
+      }
+    }
+    messages.push('Last long run showed significant fatigue drift. Backing off slightly to absorb the training.')
+  }
+
+  // ── Rule 5: Missed key sessions (>2) ──
+  const missedCount = keySessionsPlanned - keySessionsCompleted
+  if (missedCount > 2) {
+    const missedTypes = (plannedWorkouts || [])
+      .filter(w => {
+        const st = getSessionType(w).toLowerCase()
+        if (!keyTypes.some(t => st.includes(t))) return false
+        const wd = w.date ? format(w.date, 'yyyy-MM-dd') : null
+        return wd && !activityDates.has(wd)
+      })
+      .map(w => getSessionType(w))
+    const firstMissed = missedTypes[0] || 'key workout'
+    messages.push(`Key sessions missed — prioritise ${firstMissed} this week.`)
+  }
+
+  // ── Rule 6: Leg feel signal ──
+  if (tiredDays >= 3 && tsb >= -20) {
+    messages.push('Multiple tired days this week reinforce the need for recovery.')
+  }
+  if (strongDays >= 3 && tsb >= 0) {
+    const nextLong = findUpcoming(w => {
+      const st = getSessionType(w).toLowerCase()
+      return st.includes('long') || st.includes('tempo')
+    })
+    if (nextLong && changes.length === 0) {
+      const dur = parseDurationToMinutes(getPlannedDuration(nextLong))
+      if (dur) {
+        addChange(nextLong, {
+          plannedDuration: formatMinutesToDuration(dur + 10),
+          details: 'Feeling strong — slight bump.'
+        }, 'FEELING_STRONG', 'Feeling strong all week. Slight load increase.')
+      }
+    }
+    messages.push('Feeling strong this week — allowing a slight load increase.')
+  }
+
+  // ── Rule 7: On track ──
+  if (messages.length === 0) {
+    messages.push('Solid week of training. Everything is on track — keep it rolling.')
+  }
+
+  const summary = messages.slice(0, 3).join(' ')
+
+  const weekSummary = {
+    actualLoad,
+    plannedLoad,
+    loadRatio: loadComparison.ratio,
+    atl,
+    ctl,
+    tsb,
+    tsbStatus: tsbInfo.label.toLowerCase(),
+    keySessionsCompleted,
+    keySessionsPlanned: keySessionsPlanned || (plannedWorkouts || []).length,
+    totalDistance: `${Math.round(totalDistance / 1000)}km`,
+    totalElevation: `${totalElevation}m`,
+    avgLegFeel: avgLegFeelLabel(legFeelEntries)
+  }
+
+  return {
+    weekSummary,
+    changes,
+    summary,
+    signals: {
+      tsb,
+      tsbStatus: tsbInfo.status,
+      loadRatio: loadComparison.ratio,
+      decoupling: streamAnalysis?.decoupling ?? null,
+      easyRunZoneViolation: streamAnalysis?.easyRunZoneViolation ?? false,
+      tiredDays,
+      strongDays,
+      missedKeySessions: missedCount
     }
   }
 }

@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { format, startOfWeek } from 'date-fns'
-import { generateAdaptationProposal } from '@/utils/adaptationEngine'
+import { format, startOfWeek, subDays, addDays, isMonday, differenceInDays, parseISO } from 'date-fns'
+import { generateAdaptationProposal, generateWeeklyAdaptation } from '@/utils/adaptationEngine'
 import { enhanceAdaptationNarrative } from '@/utils/llmNarrator'
+import { calculateLoadMetrics } from '@/utils/loadCalculator'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
 import { useReadinessStore } from '@/stores/readiness'
 import { useSupabase } from '@/composables/useSupabase'
+import { useStrava } from '@/composables/useStrava'
 
 const STORAGE_KEY = 'trailcoach-adaptations'
 
@@ -229,6 +231,177 @@ export const useAdaptationsStore = defineStore('adaptations', () => {
     }
   }
 
+  // ── Weekly Adaptation ──
+  const weeklyAdaptation = ref(null)
+  const weeklyAdaptationLoading = ref(false)
+
+  const WEEKLY_STORAGE_KEY = 'trailcoach-weekly-adaptation'
+
+  function loadWeeklyAdaptation() {
+    try {
+      const stored = localStorage.getItem(WEEKLY_STORAGE_KEY)
+      if (stored) weeklyAdaptation.value = JSON.parse(stored)
+    } catch { /* ignore */ }
+  }
+
+  function persistWeeklyAdaptation() {
+    if (weeklyAdaptation.value) {
+      localStorage.setItem(WEEKLY_STORAGE_KEY, JSON.stringify(weeklyAdaptation.value))
+    }
+  }
+
+  /**
+   * Check if weekly adaptation should run.
+   * Runs on Monday or if last adaptation was >6 days ago.
+   * Called from DashboardView onMounted.
+   */
+  async function checkAndRunWeeklyAdaptation() {
+    loadWeeklyAdaptation()
+
+    const today = new Date()
+    const lastRun = weeklyAdaptation.value?.ranAt
+    const daysSinceLastRun = lastRun ? differenceInDays(today, parseISO(lastRun)) : 999
+
+    // Only run on Monday or if >6 days since last run
+    if (!isMonday(today) && daysSinceLastRun <= 6) return
+
+    // Don't re-run if already ran today
+    if (lastRun && format(parseISO(lastRun), 'yyyy-MM-dd') === format(today, 'yyyy-MM-dd')) return
+
+    weeklyAdaptationLoading.value = true
+    try {
+      const workoutsStore = useWorkoutsStore()
+      const logsStore = useLogsStore()
+      const readinessStore = useReadinessStore()
+      const strava = useStrava()
+
+      // Last week = Mon-Sun before today
+      const lastMonday = subDays(startOfWeek(today, { weekStartsOn: 1 }), 7)
+      const lastSunday = addDays(lastMonday, 7)
+      const thisMonday = startOfWeek(today, { weekStartsOn: 1 })
+      const nextSunday = addDays(thisMonday, 7)
+
+      // Fetch Strava data if connected
+      let activities = []
+      let streamAnalysis = { decoupling: null, easyRunZoneViolation: false }
+
+      const stravaConnected = await strava.checkConnection()
+      if (stravaConnected) {
+        try {
+          activities = await strava.fetchWeeklyLoad(
+            format(lastMonday, 'yyyy-MM-dd'),
+            format(lastSunday, 'yyyy-MM-dd')
+          )
+
+          // Fetch streams for runs > 30min to analyze decoupling & zones
+          const longRuns = activities.filter(a => a.type === 'run' && a.duration > 1800)
+          const hrZones = null // TODO: pull from user settings if configured
+
+          for (const run of longRuns.slice(0, 3)) { // limit API calls
+            const streams = await strava.fetchActivityStreams(run.id)
+            if (streams) {
+              // Check decoupling on longest run
+              if (run === longRuns.sort((a, b) => b.duration - a.duration)[0]) {
+                const dec = strava.calculateDecoupling(streams)
+                if (dec != null) streamAnalysis.decoupling = dec
+              }
+
+              // Check easy run zone violations
+              if (hrZones && run.duration < 3600) { // < 1hr = likely easy
+                const zones = strava.calculateZoneDistribution(streams, hrZones)
+                if (zones && (zones.z3 + zones.z4 + zones.z5) > 20) {
+                  streamAnalysis.easyRunZoneViolation = true
+                }
+              }
+            }
+          }
+        } catch (err) {
+          console.warn('Weekly adaptation: Strava fetch error:', err)
+        }
+      }
+
+      // Build activity history for ATL/CTL/TSB (last 60 days of logs)
+      const activityHistory = logsStore.logs
+        .filter(l => l.completedAt)
+        .map(l => ({
+          date: format(new Date(l.completedAt), 'yyyy-MM-dd'),
+          load: l.trainingLoad || l.relativeEffort || Math.round((l.actualDuration || 0) / 6)
+        }))
+
+      // Add this week's Strava activities too
+      for (const a of activities) {
+        activityHistory.push({
+          date: format(new Date(a.date), 'yyyy-MM-dd'),
+          load: a.suffer_score || a.relative_effort || Math.round((a.duration || 0) / 360)
+        })
+      }
+
+      const loadMetrics = calculateLoadMetrics(activityHistory)
+
+      // Get planned workouts for last week and upcoming week
+      const lastWeekPlanned = workoutsStore.workouts.filter(w => {
+        if (!w.date) return false
+        return w.date >= lastMonday && w.date < lastSunday
+      })
+      const upcomingWorkouts = workoutsStore.workouts.filter(w => {
+        if (!w.date) return false
+        return w.date >= thisMonday && w.date < nextSunday
+      })
+
+      // Get readiness entries for last week
+      const lastMondayStr = format(lastMonday, 'yyyy-MM-dd')
+      const lastSundayStr = format(lastSunday, 'yyyy-MM-dd')
+      const legFeelEntries = readinessStore.entries.filter(e =>
+        e.date >= lastMondayStr && e.date <= lastSundayStr
+      )
+
+      const result = await generateWeeklyAdaptation({
+        weekStart: lastMonday,
+        activities,
+        loadMetrics,
+        plannedWorkouts: lastWeekPlanned,
+        legFeelEntries,
+        upcomingWorkouts,
+        hrZones: null,
+        streamAnalysis
+      })
+
+      weeklyAdaptation.value = {
+        ...result,
+        weekStart: format(lastMonday, 'yyyy-MM-dd'),
+        ranAt: new Date().toISOString(),
+        status: result.changes.length > 0 ? 'pending' : 'info'
+      }
+      persistWeeklyAdaptation()
+
+      // If there are changes, also create a proposal in the normal flow
+      if (result.changes.length > 0) {
+        const proposal = normalizeProposal({
+          id: `weekly-${Date.now()}`,
+          weekStart: format(lastMonday, 'yyyy-MM-dd'),
+          windowDays: 7,
+          status: 'pending',
+          summary: result.summary,
+          signals: result.signals,
+          changes: result.changes
+        })
+        proposals.value.unshift(proposal)
+        persistLocal()
+      }
+    } catch (err) {
+      console.error('Weekly adaptation failed:', err)
+    } finally {
+      weeklyAdaptationLoading.value = false
+    }
+  }
+
+  function dismissWeeklyAdaptation() {
+    if (weeklyAdaptation.value) {
+      weeklyAdaptation.value.status = 'dismissed'
+      persistWeeklyAdaptation()
+    }
+  }
+
   return {
     proposals,
     loading,
@@ -238,6 +411,10 @@ export const useAdaptationsStore = defineStore('adaptations', () => {
     ensureWeeklyProposal,
     generateProposal,
     approveProposal,
-    rejectProposal
+    rejectProposal,
+    weeklyAdaptation,
+    weeklyAdaptationLoading,
+    checkAndRunWeeklyAdaptation,
+    dismissWeeklyAdaptation
   }
 })

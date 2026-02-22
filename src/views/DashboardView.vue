@@ -17,16 +17,19 @@ import {
   Circle
 } from 'lucide-vue-next'
 import WorkoutModal from '@/components/workout/WorkoutModal.vue'
+import WeeklySummaryCard from '@/components/WeeklySummaryCard.vue'
 
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
 const userStore = useUserStore()
 const adaptationsStore = useAdaptationsStore()
 
-onMounted(() => {
+onMounted(async () => {
   logsStore.loadLogs()
   userStore.loadSettings()
   adaptationsStore.loadProposals()
+  // Trigger weekly adaptation check (runs on Monday or if >6 days since last)
+  await adaptationsStore.checkAndRunWeeklyAdaptation()
 })
 
 const selectedWorkout = ref(null)
@@ -129,6 +132,17 @@ const workoutColors = {
 
 <template>
   <div class="space-y-6">
+    <!-- Weekly Summary Card -->
+    <WeeklySummaryCard
+      v-if="adaptationsStore.weeklyAdaptation && adaptationsStore.weeklyAdaptation.status !== 'dismissed'"
+      :adaptation="adaptationsStore.weeklyAdaptation"
+      @approve="() => {
+        if (pendingProposal) adaptationsStore.approveProposal(pendingProposal.id)
+        adaptationsStore.dismissWeeklyAdaptation()
+      }"
+      @reject="adaptationsStore.dismissWeeklyAdaptation()"
+    />
+
     <!-- Inline Adaptation Alert -->
     <div v-if="pendingProposal && pendingProposal.changes.length > 0 && !adaptationDismissed" class="card border border-accent-primary/30 bg-accent-primary/10">
       <div class="flex items-center justify-between">
