@@ -84,6 +84,15 @@ function isPrimaryZone(z) {
       </div>
     </div>
 
+    <!-- Why This Session -->
+    <div v-if="meta.why" class="why-section">
+      <div class="why-header">
+        <span class="why-icon">🎯</span>
+        <span class="why-title">WHY THIS SESSION</span>
+      </div>
+      <p class="why-text">{{ meta.why }}</p>
+    </div>
+
     <!-- HR Zone Bar -->
     <div v-if="meta.zones && meta.zones.length" class="zone-bar-section">
       <div class="zone-bar">
@@ -272,6 +281,41 @@ function isPrimaryZone(z) {
   font-size: 0.75rem;
   color: var(--text-secondary, rgba(255,255,255,0.65));
   line-height: 1.4;
+}
+
+/* Why This Session */
+.why-section {
+  padding: 12px 14px;
+  background: var(--bg-tertiary, rgba(255,255,255,0.04));
+  border-radius: 10px;
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-left: 3px solid rgb(250, 204, 21);
+}
+
+.why-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.why-icon {
+  font-size: 0.9rem;
+}
+
+.why-title {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgb(250, 204, 21);
+}
+
+.why-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary, rgba(255,255,255,0.65));
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* Focus & Nutrition */

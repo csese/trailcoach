@@ -8,7 +8,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Bulgarian split squat / RDL / step-ups / core",
-    "WorkoutDescription": "Ultra Goal: Establish single-leg strength foundation to maintain running form late in long efforts.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x10 each leg — Rest 60s\nA2. Romanian Deadlift — 3x10 — Rest 90s\nB1. Single-leg Step-ups (box) — 3x10 each leg — Rest 60s\nB2. Glute Bridge — 3x12 — Rest 60s\nC1. Single-leg Calf Raise (full ROM) — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl (eccentric only) — 3x5 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 45s | Dead Bugs 12 reps | Pallof Press 10 each side\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Ankle circles 30s each",
+    "WorkoutDescription": "Ultra Goal: Establish single-leg strength foundation to maintain running form late in long efforts.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x10 each leg \u2014 Rest 60s\nA2. Romanian Deadlift \u2014 3x10 \u2014 Rest 90s\nB1. Single-leg Step-ups (box) \u2014 3x10 each leg \u2014 Rest 60s\nB2. Glute Bridge \u2014 3x12 \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM) \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl (eccentric only) \u2014 3x5 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 45s | Dead Bugs 12 reps | Pallof Press 10 each side\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Ankle circles 30s each",
     "Focus": "Leg strength + stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -59,7 +59,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -112,7 +113,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Raises your lactate threshold \u2014 the pace you can sustain before fatigue compounds. Tempo work teaches your body to clear lactate faster, building the engine that will carry you through Balcons, Gypa\u00e8te, and Nice."
     }
   },
   {
@@ -124,7 +126,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Push-ups / rows / shoulder press / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Build upper body endurance for pole usage and maintain posture on long climbs.\n\nWARM-UP (5 min): Arm circles x15 each way, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x10 — Rest 60s\nA2. Bent-over Rows (DB or band) — 3x10 — Rest 60s\nB1. Shoulder Press (light) — 3x12 — Rest 60s\nB2. Single-leg Glute Bridge — 3x10 each — Rest 45s\nC1. Single-leg Calf Raise — 2x15 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each side | Side Plank 30s each | Dead Bugs 12 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Thoracic spine foam roll 2 min, Ankle dorsiflexion stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Build upper body endurance for pole usage and maintain posture on long climbs.\n\nWARM-UP (5 min): Arm circles x15 each way, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x10 \u2014 Rest 60s\nA2. Bent-over Rows (DB or band) \u2014 3x10 \u2014 Rest 60s\nB1. Shoulder Press (light) \u2014 3x12 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x10 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 2x15 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each side | Side Plank 30s each | Dead Bugs 12 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Thoracic spine foam roll 2 min, Ankle dorsiflexion stretch 60s each",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -169,7 +171,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -209,7 +212,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min (gel, bar, or drink)",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Builds mitochondrial density and fat oxidation \u2014 the aerobic engine for ultra running. Z2 specifically develops your ability to sustain effort for hours without glycogen depletion. At this stage of base build, the goal is time-on-feet adaptation, not speed."
     }
   },
   {
@@ -248,7 +252,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -260,7 +265,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Bulgarian split squat / RDL / lunges / core",
-    "WorkoutDescription": "Ultra Goal: Progress single-leg strength to improve running economy and reduce ground contact time.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Bodyweight walking lunges x10, Calf raises x15\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x10 each leg (+2.5kg from W1) — Rest 60s\nA2. Romanian Deadlift — 3x10 (+2.5kg from W1) — Rest 90s\nB1. Walking Lunges — 3x10 each leg — Rest 60s\nB2. Hip Thrust — 3x12 — Rest 60s\nC1. Single-leg Calf Raise (full ROM) — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl (eccentric) — 3x5 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 50s | Dead Bugs 14 reps | Pallof Press 10 each side\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Hamstring stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Progress single-leg strength to improve running economy and reduce ground contact time.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Bodyweight walking lunges x10, Calf raises x15\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x10 each leg (+2.5kg from W1) \u2014 Rest 60s\nA2. Romanian Deadlift \u2014 3x10 (+2.5kg from W1) \u2014 Rest 90s\nB1. Walking Lunges \u2014 3x10 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x12 \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM) \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl (eccentric) \u2014 3x5 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 50s | Dead Bugs 14 reps | Pallof Press 10 each side\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Hamstring stretch 60s each",
     "Focus": "Leg strength + stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -304,7 +309,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build."
     }
   },
   {
@@ -357,7 +363,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Develops uphill-specific power and running economy on climbs. Repeated hill efforts train the glutes, calves and hip flexors to generate force on steep terrain \u2014 the dominant terrain at Balcons, Gypa\u00e8te, and Nice."
     }
   },
   {
@@ -369,7 +376,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Push-ups / rows / shoulder press / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Maintain upper body and core endurance; prioritize hip mobility for efficient uphill mechanics.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x12 — Rest 60s\nA2. Bent-over Rows — 3x12 — Rest 60s\nB1. Shoulder Press (light) — 3x12 — Rest 60s\nB2. Single-leg Glute Bridge — 3x12 each — Rest 45s\nC1. Single-leg Calf Raise — 2x15 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each side | Side Plank 35s each | Dead Bugs 14 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Thoracic spine extension 2 min, Ankle dorsiflexion stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Maintain upper body and core endurance; prioritize hip mobility for efficient uphill mechanics.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x12 \u2014 Rest 60s\nA2. Bent-over Rows \u2014 3x12 \u2014 Rest 60s\nB1. Shoulder Press (light) \u2014 3x12 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x12 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 2x15 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each side | Side Plank 35s each | Dead Bugs 14 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Thoracic spine extension 2 min, Ankle dorsiflexion stretch 60s each",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -414,7 +421,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -454,7 +462,8 @@
         }
       ],
       "nutrition": "Fuel every 45min.",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Builds mitochondrial density and fat oxidation \u2014 the aerobic engine for ultra running. Z2 specifically develops your ability to sustain effort for hours without glycogen depletion. At this stage of base build, the goal is time-on-feet adaptation, not speed."
     }
   },
   {
@@ -493,7 +502,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -505,7 +515,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / step-downs / Nordic curls / core",
-    "WorkoutDescription": "Ultra Goal: Introduce step-downs for downhill resilience; continue progressive overload on single-leg patterns.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x10 each leg (+2.5kg from W2) — Rest 60s\nA2. Romanian Deadlift — 3x10 (+2.5kg from W2) — Rest 90s\nB1. Step-downs (slow, controlled) — 3x8 each leg — Rest 60s\nB2. Hip Thrust — 3x12 — Rest 60s\nC1. Single-leg Calf Raise (full ROM) — 3x15 each — Rest 45s\nC2. Nordic Hamstring Curl (eccentric) — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 55s | Dead Bugs 15 reps | Side Plank 35s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Hamstring stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Introduce step-downs for downhill resilience; continue progressive overload on single-leg patterns.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x10 each leg (+2.5kg from W2) \u2014 Rest 60s\nA2. Romanian Deadlift \u2014 3x10 (+2.5kg from W2) \u2014 Rest 90s\nB1. Step-downs (slow, controlled) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x12 \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM) \u2014 3x15 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl (eccentric) \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 55s | Dead Bugs 15 reps | Side Plank 35s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Hamstring stretch 60s each",
     "Focus": "Leg strength + stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -556,7 +566,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -609,7 +620,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Raises your lactate threshold \u2014 the pace you can sustain before fatigue compounds. Tempo work teaches your body to clear lactate faster, building the engine that will carry you through Balcons, Gypa\u00e8te, and Nice."
     }
   },
   {
@@ -621,7 +633,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Push-ups / rows / core / hip & ankle mobility",
-    "WorkoutDescription": "Ultra Goal: Develop anti-rotation core strength and thoracic mobility for efficient uphill posture.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, World's greatest stretch x5 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x12 — Rest 60s\nA2. Bent-over Rows — 3x12 — Rest 60s\nB1. Shoulder Press — 3x10 — Rest 60s\nB2. Single-leg Glute Bridge — 3x12 each — Rest 45s\nC1. Single-leg Calf Raise — 3x15 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each side | Plank 50s | Russian Twists 15 each side\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion mobilization 60s each, Thoracic rotations 60s each",
+    "WorkoutDescription": "Ultra Goal: Develop anti-rotation core strength and thoracic mobility for efficient uphill posture.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, World's greatest stretch x5 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x12 \u2014 Rest 60s\nA2. Bent-over Rows \u2014 3x12 \u2014 Rest 60s\nB1. Shoulder Press \u2014 3x10 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x12 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x15 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each side | Plank 50s | Russian Twists 15 each side\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion mobilization 60s each, Thoracic rotations 60s each",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -666,7 +678,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -706,7 +719,8 @@
         }
       ],
       "nutrition": "60g carbs/hour (gel every 30min or equivalent)",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Builds mitochondrial density and fat oxidation \u2014 the aerobic engine for ultra running. Z2 specifically develops your ability to sustain effort for hours without glycogen depletion. At this stage of base build, the goal is time-on-feet adaptation, not speed."
     }
   },
   {
@@ -745,7 +759,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -757,7 +772,7 @@
     "PlannedDuration": "30-40min",
     "TargetHRZone": "N/A",
     "Details": "Deload: light squats / lunges / mobility",
-    "WorkoutDescription": "Ultra Goal: Active recovery — maintain movement patterns at reduced load to absorb 3 weeks of training.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat — 2x8 each leg — Rest 45s\nA2. Romanian Deadlift (50% weight) — 2x8 — Rest 60s\nB1. Bodyweight Walking Lunges — 2x8 each leg — Rest 45s\nB2. Glute Bridge — 2x12 — Rest 45s\nC1. Calf Raise (bodyweight) — 2x15 — Rest 30s\n\nCORE (1 round):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Active recovery \u2014 maintain movement patterns at reduced load to absorb 3 weeks of training.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat \u2014 2x8 each leg \u2014 Rest 45s\nA2. Romanian Deadlift (50% weight) \u2014 2x8 \u2014 Rest 60s\nB1. Bodyweight Walking Lunges \u2014 2x8 each leg \u2014 Rest 45s\nB2. Glute Bridge \u2014 2x12 \u2014 Rest 45s\nC1. Calf Raise (bodyweight) \u2014 2x15 \u2014 Rest 30s\n\nCORE (1 round):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
     "Focus": "Recovery",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -801,7 +816,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build."
     }
   },
   {
@@ -839,7 +855,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build."
     }
   },
   {
@@ -896,7 +913,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Deload rest day \u2014 your body is consolidating weeks of training adaptation. Rest now so you can train harder in the next block."
     }
   },
   {
@@ -936,7 +954,8 @@
         }
       ],
       "nutrition": "fueling practice needed for this duration.",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Builds mitochondrial density and fat oxidation \u2014 the aerobic engine for ultra running. Z2 specifically develops your ability to sustain effort for hours without glycogen depletion. At this stage of base build, the goal is time-on-feet adaptation, not speed."
     }
   },
   {
@@ -975,7 +994,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -987,7 +1007,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / step-ups / Nordic curls / core",
-    "WorkoutDescription": "Ultra Goal: Reset to full load after deload; build toward peak single-leg strength for mountain terrain.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 4x8 each leg — Rest 75s\nA2. Romanian Deadlift — 4x8 — Rest 90s\nB1. Single-leg Step-ups (higher box) — 3x10 each leg — Rest 60s\nB2. Hip Thrust — 3x12 — Rest 60s\nC1. Single-leg Calf Raise (full ROM) — 3x15 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Pallof Press 12 each side\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Reset to full load after deload; build toward peak single-leg strength for mountain terrain.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 4x8 each leg \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 4x8 \u2014 Rest 90s\nB1. Single-leg Step-ups (higher box) \u2014 3x10 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x12 \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM) \u2014 3x15 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Pallof Press 12 each side\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Rebuild intensity",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -1038,7 +1058,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -1097,7 +1118,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Develops uphill-specific power and running economy on climbs. Repeated hill efforts train the glutes, calves and hip flexors to generate force on steep terrain \u2014 the dominant terrain at Balcons, Gypa\u00e8te, and Nice. The hill sprints add neuromuscular power \u2014 explosive force that translates to efficiency on steep terrain."
     }
   },
   {
@@ -1109,7 +1131,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Push-ups / rows / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Strengthen upper body and core endurance for maintaining form during fatigued late-race miles.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x12 — Rest 60s\nA2. Bent-over Rows — 3x12 — Rest 60s\nB1. Shoulder Press — 3x10 — Rest 60s\nB2. Single-leg Glute Bridge — 3x12 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Thoracic extension 2 min, Ankle mobilization 60s each",
+    "WorkoutDescription": "Ultra Goal: Strengthen upper body and core endurance for maintaining form during fatigued late-race miles.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x12 \u2014 Rest 60s\nA2. Bent-over Rows \u2014 3x12 \u2014 Rest 60s\nB1. Shoulder Press \u2014 3x10 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x12 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Thoracic extension 2 min, Ankle mobilization 60s each",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -1154,7 +1176,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -1194,7 +1217,8 @@
         }
       ],
       "nutrition": "Fuel every 40-45min.",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific endurance combining aerobic duration with elevation. Simulates the demands of Balcons/Gypa\u00e8te/Nice where sustained climbing and descending on tired legs is the key challenge."
     }
   },
   {
@@ -1233,7 +1257,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -1245,7 +1270,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / lunges / step-downs / core",
-    "WorkoutDescription": "Ultra Goal: Add step-down volume to build eccentric quad endurance for sustained downhill sections.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Bodyweight lunges x10, Calf raises x15\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 4x8 each leg (+2.5kg from W5) — Rest 75s\nA2. Romanian Deadlift — 4x8 (+2.5kg from W5) — Rest 90s\nB1. Step-downs (controlled 2s lowering) — 3x10 each leg — Rest 60s\nB2. Walking Lunges — 3x10 each leg — Rest 60s\nC1. Single-leg Calf Raise (full ROM) — 3x15 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Side Plank 35s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Hamstring stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Add step-down volume to build eccentric quad endurance for sustained downhill sections.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Bodyweight lunges x10, Calf raises x15\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 4x8 each leg (+2.5kg from W5) \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 4x8 (+2.5kg from W5) \u2014 Rest 90s\nB1. Step-downs (controlled 2s lowering) \u2014 3x10 each leg \u2014 Rest 60s\nB2. Walking Lunges \u2014 3x10 each leg \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM) \u2014 3x15 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Side Plank 35s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Hamstring stretch 60s each, Pigeon pose 60s each",
     "Focus": "Leg strength + stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -1289,7 +1314,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build."
     }
   },
   {
@@ -1342,7 +1368,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Raises your lactate threshold \u2014 the pace you can sustain before fatigue compounds. Tempo work teaches your body to clear lactate faster, building the engine that will carry you through Balcons, Gypa\u00e8te, and Nice."
     }
   },
   {
@@ -1354,7 +1381,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Push-ups / rows / core / ankle & hip mobility",
-    "WorkoutDescription": "Ultra Goal: Maintain upper body endurance and prioritize ankle/hip mobility for technical trail stability.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, World's greatest stretch x5 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x15 — Rest 60s\nA2. Bent-over Rows — 3x12 — Rest 60s\nB1. Shoulder Press — 3x10 — Rest 60s\nB2. Single-leg Glute Bridge — 3x12 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each | Plank 55s | Dead Bugs 15 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, Ankle dorsiflexion stretch 60s each, 90/90 stretch 60s each, Thoracic foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Maintain upper body endurance and prioritize ankle/hip mobility for technical trail stability.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, World's greatest stretch x5 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x15 \u2014 Rest 60s\nA2. Bent-over Rows \u2014 3x12 \u2014 Rest 60s\nB1. Shoulder Press \u2014 3x10 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x12 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each | Plank 55s | Dead Bugs 15 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, Ankle dorsiflexion stretch 60s each, 90/90 stretch 60s each, Thoracic foam roll 2 min",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -1399,7 +1426,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -1439,7 +1467,8 @@
         }
       ],
       "nutrition": "60-80g carbs/hour",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Builds mitochondrial density and fat oxidation \u2014 the aerobic engine for ultra running. Z2 specifically develops your ability to sustain effort for hours without glycogen depletion. At this stage of base build, the goal is time-on-feet adaptation, not speed."
     }
   },
   {
@@ -1478,7 +1507,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -1490,7 +1520,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / eccentric step-downs / Nordic curls / core",
-    "WorkoutDescription": "Ultra Goal: Introduce eccentric tempo work to prepare quads and hamstrings for sustained mountain descents.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 4x8 each leg @3010 tempo (3s down) — Rest 75s\nA2. Romanian Deadlift — 4x8 — Rest 90s\nB1. Step-downs (slow 3s lowering) — 3x10 each leg — Rest 60s\nB2. Hip Thrust — 3x12 — Rest 60s\nC1. Single-leg Calf Raise (full ROM, slow eccentric) — 3x15 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Pallof Press 12 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Introduce eccentric tempo work to prepare quads and hamstrings for sustained mountain descents.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 4x8 each leg @3010 tempo (3s down) \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 4x8 \u2014 Rest 90s\nB1. Step-downs (slow 3s lowering) \u2014 3x10 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x12 \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM, slow eccentric) \u2014 3x15 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Pallof Press 12 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Leg strength + stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -1541,7 +1571,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -1585,7 +1616,7 @@
           "name": "Fartlek",
           "duration": "40min",
           "zone": "Z2-Z5",
-          "description": "Vary effort by feel — surge, recover, repeat"
+          "description": "Vary effort by feel \u2014 surge, recover, repeat"
         },
         {
           "name": "Cool-down",
@@ -1594,7 +1625,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Speed play — varied effort by feel"
+      "keyFocus": "Speed play \u2014 varied effort by feel",
+      "why": "Unstructured speed play that develops pace variation and neuromuscular coordination. More playful than intervals, it builds the ability to surge on downhills and accelerate out of aid stations."
     }
   },
   {
@@ -1606,7 +1638,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Push-ups / rows / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Core anti-rotation endurance to prevent form collapse during the final hours of an ultra.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x15 — Rest 60s\nA2. Bent-over Rows — 3x12 — Rest 60s\nB1. Shoulder Press — 3x10 — Rest 60s\nB2. Single-leg Glute Bridge — 3x12 each — Rest 45s\nC1. Single-leg Calf Raise — 3x15 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 40s each | Pallof Press 12 each | Russian Twists 15 each\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Hamstring stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Core anti-rotation endurance to prevent form collapse during the final hours of an ultra.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x15 \u2014 Rest 60s\nA2. Bent-over Rows \u2014 3x12 \u2014 Rest 60s\nB1. Shoulder Press \u2014 3x10 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x12 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x15 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 40s each | Pallof Press 12 each | Russian Twists 15 each\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Hamstring stretch 60s each",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -1651,7 +1683,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -1691,7 +1724,8 @@
         }
       ],
       "nutrition": "Fuel consistently.",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific endurance combining aerobic duration with elevation. Simulates the demands of Balcons/Gypa\u00e8te/Nice where sustained climbing and descending on tired legs is the key challenge."
     }
   },
   {
@@ -1730,7 +1764,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -1742,7 +1777,7 @@
     "PlannedDuration": "30-40min",
     "TargetHRZone": "N/A",
     "Details": "Deload: light single-leg / mobility",
-    "WorkoutDescription": "Ultra Goal: Absorb 4 weeks of progressive loading — recover while maintaining neuromuscular patterns.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat — 2x8 each leg — Rest 45s\nA2. Romanian Deadlift (50% weight) — 2x8 — Rest 60s\nB1. Bodyweight Step-ups — 2x8 each leg — Rest 45s\nB2. Glute Bridge — 2x12 — Rest 45s\nC1. Calf Raise (bodyweight) — 2x15 — Rest 30s\n\nCORE (1 round):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Hamstring stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Absorb 4 weeks of progressive loading \u2014 recover while maintaining neuromuscular patterns.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat \u2014 2x8 each leg \u2014 Rest 45s\nA2. Romanian Deadlift (50% weight) \u2014 2x8 \u2014 Rest 60s\nB1. Bodyweight Step-ups \u2014 2x8 each leg \u2014 Rest 45s\nB2. Glute Bridge \u2014 2x12 \u2014 Rest 45s\nC1. Calf Raise (bodyweight) \u2014 2x15 \u2014 Rest 30s\n\nCORE (1 round):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Hamstring stretch 60s each",
     "Focus": "Recovery",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -1786,7 +1821,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build."
     }
   },
   {
@@ -1831,7 +1867,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -1888,7 +1925,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Deload rest day \u2014 your body is consolidating weeks of training adaptation. Rest now so you can train harder in the next block."
     }
   },
   {
@@ -1928,7 +1966,8 @@
         }
       ],
       "nutrition": "fueling stress - just easy running.",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Builds mitochondrial density and fat oxidation \u2014 the aerobic engine for ultra running. Z2 specifically develops your ability to sustain effort for hours without glycogen depletion. At this stage of base build, the goal is time-on-feet adaptation, not speed."
     }
   },
   {
@@ -1967,7 +2006,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -1979,7 +2019,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / step-downs / Nordic curls / plyos",
-    "WorkoutDescription": "Ultra Goal: Peak single-leg and eccentric strength — final hard block before race-specific taper begins.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 4x8 each leg (heaviest yet) — Rest 75s\nA2. Romanian Deadlift — 4x8 (heaviest yet) — Rest 90s\nB1. Step-downs (3s eccentric) — 3x10 each leg — Rest 60s\nB2. Hip Thrust — 3x12 — Rest 60s\nC1. Box Jumps (power) — 3x6 — Rest 90s\nC2. Single-leg Calf Raise — 3x15 each — Rest 45s\nC3. Nordic Hamstring Curl — 3x8 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Peak single-leg and eccentric strength \u2014 final hard block before race-specific taper begins.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 4x8 each leg (heaviest yet) \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 4x8 (heaviest yet) \u2014 Rest 90s\nB1. Step-downs (3s eccentric) \u2014 3x10 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x12 \u2014 Rest 60s\nC1. Box Jumps (power) \u2014 3x6 \u2014 Rest 90s\nC2. Single-leg Calf Raise \u2014 3x15 each \u2014 Rest 45s\nC3. Nordic Hamstring Curl \u2014 3x8 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Peak week prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2030,7 +2070,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -2042,7 +2083,7 @@
     "PlannedDuration": "65min",
     "TargetHRZone": "Z4 (155-170)",
     "Details": "10min WU + 5x6min @ threshold (2min jog) + 10min CD",
-    "WorkoutDescription": "THRESHOLD INTERVALS: 5x6min at threshold pace (HR 155-170). Shorter intervals but higher intensity than tempo. Should feel hard but controlled. 2min jog recovery between.\n\nDOWNHILL REPEATS: After the main set, find a moderate gradient hill. 6x2min controlled fast downhill (same hill, reverse direction). Focus on short quick steps, slight forward lean, relax quads. Walk back up as recovery. This is CRITICAL for Balcons descents — eccentric quad strength is what separates finishers from sufferers in the final 20km.",
+    "WorkoutDescription": "THRESHOLD INTERVALS: 5x6min at threshold pace (HR 155-170). Shorter intervals but higher intensity than tempo. Should feel hard but controlled. 2min jog recovery between.\n\nDOWNHILL REPEATS: After the main set, find a moderate gradient hill. 6x2min controlled fast downhill (same hill, reverse direction). Focus on short quick steps, slight forward lean, relax quads. Walk back up as recovery. This is CRITICAL for Balcons descents \u2014 eccentric quad strength is what separates finishers from sufferers in the final 20km.",
     "Focus": "Race pace feel",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2083,7 +2124,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "VO2max & threshold development"
+      "keyFocus": "VO2max & threshold development",
+      "why": "Develops VO2max and neuromuscular efficiency at high intensities. Even for ultra runners, periodic high-intensity work improves top-end fitness that translates to faster sustainable pace at lower efforts."
     }
   },
   {
@@ -2095,7 +2137,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Push-ups / rows / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Maintain upper body and core endurance; focus on recovery mobility before race-specific phase.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x15 — Rest 60s\nA2. Bent-over Rows — 3x12 — Rest 60s\nB1. Shoulder Press — 3x10 — Rest 60s\nB2. Single-leg Glute Bridge — 3x12 each — Rest 45s\nC1. Single-leg Calf Raise — 3x15 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 45s each | Pallof Press 12 each | Russian Twists 15 each\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic extension 2 min",
+    "WorkoutDescription": "Ultra Goal: Maintain upper body and core endurance; focus on recovery mobility before race-specific phase.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x15 \u2014 Rest 60s\nA2. Bent-over Rows \u2014 3x12 \u2014 Rest 60s\nB1. Shoulder Press \u2014 3x10 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x12 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x15 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 45s each | Pallof Press 12 each | Russian Twists 15 each\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic extension 2 min",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2159,7 +2201,8 @@
         }
       ],
       "nutrition": "60-80g carbs/hr), hydration, pacing, gear",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Builds mitochondrial density and fat oxidation \u2014 the aerobic engine for ultra running. Z2 specifically develops your ability to sustain effort for hours without glycogen depletion. At this stage of base build, the goal is time-on-feet adaptation, not speed."
     }
   },
   {
@@ -2171,7 +2214,7 @@
     "PlannedDuration": "1h30",
     "TargetHRZone": "Z1-Z2 (<140)",
     "Details": "Easy trails, HR Z1-Z2 strictly",
-    "WorkoutDescription": "BACK-TO-BACK: Running easy on fatigued legs from yesterday's long run. Keep HR Z1-Z2 strictly. 1h30 on trails at conversational pace. This teaches your body to run efficiently when glycogen-depleted — the key skill for 100km+ racing. Take in 30-40g carbs/h to practice fueling on tired legs.",
+    "WorkoutDescription": "BACK-TO-BACK: Running easy on fatigued legs from yesterday's long run. Keep HR Z1-Z2 strictly. 1h30 on trails at conversational pace. This teaches your body to run efficiently when glycogen-depleted \u2014 the key skill for 100km+ racing. Take in 30-40g carbs/h to practice fueling on tired legs.",
     "Focus": "Back-to-back fatigue adaptation",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2199,7 +2242,8 @@
         }
       ],
       "nutrition": "30-40g carbs/h to practice fueling on tired legs",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Bridges the gap between easy runs and long runs. Builds aerobic endurance at moderate duration, preparing your body for the progressively longer efforts ahead."
     }
   },
   {
@@ -2211,7 +2255,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / step-downs / core",
-    "WorkoutDescription": "Ultra Goal: Maintain peak strength without adding fatigue — bridge session into race-specific block.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x8 each leg (same weight as W9) — Rest 75s\nA2. Romanian Deadlift — 3x8 (same weight as W9) — Rest 90s\nB1. Step-downs (2s eccentric) — 3x8 each leg — Rest 60s\nB2. Hip Thrust — 3x10 — Rest 60s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Side Plank 40s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Maintain peak strength without adding fatigue \u2014 bridge session into race-specific block.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x8 each leg (same weight as W9) \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 3x8 (same weight as W9) \u2014 Rest 90s\nB1. Step-downs (2s eccentric) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x10 \u2014 Rest 60s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Side Plank 40s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Maintain",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2255,7 +2299,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build."
     }
   },
   {
@@ -2300,7 +2345,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Active recovery and aerobic maintenance. Keeps blood flowing to repair muscle damage from harder sessions while adding low-stress volume. Critical for absorbing the training load of base build. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -2312,7 +2358,7 @@
     "PlannedDuration": "40min",
     "TargetHRZone": "N/A",
     "Details": "Light single-leg / core / extended mobility",
-    "WorkoutDescription": "Ultra Goal: Reduce training stress while keeping muscles engaged — transition to race-specific preparation.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (reduced):\nA1. Single-leg Deadlift (light) — 2x10 each — Rest 45s\nA2. Single-leg Glute Bridge — 2x12 each — Rest 45s\nB1. Single-leg Calf Raise — 2x15 each — Rest 30s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 50s | Dead Bugs 12 reps | Pallof Press 10 each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Hamstring stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Reduce training stress while keeping muscles engaged \u2014 transition to race-specific preparation.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (reduced):\nA1. Single-leg Deadlift (light) \u2014 2x10 each \u2014 Rest 45s\nA2. Single-leg Glute Bridge \u2014 2x12 each \u2014 Rest 45s\nB1. Single-leg Calf Raise \u2014 2x15 each \u2014 Rest 30s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 50s | Dead Bugs 12 reps | Pallof Press 10 each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Hamstring stretch 60s each",
     "Focus": "Transition",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2389,7 +2435,8 @@
         }
       ],
       "nutrition": "60g carbs/h",
-      "keyFocus": "Race simulation — full kit, nutrition, pacing"
+      "keyFocus": "Race simulation \u2014 full kit, nutrition, pacing",
+      "why": "Full dress rehearsal for race day. Tests nutrition strategy, pacing discipline, gear, and mental resilience over race-like duration. Identifies problems before they happen on race day."
     }
   },
   {
@@ -2428,7 +2475,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -2440,7 +2488,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Eccentric squats / step-downs / Nordic curls / core",
-    "WorkoutDescription": "Ultra Goal: Build eccentric quad and hamstring strength specifically to protect knees on Balcons' long descents.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight lunges x10\n\nMAIN BLOCK — ECCENTRIC FOCUS:\nA1. Bulgarian Split Squat — 4x8 each @4010 tempo (4s down, 1s up) — Rest 90s\nA2. Romanian Deadlift — 3x8 @3010 tempo (3s down) — Rest 90s\nB1. Step-downs (slow 4s lowering) — 3x8 each leg — Rest 60s\nB2. Nordic Hamstring Curl — 3x6 (slow eccentric) — Rest 60s\nC1. Walking Lunges — 3x8 each @3010 tempo (3s down) — Rest 60s\nC2. Single-leg Calf Raise (3s eccentric) — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Build eccentric quad and hamstring strength specifically to protect knees on Balcons' long descents.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight lunges x10\n\nMAIN BLOCK \u2014 ECCENTRIC FOCUS:\nA1. Bulgarian Split Squat \u2014 4x8 each @4010 tempo (4s down, 1s up) \u2014 Rest 90s\nA2. Romanian Deadlift \u2014 3x8 @3010 tempo (3s down) \u2014 Rest 90s\nB1. Step-downs (slow 4s lowering) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Nordic Hamstring Curl \u2014 3x6 (slow eccentric) \u2014 Rest 60s\nC1. Walking Lunges \u2014 3x8 each @3010 tempo (3s down) \u2014 Rest 60s\nC2. Single-leg Calf Raise (3s eccentric) \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Downhill prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2491,7 +2539,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Aerobic maintenance between harder Balcons-specific sessions. Easy running builds capillary density and aids recovery while keeping weekly volume on track. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -2544,7 +2593,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Race effort calibration"
+      "keyFocus": "Race effort calibration",
+      "why": "Dials in your target effort for the Balcons 68k. Practising race pace teaches your body and brain what sustainable feels like \u2014 so you don't go out too fast on race day."
     }
   },
   {
@@ -2556,7 +2606,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Single-leg stability / balance / core",
-    "WorkoutDescription": "Ultra Goal: Single-leg stability and balance to prevent ankle rolls and maintain form on technical Balcons terrain.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK — STABILITY FOCUS:\nA1. Single-leg Deadlift — 3x8 each leg — Rest 60s\nA2. Single-leg Squat (to box) — 3x8 each leg — Rest 60s\nB1. Step-downs (controlled) — 3x8 each leg — Rest 60s\nB2. Single-leg Glute Bridge — 3x10 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x5 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 40s each | Pallof Press 12 each | Dead Bugs 15 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Single-leg stability and balance to prevent ankle rolls and maintain form on technical Balcons terrain.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK \u2014 STABILITY FOCUS:\nA1. Single-leg Deadlift \u2014 3x8 each leg \u2014 Rest 60s\nA2. Single-leg Squat (to box) \u2014 3x8 each leg \u2014 Rest 60s\nB1. Step-downs (controlled) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x10 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x5 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 40s each | Pallof Press 12 each | Dead Bugs 15 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each, Pigeon pose 60s each",
     "Focus": "Injury prevention",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2601,7 +2651,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -2641,7 +2692,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific long run targeting the Balcons' climbing demands. Combines time-on-feet with significant vertical to prepare your legs for sustained ascent and descent over 68k."
     }
   },
   {
@@ -2654,7 +2706,7 @@
     "TargetHRZone": "Z1-Z2 (<140)",
     "Details": "Easy trails, HR Z1-Z2 strictly",
     "WorkoutDescription": "BACK-TO-BACK for Balcons d'Azur prep: 1h30 easy on fatigued legs from yesterday's long run. Keep HR Z1-Z2 strictly. Running on glycogen-depleted legs is the most race-specific thing you can do for a 68k. Practice your race nutrition strategy.",
-    "Focus": "Back-to-back — Balcons prep",
+    "Focus": "Back-to-back \u2014 Balcons prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
     "ActualDistance": "",
@@ -2681,7 +2733,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Mid-week volume that supports Balcons preparation. Longer than easy runs but shorter than the weekend long run \u2014 builds cumulative fatigue resistance."
     }
   },
   {
@@ -2693,7 +2746,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Maintenance: same load as W11 / eccentric / core",
-    "WorkoutDescription": "Ultra Goal: Maintain eccentric strength gains without adding new stimulus — hold steady approaching race day.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK — MAINTAIN (same weight as W11):\nA1. Bulgarian Split Squat — 3x8 each @4010 tempo — Rest 90s\nA2. Romanian Deadlift — 3x8 @3010 tempo — Rest 90s\nB1. Step-downs (4s lowering) — 3x8 each leg — Rest 60s\nB2. Nordic Hamstring Curl — 3x6 — Rest 60s\nC1. Walking Lunges — 3x8 each @3010 tempo — Rest 60s\nC2. Single-leg Calf Raise (3s eccentric) — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Pallof Press 12 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Hamstring stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Maintain eccentric strength gains without adding new stimulus \u2014 hold steady approaching race day.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK \u2014 MAINTAIN (same weight as W11):\nA1. Bulgarian Split Squat \u2014 3x8 each @4010 tempo \u2014 Rest 90s\nA2. Romanian Deadlift \u2014 3x8 @3010 tempo \u2014 Rest 90s\nB1. Step-downs (4s lowering) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\nC1. Walking Lunges \u2014 3x8 each @3010 tempo \u2014 Rest 60s\nC2. Single-leg Calf Raise (3s eccentric) \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Dead Bugs 15 reps | Pallof Press 12 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each, Hamstring stretch 60s each",
     "Focus": "Maintenance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2737,7 +2790,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Aerobic maintenance between harder Balcons-specific sessions. Easy running builds capillary density and aids recovery while keeping weekly volume on track."
     }
   },
   {
@@ -2790,7 +2844,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Race-specific hill power for the Balcons' relentless climbing. These repeats build the muscular endurance to maintain form on the long ascents that define this race."
     }
   },
   {
@@ -2828,7 +2883,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Aerobic maintenance between harder Balcons-specific sessions. Easy running builds capillary density and aids recovery while keeping weekly volume on track."
     }
   },
   {
@@ -2886,7 +2942,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Aerobic endurance building toward the Balcons 68k. These long runs develop the fat-burning engine and mental resilience to keep moving for 8+ hours on race day."
     }
   },
   {
@@ -2925,7 +2982,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -2937,7 +2995,7 @@
     "PlannedDuration": "30-40min",
     "TargetHRZone": "N/A",
     "Details": "Taper: light single-leg / extended mobility",
-    "WorkoutDescription": "Ultra Goal: Stay sharp without creating any muscle damage — race readiness is the priority.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (50% weight, 2 sets only):\nA1. Bulgarian Split Squat — 2x6 each (50% weight) — Rest 45s\nA2. Romanian Deadlift — 2x6 (50% weight) — Rest 60s\nB1. Step-ups (bodyweight) — 2x6 each — Rest 45s\nB2. Glute Bridge — 2x10 — Rest 30s\nC1. Calf Raise (bodyweight) — 2x12 — Rest 30s\n\nCORE (1 round):\nPlank 40s | Dead Bugs 8 reps | Side Plank 25s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Stay sharp without creating any muscle damage \u2014 race readiness is the priority.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (50% weight, 2 sets only):\nA1. Bulgarian Split Squat \u2014 2x6 each (50% weight) \u2014 Rest 45s\nA2. Romanian Deadlift \u2014 2x6 (50% weight) \u2014 Rest 60s\nB1. Step-ups (bodyweight) \u2014 2x6 each \u2014 Rest 45s\nB2. Glute Bridge \u2014 2x10 \u2014 Rest 30s\nC1. Calf Raise (bodyweight) \u2014 2x12 \u2014 Rest 30s\n\nCORE (1 round):\nPlank 40s | Dead Bugs 8 reps | Side Plank 25s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
     "Focus": "Taper",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -2981,7 +3039,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Balcons d'Azur 68k. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -3026,7 +3085,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Pre-race activation to maintain neuromuscular readiness before Balcons d'Azur 68k. Just enough to keep the legs feeling sharp and responsive."
     }
   },
   {
@@ -3082,7 +3142,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Balcons d'Azur 68k. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -3127,7 +3188,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Pre-race activation to maintain neuromuscular readiness before Balcons d'Azur 68k. Just enough to keep the legs feeling sharp and responsive."
     }
   },
   {
@@ -3183,7 +3245,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Light movement to stay loose before Balcons d'Azur 68k. Just enough to keep muscles supple and the nervous system primed without burning any glycogen."
     }
   },
   {
@@ -3246,7 +3309,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Light activation before Balcons d'Azur 68k. Flushes metabolic waste, primes the nervous system, and confirms everything feels good. Short strides wake up fast-twitch fibers without adding any fatigue."
     }
   },
   {
@@ -3303,7 +3367,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Rest is the priority \u2014 only move if it genuinely helps you feel better. Your fitness is fully banked for Balcons d'Azur 68k; now it's about arriving at the start line fresh and ready."
     }
   },
   {
@@ -3333,7 +3398,7 @@
     "PlannedDuration": "Race",
     "TargetHRZone": "Race effort",
     "Details": "First ultra test - conservative start - execute nutrition plan",
-    "WorkoutDescription": "RACE DAY: Balcons d'Azur 68k. Start conservative! First 20km should feel easy. Execute nutrition plan (60-80g carbs/hr from start). Walk all steep uphills. This is a training race - finish strong, learn for Gypaète.",
+    "WorkoutDescription": "RACE DAY: Balcons d'Azur 68k. Start conservative! First 20km should feel easy. Execute nutrition plan (60-80g carbs/hr from start). Walk all steep uphills. This is a training race - finish strong, learn for Gypa\u00e8te.",
     "Focus": "RACE A - Training race",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -3375,7 +3440,8 @@
         }
       ],
       "nutrition": "60-80g carbs/hr from start, eat early and often",
-      "keyFocus": "Training race — conservative execution, nail nutrition"
+      "keyFocus": "Training race \u2014 conservative execution, nail nutrition",
+      "why": "Your first ultra of the season \u2014 68k with serious vertical. All the base build and hill work converges here. Execute your pacing and nutrition plan, stay disciplined in Z2 on climbs, and trust your training."
     }
   },
   {
@@ -3432,7 +3498,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -3470,7 +3537,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery between Gypa\u00e8te-focused sessions. Easy effort allows adaptation from harder workouts while maintaining the aerobic base you built earlier."
     }
   },
   {
@@ -3526,7 +3594,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery between Gypa\u00e8te-focused sessions. Easy effort allows adaptation from harder workouts while maintaining the aerobic base you built earlier."
     }
   },
   {
@@ -3564,7 +3633,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery between Gypa\u00e8te-focused sessions. Easy effort allows adaptation from harder workouts while maintaining the aerobic base you built earlier."
     }
   },
   {
@@ -3576,7 +3646,7 @@
     "PlannedDuration": "40min",
     "TargetHRZone": "Z1 (<130)",
     "Details": "Bike or easy walk",
-    "WorkoutDescription": "RECOVERY: Bike or walk. Prepare for Gypaète build next week.",
+    "WorkoutDescription": "RECOVERY: Bike or walk. Prepare for Gypa\u00e8te build next week.",
     "Focus": "Recovery",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -3603,7 +3673,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Post-race recovery movement. Very easy effort to promote blood flow, flush metabolic waste, and begin the repair process. Listen to your body \u2014 walk if running feels off."
     }
   },
   {
@@ -3615,7 +3686,7 @@
     "PlannedDuration": "40min",
     "TargetHRZone": "N/A",
     "Details": "Light return: single-leg / glute bridge / core",
-    "WorkoutDescription": "Ultra Goal: Gentle return to strength work post-race — rebuild neuromuscular connection without overloading recovering tissues.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light — ease back in):\nA1. Bodyweight Bulgarian Split Squat — 2x8 each leg — Rest 45s\nA2. Romanian Deadlift (light) — 2x10 — Rest 60s\nB1. Bodyweight Walking Lunges — 2x8 each leg — Rest 45s\nB2. Glute Bridge — 2x12 — Rest 45s\nC1. Single-leg Calf Raise — 2x12 each — Rest 30s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 40s | Dead Bugs 10 reps | Side Plank 25s each\n\nMOBILITY (10 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each",
+    "WorkoutDescription": "Ultra Goal: Gentle return to strength work post-race \u2014 rebuild neuromuscular connection without overloading recovering tissues.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light \u2014 ease back in):\nA1. Bodyweight Bulgarian Split Squat \u2014 2x8 each leg \u2014 Rest 45s\nA2. Romanian Deadlift (light) \u2014 2x10 \u2014 Rest 60s\nB1. Bodyweight Walking Lunges \u2014 2x8 each leg \u2014 Rest 45s\nB2. Glute Bridge \u2014 2x12 \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 2x12 each \u2014 Rest 30s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 40s | Dead Bugs 10 reps | Side Plank 25s each\n\nMOBILITY (10 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each",
     "Focus": "Rebuild",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -3659,7 +3730,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery between Gypa\u00e8te-focused sessions. Easy effort allows adaptation from harder workouts while maintaining the aerobic base you built earlier."
     }
   },
   {
@@ -3712,7 +3784,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Sharpens lactate threshold for the Gypa\u00e8te's sustained climbs. At this phase, tempo work translates directly to maintaining a stronger pace on long alpine ascents."
     }
   },
   {
@@ -3724,7 +3797,7 @@
     "PlannedDuration": "40min",
     "TargetHRZone": "N/A",
     "Details": "Core / mobility / light upper body",
-    "WorkoutDescription": "Ultra Goal: Rebuild core and upper body baseline while focusing on post-race mobility restoration.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups — 2x8 — Rest 45s\nA2. Bent-over Rows (light) — 2x10 — Rest 45s\nB1. Single-leg Glute Bridge — 2x10 each — Rest 45s\nB2. Single-leg Calf Raise — 2x12 each — Rest 30s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 40s | Pallof Press 8 each | Dead Bugs 10 reps\n\nMOBILITY (12 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Thoracic foam roll 2 min, Ankle dorsiflexion 60s each, Hamstring stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Rebuild core and upper body baseline while focusing on post-race mobility restoration.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 2x8 \u2014 Rest 45s\nA2. Bent-over Rows (light) \u2014 2x10 \u2014 Rest 45s\nB1. Single-leg Glute Bridge \u2014 2x10 each \u2014 Rest 45s\nB2. Single-leg Calf Raise \u2014 2x12 each \u2014 Rest 30s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 40s | Pallof Press 8 each | Dead Bugs 10 reps\n\nMOBILITY (12 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Thoracic foam roll 2 min, Ankle dorsiflexion 60s each, Hamstring stretch 60s each",
     "Focus": "Recovery strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -3769,7 +3842,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -3809,7 +3883,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Sustained aerobic endurance for the Gypa\u00e8te 76k. At this phase, long runs are teaching your body to oxidize fat efficiently and maintain form deep into ultra-distance efforts."
     }
   },
   {
@@ -3848,7 +3923,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -3860,7 +3936,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / step-ups / core",
-    "WorkoutDescription": "Ultra Goal: Return to full strength sessions — rebuild single-leg power for Gypaète's mountain terrain.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x8 each leg — Rest 75s\nA2. Romanian Deadlift — 3x8 — Rest 90s\nB1. Single-leg Step-ups — 3x8 each leg — Rest 60s\nB2. Hip Thrust — 3x10 — Rest 60s\nC1. Single-leg Calf Raise (full ROM) — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x5 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 50s | Dead Bugs 12 reps | Pallof Press 10 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Return to full strength sessions \u2014 rebuild single-leg power for Gypa\u00e8te's mountain terrain.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x8 each leg \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 3x8 \u2014 Rest 90s\nB1. Single-leg Step-ups \u2014 3x8 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x10 \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM) \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x5 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 50s | Dead Bugs 12 reps | Pallof Press 10 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Building",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -3911,7 +3987,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Recovery between Gypa\u00e8te-focused sessions. Easy effort allows adaptation from harder workouts while maintaining the aerobic base you built earlier. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -3923,7 +4000,7 @@
     "PlannedDuration": "55min",
     "TargetHRZone": "Z4-Z5 (165-185)",
     "Details": "10min WU + 8x2min uphill hard + 10min CD",
-    "WorkoutDescription": "HILL REPEATS: 8x2min hard uphill. Push into Z5 territory. Mountain race prep.\n\nDOWNHILL REPEATS: 6x2min controlled fast downhill on a moderate gradient. Focus on short quick steps, slight forward lean, relaxed quads. Walk back up as recovery. Critical for mountain racing — your quads need to handle thousands of meters of descent without blowing up.",
+    "WorkoutDescription": "HILL REPEATS: 8x2min hard uphill. Push into Z5 territory. Mountain race prep.\n\nDOWNHILL REPEATS: 6x2min controlled fast downhill on a moderate gradient. Focus on short quick steps, slight forward lean, relaxed quads. Walk back up as recovery. Critical for mountain racing \u2014 your quads need to handle thousands of meters of descent without blowing up.",
     "Focus": "Mountain prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -3964,7 +4041,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Alpine-specific climbing power for the Gypa\u00e8te. Longer hill intervals simulate the sustained climbs you'll face, building both muscular and cardiovascular capacity for big vert."
     }
   },
   {
@@ -3976,7 +4054,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Single-leg stability / balance / core",
-    "WorkoutDescription": "Ultra Goal: Rebuild single-leg stability for technical mountain trail confidence after race recovery.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK — STABILITY FOCUS:\nA1. Single-leg Deadlift — 3x8 each — Rest 60s\nA2. Single-leg Squat (to box) — 3x8 each — Rest 60s\nB1. Step-downs (controlled) — 3x8 each leg — Rest 60s\nB2. Single-leg Glute Bridge — 3x10 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 35s each | Pallof Press 10 each | Dead Bugs 12 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Rebuild single-leg stability for technical mountain trail confidence after race recovery.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK \u2014 STABILITY FOCUS:\nA1. Single-leg Deadlift \u2014 3x8 each \u2014 Rest 60s\nA2. Single-leg Squat (to box) \u2014 3x8 each \u2014 Rest 60s\nB1. Step-downs (controlled) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x10 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 35s each | Pallof Press 10 each | Dead Bugs 12 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each",
     "Focus": "Stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4021,7 +4099,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -4061,7 +4140,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific vertical endurance for the Gypa\u00e8te. Big vert on tired legs is exactly what this race demands \u2014 this session teaches your body to keep climbing efficiently when fatigue sets in."
     }
   },
   {
@@ -4100,7 +4180,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -4112,7 +4193,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Eccentric split squat / step-downs / Nordic curls / core",
-    "WorkoutDescription": "Ultra Goal: Eccentric strength for Gypaète's steep descents — slow negatives to build downhill resilience.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight lunges x10\n\nMAIN BLOCK — ECCENTRIC FOCUS:\nA1. Bulgarian Split Squat — 4x8 each @4010 tempo (4s down) — Rest 90s\nA2. Romanian Deadlift — 3x8 @3010 tempo — Rest 90s\nB1. Step-downs (4s lowering) — 3x8 each leg — Rest 60s\nB2. Nordic Hamstring Curl (slow eccentric) — 3x6 — Rest 60s\nC1. Walking Lunges — 3x8 each @3010 tempo — Rest 60s\nC2. Single-leg Calf Raise (3s eccentric) — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Eccentric strength for Gypa\u00e8te's steep descents \u2014 slow negatives to build downhill resilience.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight lunges x10\n\nMAIN BLOCK \u2014 ECCENTRIC FOCUS:\nA1. Bulgarian Split Squat \u2014 4x8 each @4010 tempo (4s down) \u2014 Rest 90s\nA2. Romanian Deadlift \u2014 3x8 @3010 tempo \u2014 Rest 90s\nB1. Step-downs (4s lowering) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Nordic Hamstring Curl (slow eccentric) \u2014 3x6 \u2014 Rest 60s\nC1. Walking Lunges \u2014 3x8 each @3010 tempo \u2014 Rest 60s\nC2. Single-leg Calf Raise (3s eccentric) \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Downhill prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4156,7 +4237,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery between Gypa\u00e8te-focused sessions. Easy effort allows adaptation from harder workouts while maintaining the aerobic base you built earlier."
     }
   },
   {
@@ -4209,7 +4291,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Sharpens lactate threshold for the Gypa\u00e8te's sustained climbs. At this phase, tempo work translates directly to maintaining a stronger pace on long alpine ascents."
     }
   },
   {
@@ -4221,7 +4304,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Core / mobility / light upper body",
-    "WorkoutDescription": "Ultra Goal: Recovery session — restore mobility after eccentric work, maintain upper body and core endurance.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups — 3x12 — Rest 60s\nA2. Bent-over Rows — 3x12 — Rest 60s\nB1. Shoulder Press — 3x10 — Rest 60s\nB2. Single-leg Glute Bridge — 3x10 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic extension 2 min",
+    "WorkoutDescription": "Ultra Goal: Recovery session \u2014 restore mobility after eccentric work, maintain upper body and core endurance.\n\nWARM-UP (5 min): Arm circles x15 each, Cat-cow x10, Thoracic rotations x10 each\n\nMAIN BLOCK:\nA1. Push-ups \u2014 3x12 \u2014 Rest 60s\nA2. Bent-over Rows \u2014 3x12 \u2014 Rest 60s\nB1. Shoulder Press \u2014 3x10 \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x10 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nRussian Twists 15 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (10 min): Hip flexor stretch 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic extension 2 min",
     "Focus": "Recovery",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4266,7 +4349,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -4278,7 +4362,7 @@
     "PlannedDuration": "3h",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "1500m+ D+ - race simulation terrain",
-    "WorkoutDescription": "LONG RUN WITH VERTICAL: 3h with 1500m+ D+. Gypaète simulation. Practice everything.",
+    "WorkoutDescription": "LONG RUN WITH VERTICAL: 3h with 1500m+ D+. Gypa\u00e8te simulation. Practice everything.",
     "Focus": "Mountain legs",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4306,7 +4390,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific vertical endurance for the Gypa\u00e8te. Big vert on tired legs is exactly what this race demands \u2014 this session teaches your body to keep climbing efficiently when fatigue sets in."
     }
   },
   {
@@ -4318,8 +4403,8 @@
     "PlannedDuration": "1h30",
     "TargetHRZone": "Z1-Z2 (<140)",
     "Details": "Easy trails, HR Z1-Z2 strictly",
-    "WorkoutDescription": "BACK-TO-BACK for Gypaète prep: 1h30 easy on fatigued legs from yesterday's long run. Keep HR Z1-Z2 strictly. This simulates the second half of Gypaète when your legs are heavy. Practice eating real food (rice balls, potatoes) not just gels.",
-    "Focus": "Back-to-back — Gypaète prep",
+    "WorkoutDescription": "BACK-TO-BACK for Gypa\u00e8te prep: 1h30 easy on fatigued legs from yesterday's long run. Keep HR Z1-Z2 strictly. This simulates the second half of Gypa\u00e8te when your legs are heavy. Practice eating real food (rice balls, potatoes) not just gels.",
+    "Focus": "Back-to-back \u2014 Gypa\u00e8te prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
     "ActualDistance": "",
@@ -4346,7 +4431,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Mid-week endurance for Gypa\u00e8te preparation. Adds quality aerobic volume between key sessions, building the cumulative fatigue resistance ultra racing demands."
     }
   },
   {
@@ -4358,7 +4444,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / step-downs / core",
-    "WorkoutDescription": "Ultra Goal: Maintain eccentric and single-leg strength at current level — consistency over progression this close to race.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x8 each (same weight as W18) — Rest 75s\nA2. Romanian Deadlift — 3x8 (same weight) — Rest 90s\nB1. Step-downs (3s lowering) — 3x8 each leg — Rest 60s\nB2. Hip Thrust — 3x10 — Rest 60s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Side Plank 40s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Maintain eccentric and single-leg strength at current level \u2014 consistency over progression this close to race.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x8 each (same weight as W18) \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 3x8 (same weight) \u2014 Rest 90s\nB1. Step-downs (3s lowering) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x10 \u2014 Rest 60s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Side Plank 40s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Maintenance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4409,7 +4495,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Recovery between Gypa\u00e8te-focused sessions. Easy effort allows adaptation from harder workouts while maintaining the aerobic base you built earlier. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -4462,7 +4549,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Alpine-specific climbing power for the Gypa\u00e8te. Longer hill intervals simulate the sustained climbs you'll face, building both muscular and cardiovascular capacity for big vert."
     }
   },
   {
@@ -4474,7 +4562,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Single-leg stability / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Fine-tune single-leg balance and ankle stability for Gypaète's technical mountain sections.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK — STABILITY FOCUS:\nA1. Single-leg Deadlift — 3x8 each — Rest 60s\nA2. Single-leg Squat (to box) — 3x8 each — Rest 60s\nB1. Step-downs (controlled) — 3x8 each — Rest 60s\nB2. Single-leg Glute Bridge — 3x10 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Fine-tune single-leg balance and ankle stability for Gypa\u00e8te's technical mountain sections.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK \u2014 STABILITY FOCUS:\nA1. Single-leg Deadlift \u2014 3x8 each \u2014 Rest 60s\nA2. Single-leg Squat (to box) \u2014 3x8 each \u2014 Rest 60s\nB1. Step-downs (controlled) \u2014 3x8 each \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x10 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each, Pigeon pose 60s each",
     "Focus": "Stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4519,7 +4607,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -4531,7 +4620,7 @@
     "PlannedDuration": "4h",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "Peak vertical - 1800m+ D+ if possible",
-    "WorkoutDescription": "GYPAÈTE-SPECIFIC LONG RUN: 4h with significant vertical gain. Find the biggest climb available and do a big loop: sustained 1h+ climb followed by technical descent. Practice race nutrition (60-80g carbs/h), poles on climbs, and power hiking technique. This is your peak long run before Gypaète — after this, trust the taper.",
+    "WorkoutDescription": "GYPA\u00c8TE-SPECIFIC LONG RUN: 4h with significant vertical gain. Find the biggest climb available and do a big loop: sustained 1h+ climb followed by technical descent. Practice race nutrition (60-80g carbs/h), poles on climbs, and power hiking technique. This is your peak long run before Gypa\u00e8te \u2014 after this, trust the taper.",
     "Focus": "Peak mountain endurance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4559,7 +4648,8 @@
         }
       ],
       "nutrition": "60-80g carbs/h), poles on climbs, and power hiking technique",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific vertical endurance for the Gypa\u00e8te. Big vert on tired legs is exactly what this race demands \u2014 this session teaches your body to keep climbing efficiently when fatigue sets in."
     }
   },
   {
@@ -4598,7 +4688,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -4610,7 +4701,7 @@
     "PlannedDuration": "30-40min",
     "TargetHRZone": "N/A",
     "Details": "Taper: light single-leg / extended mobility",
-    "WorkoutDescription": "Ultra Goal: Begin taper — reduce volume by 50% while maintaining neuromuscular readiness for race day.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (50% weight, 2 sets):\nA1. Bulgarian Split Squat — 2x6 each (50% weight) — Rest 45s\nA2. Romanian Deadlift — 2x6 (50% weight) — Rest 60s\nB1. Step-ups (bodyweight) — 2x6 each — Rest 45s\nB2. Glute Bridge — 2x10 — Rest 30s\nC1. Calf Raise (bodyweight) — 2x12 — Rest 30s\n\nCORE (1 round):\nPlank 40s | Dead Bugs 8 reps | Side Plank 25s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Begin taper \u2014 reduce volume by 50% while maintaining neuromuscular readiness for race day.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (50% weight, 2 sets):\nA1. Bulgarian Split Squat \u2014 2x6 each (50% weight) \u2014 Rest 45s\nA2. Romanian Deadlift \u2014 2x6 (50% weight) \u2014 Rest 60s\nB1. Step-ups (bodyweight) \u2014 2x6 each \u2014 Rest 45s\nB2. Glute Bridge \u2014 2x10 \u2014 Rest 30s\nC1. Calf Raise (bodyweight) \u2014 2x12 \u2014 Rest 30s\n\nCORE (1 round):\nPlank 40s | Dead Bugs 8 reps | Side Plank 25s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
     "Focus": "Taper",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4654,7 +4745,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Gypa\u00e8te 76k. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -4713,7 +4805,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Alpine-specific climbing power for the Gypa\u00e8te. Longer hill intervals simulate the sustained climbs you'll face, building both muscular and cardiovascular capacity for big vert. The hill sprints add neuromuscular power \u2014 explosive force that translates to efficiency on steep terrain."
     }
   },
   {
@@ -4769,7 +4862,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Gypa\u00e8te 76k. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -4809,7 +4903,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Sustained aerobic endurance for the Gypa\u00e8te 76k. At this phase, long runs are teaching your body to oxidize fat efficiently and maintain form deep into ultra-distance efforts."
     }
   },
   {
@@ -4848,7 +4943,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Gentle movement to promote blood flow and recovery. Keeps the body loose and the mind calm as you approach Gypa\u00e8te 76k."
     }
   },
   {
@@ -4860,7 +4956,7 @@
     "PlannedDuration": "25-30min",
     "TargetHRZone": "N/A",
     "Details": "Taper: very light movement / mobility only",
-    "WorkoutDescription": "Ultra Goal: Race week sharpening — minimal load to stay activated without any residual fatigue.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x8\n\nMAIN BLOCK (very light — activation only):\nA1. Bodyweight Bulgarian Split Squat — 1x6 each — Rest 30s\nA2. Bodyweight Walking Lunges — 1x6 each — Rest 30s\nB1. Glute Bridge — 1x10 — Rest 30s\nB2. Calf Raise (bodyweight) — 1x12 — Rest 30s\n\nCORE (1 round):\nPlank 30s | Dead Bugs 6 reps\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 90s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Quad foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Race week sharpening \u2014 minimal load to stay activated without any residual fatigue.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x8\n\nMAIN BLOCK (very light \u2014 activation only):\nA1. Bodyweight Bulgarian Split Squat \u2014 1x6 each \u2014 Rest 30s\nA2. Bodyweight Walking Lunges \u2014 1x6 each \u2014 Rest 30s\nB1. Glute Bridge \u2014 1x10 \u2014 Rest 30s\nB2. Calf Raise (bodyweight) \u2014 1x12 \u2014 Rest 30s\n\nCORE (1 round):\nPlank 30s | Dead Bugs 6 reps\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 90s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Quad foam roll 2 min",
     "Focus": "Taper",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -4904,7 +5000,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Gypa\u00e8te 76k. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -4949,7 +5046,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Pre-race activation to maintain neuromuscular readiness before Gypa\u00e8te 76k. Just enough to keep the legs feeling sharp and responsive."
     }
   },
   {
@@ -5005,7 +5103,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Gypa\u00e8te 76k. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -5050,7 +5149,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Pre-race activation to maintain neuromuscular readiness before Gypa\u00e8te 76k. Just enough to keep the legs feeling sharp and responsive."
     }
   },
   {
@@ -5106,7 +5206,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Light movement to stay loose before Gypa\u00e8te 76k. Just enough to keep muscles supple and the nervous system primed without burning any glycogen."
     }
   },
   {
@@ -5169,7 +5270,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Light activation before Gypa\u00e8te 76k. Flushes metabolic waste, primes the nervous system, and confirms everything feels good. Short strides wake up fast-twitch fibers without adding any fatigue."
     }
   },
   {
@@ -5226,7 +5328,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Rest is the priority \u2014 only move if it genuinely helps you feel better. Your fitness is fully banked for Gypa\u00e8te 76k; now it's about arriving at the start line fresh and ready."
     }
   },
   {
@@ -5238,7 +5341,7 @@
     "PlannedDuration": "Race",
     "TargetHRZone": "Race effort",
     "Details": "Key mountain race - manage effort on climbs - trust training",
-    "WorkoutDescription": "RACE DAY: Gypaète 76k. KEY MOUNTAIN RACE. Manage effort on climbs - walk steep sections. Execute nutrition. Trust your training from Balcons. This is your mountain test before Nice.",
+    "WorkoutDescription": "RACE DAY: Gypa\u00e8te 76k. KEY MOUNTAIN RACE. Manage effort on climbs - walk steep sections. Execute nutrition. Trust your training from Balcons. This is your mountain test before Nice.",
     "Focus": "RACE B - Key race",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -5280,7 +5383,8 @@
         }
       ],
       "nutrition": "60-80g carbs/hr, solid food early, gels later",
-      "keyFocus": "Key mountain race — manage climbs, trust training from Balcons"
+      "keyFocus": "Key mountain race \u2014 manage climbs, trust training from Balcons",
+      "why": "76k with big alpine terrain. The Balcons gave you race experience; now apply those lessons with more distance and elevation. This is your bridge to the Nice 110K \u2014 proof that your endurance engine is ready for the next level."
     }
   },
   {
@@ -5355,7 +5459,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible recovery day during maintenance. Rest or light movement based on life demands and how your body feels."
     }
   },
   {
@@ -5393,7 +5498,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5449,7 +5555,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5487,7 +5594,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5526,7 +5634,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible recovery day during maintenance. Rest or light movement based on life demands and how your body feels."
     }
   },
   {
@@ -5538,7 +5647,7 @@
     "PlannedDuration": "30min",
     "TargetHRZone": "N/A",
     "Details": "Light return: bodyweight / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Maintain baseline movement patterns during life transition — keep strength foundation alive with minimal time commitment.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (bodyweight or very light):\nA1. Bodyweight Bulgarian Split Squat — 2x8 each — Rest 45s\nA2. Bodyweight Walking Lunges — 2x8 each — Rest 45s\nB1. Glute Bridge — 2x12 — Rest 30s\nB2. Single-leg Calf Raise — 2x12 each — Rest 30s\n\nCORE (x2, 30s rest):\nPlank 40s | Dead Bugs 10 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Maintain baseline movement patterns during life transition \u2014 keep strength foundation alive with minimal time commitment.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (bodyweight or very light):\nA1. Bodyweight Bulgarian Split Squat \u2014 2x8 each \u2014 Rest 45s\nA2. Bodyweight Walking Lunges \u2014 2x8 each \u2014 Rest 45s\nB1. Glute Bridge \u2014 2x12 \u2014 Rest 30s\nB2. Single-leg Calf Raise \u2014 2x12 each \u2014 Rest 30s\n\nCORE (x2, 30s rest):\nPlank 40s | Dead Bugs 10 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Maintenance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -5582,7 +5691,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5620,7 +5730,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5676,7 +5787,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5716,7 +5828,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Maintains long-run endurance during the maintenance period. Even at reduced volume, regular long efforts prevent aerobic detraining and keep your ultra-distance readiness intact."
     }
   },
   {
@@ -5755,7 +5868,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible recovery day during maintenance. Rest or light movement based on life demands and how your body feels."
     }
   },
   {
@@ -5767,7 +5881,7 @@
     "PlannedDuration": "30min",
     "TargetHRZone": "N/A",
     "Details": "Light strength: single-leg / core",
-    "WorkoutDescription": "Ultra Goal: Keep single-leg strength patterns alive — these are hard to rebuild from zero and critical for trail running.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat — 2x8 each — Rest 45s\nA2. Romanian Deadlift (light) — 2x8 — Rest 60s\nB1. Single-leg Glute Bridge — 2x10 each — Rest 30s\nB2. Single-leg Calf Raise — 2x12 each — Rest 30s\n\nCORE (x2, 30s rest):\nPlank 45s | Side Plank 25s each | Dead Bugs 10 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Keep single-leg strength patterns alive \u2014 these are hard to rebuild from zero and critical for trail running.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat \u2014 2x8 each \u2014 Rest 45s\nA2. Romanian Deadlift (light) \u2014 2x8 \u2014 Rest 60s\nB1. Single-leg Glute Bridge \u2014 2x10 each \u2014 Rest 30s\nB2. Single-leg Calf Raise \u2014 2x12 each \u2014 Rest 30s\n\nCORE (x2, 30s rest):\nPlank 45s | Side Plank 25s each | Dead Bugs 10 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Maintenance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -5811,7 +5925,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5864,7 +5979,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Keeps lactate threshold sharp during maintenance. This is use-it-or-lose-it fitness \u2014 regular tempo stimulus prevents threshold regression while keeping training manageable."
     }
   },
   {
@@ -5920,7 +6036,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -5960,7 +6077,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Maintains long-run endurance during the maintenance period. Even at reduced volume, regular long efforts prevent aerobic detraining and keep your ultra-distance readiness intact."
     }
   },
   {
@@ -5999,7 +6117,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible recovery day during maintenance. Rest or light movement based on life demands and how your body feels."
     }
   },
   {
@@ -6011,7 +6130,7 @@
     "PlannedDuration": "30min",
     "TargetHRZone": "N/A",
     "Details": "Light strength: movement maintenance",
-    "WorkoutDescription": "Ultra Goal: Routine maintenance — keep gym habit alive even with baby arriving; any session is better than none.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat — 2x8 each — Rest 45s\nA2. Bodyweight Walking Lunges — 2x8 each — Rest 45s\nB1. Glute Bridge — 2x12 — Rest 30s\nB2. Single-leg Calf Raise — 2x12 each — Rest 30s\nC1. Nordic Hamstring Curl (eccentric only) — 2x4 — Rest 45s\n\nCORE (x2, 30s rest):\nPlank 40s | Pallof Press 8 each | Dead Bugs 10 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Routine maintenance \u2014 keep gym habit alive even with baby arriving; any session is better than none.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (light):\nA1. Bodyweight Bulgarian Split Squat \u2014 2x8 each \u2014 Rest 45s\nA2. Bodyweight Walking Lunges \u2014 2x8 each \u2014 Rest 45s\nB1. Glute Bridge \u2014 2x12 \u2014 Rest 30s\nB2. Single-leg Calf Raise \u2014 2x12 each \u2014 Rest 30s\nC1. Nordic Hamstring Curl (eccentric only) \u2014 2x4 \u2014 Rest 45s\n\nCORE (x2, 30s rest):\nPlank 40s | Pallof Press 8 each | Dead Bugs 10 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Maintenance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -6055,7 +6174,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -6093,7 +6213,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -6149,7 +6270,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -6188,7 +6310,8 @@
           "description": "Easy aerobic pace, walk uphills if needed"
         }
       ],
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Maintains long-run endurance during the maintenance period. Even at reduced volume, regular long efforts prevent aerobic detraining and keep your ultra-distance readiness intact."
     }
   },
   {
@@ -6244,7 +6367,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6282,7 +6406,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6320,7 +6445,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6358,7 +6484,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6396,7 +6523,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6434,7 +6562,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6490,7 +6619,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6502,7 +6632,7 @@
     "PlannedDuration": "30-45min",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "Treadmill is your friend",
-    "WorkoutDescription": "SURVIVAL MODE: Quick treadmill sessions work great.\n\nMINIMUM SESSION: Even if only 30min, include 10min at tempo effort. Maintaining threshold fitness through small consistent doses is more effective than occasional longer runs. Your baby is your priority — but 30min of purposeful running keeps the Nice 110K dream alive.",
+    "WorkoutDescription": "SURVIVAL MODE: Quick treadmill sessions work great.\n\nMINIMUM SESSION: Even if only 30min, include 10min at tempo effort. Maintaining threshold fitness through small consistent doses is more effective than occasional longer runs. Your baby is your priority \u2014 but 30min of purposeful running keeps the Nice 110K dream alive.",
     "Focus": "Survival mode",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -6528,7 +6658,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6566,7 +6697,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6604,7 +6736,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6642,7 +6775,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6680,7 +6814,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6710,7 +6845,7 @@
     "PlannedDuration": "30-45min",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "Finding new rhythm with baby",
-    "WorkoutDescription": "ADAPTATION: Finding routine. Move when you can.\n\nMINIMUM SESSION: Even if only 30min, include 10min at tempo effort. Maintaining threshold fitness through small consistent doses is more effective than occasional longer runs. You're transitioning back to structure — every session counts.",
+    "WorkoutDescription": "ADAPTATION: Finding routine. Move when you can.\n\nMINIMUM SESSION: Even if only 30min, include 10min at tempo effort. Maintaining threshold fitness through small consistent doses is more effective than occasional longer runs. You're transitioning back to structure \u2014 every session counts.",
     "Focus": "Adaptation",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -6736,7 +6871,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6748,7 +6884,7 @@
     "PlannedDuration": "45min",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "Easy effort, flat or rolling",
-    "WorkoutDescription": "Pre-build easy run: 45min at easy effort. The goal this week is simply to run consistently again. No pressure on pace — just get out the door and move. Your body remembers fitness better than you think.",
+    "WorkoutDescription": "Pre-build easy run: 45min at easy effort. The goal this week is simply to run consistently again. No pressure on pace \u2014 just get out the door and move. Your body remembers fitness better than you think.",
     "Focus": "Pre-Build: Reestablishing consistency before Nice block",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -6774,7 +6910,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -6812,7 +6949,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6850,7 +6988,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -6888,7 +7027,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -6900,7 +7040,7 @@
     "PlannedDuration": "2h",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "Easy trails, building back",
-    "WorkoutDescription": "Pre-build long run: 2h easy on trails. This is your reintroduction to longer efforts after the baby/flexible period. Keep HR in Z1-Z2. Bring nutrition and practice your race fueling. The Nice block starts next week — this is the foundation.",
+    "WorkoutDescription": "Pre-build long run: 2h easy on trails. This is your reintroduction to longer efforts after the baby/flexible period. Keep HR in Z1-Z2. Bring nutrition and practice your race fueling. The Nice block starts next week \u2014 this is the foundation.",
     "Focus": "Pre-Build: Reestablishing consistency before Nice block",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -6928,7 +7068,8 @@
         }
       ],
       "nutrition": "fueling.",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Maintains long-run endurance during the maintenance period. Even at reduced volume, regular long efforts prevent aerobic detraining and keep your ultra-distance readiness intact."
     }
   },
   {
@@ -6967,7 +7108,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible recovery day during maintenance. Rest or light movement based on life demands and how your body feels."
     }
   },
   {
@@ -7005,7 +7147,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -7043,7 +7186,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -7055,8 +7199,8 @@
     "PlannedDuration": "50min",
     "TargetHRZone": "Z3-Z4 (150-165)",
     "Details": "Easy with 20min tempo block",
-    "WorkoutDescription": "QUALITY RETURNS: 15min easy warmup, then 20min at tempo effort (comfortably hard, ~Z3-Z4), then 15min easy cooldown. This is your first real quality session in weeks. Don't chase pace — go by feel and HR. The tempo should feel controlled, not desperate.",
-    "Focus": "Building back — quality returns",
+    "WorkoutDescription": "QUALITY RETURNS: 15min easy warmup, then 20min at tempo effort (comfortably hard, ~Z3-Z4), then 15min easy cooldown. This is your first real quality session in weeks. Don't chase pace \u2014 go by feel and HR. The tempo should feel controlled, not desperate.",
+    "Focus": "Building back \u2014 quality returns",
     "ActualDuration": "",
     "ActualHRAvg": "",
     "ActualDistance": "",
@@ -7081,7 +7225,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps lactate threshold sharp during maintenance. This is use-it-or-lose-it fitness \u2014 regular tempo stimulus prevents threshold regression while keeping training manageable."
     }
   },
   {
@@ -7137,7 +7282,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible session \u2014 choose what your body needs most today. Options: easy run, cross-training, mobility work, or rest. During maintenance, consistency matters more than any single session."
     }
   },
   {
@@ -7149,8 +7295,8 @@
     "PlannedDuration": "2h30",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "Rebuild duration",
-    "WorkoutDescription": "BUILDING BACK: 2h30 long run on trails. This is a step up from last week's 2h. Keep it easy (Z1-Z2) but include some hills to reintroduce vertical. Bring nutrition. You're 8 weeks from Nice — the fitness is coming back faster than you think.",
-    "Focus": "Building back — quality returns",
+    "WorkoutDescription": "BUILDING BACK: 2h30 long run on trails. This is a step up from last week's 2h. Keep it easy (Z1-Z2) but include some hills to reintroduce vertical. Bring nutrition. You're 8 weeks from Nice \u2014 the fitness is coming back faster than you think.",
+    "Focus": "Building back \u2014 quality returns",
     "ActualDuration": "",
     "ActualHRAvg": "",
     "ActualDistance": "",
@@ -7177,7 +7323,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Maintains long-run endurance during the maintenance period. Even at reduced volume, regular long efforts prevent aerobic detraining and keep your ultra-distance readiness intact."
     }
   },
   {
@@ -7216,7 +7363,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Flexible recovery day during maintenance. Rest or light movement based on life demands and how your body feels."
     }
   },
   {
@@ -7228,7 +7376,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Return to strength: split squat / RDL / core",
-    "WorkoutDescription": "Ultra Goal: Rebuild strength foundation after baby period — ease back into loading with familiar movement patterns.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK (moderate — rebuild):\nA1. Bulgarian Split Squat — 3x8 each leg (start conservative) — Rest 60s\nA2. Romanian Deadlift — 3x8 — Rest 90s\nB1. Walking Lunges — 2x8 each — Rest 60s\nB2. Glute Bridge — 3x12 — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl (eccentric) — 2x5 — Rest 60s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Rebuild strength foundation after baby period \u2014 ease back into loading with familiar movement patterns.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, Bodyweight squats x10\n\nMAIN BLOCK (moderate \u2014 rebuild):\nA1. Bulgarian Split Squat \u2014 3x8 each leg (start conservative) \u2014 Rest 60s\nA2. Romanian Deadlift \u2014 3x8 \u2014 Rest 90s\nB1. Walking Lunges \u2014 2x8 each \u2014 Rest 60s\nB2. Glute Bridge \u2014 3x12 \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl (eccentric) \u2014 2x5 \u2014 Rest 60s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Return to structure",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -7279,7 +7427,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -7332,7 +7481,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Keeps lactate threshold sharp during maintenance. This is use-it-or-lose-it fitness \u2014 regular tempo stimulus prevents threshold regression while keeping training manageable."
     }
   },
   {
@@ -7388,7 +7538,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Maintains aerobic fitness during the maintenance period. Low-stress running that keeps the engine running while life demands flexibility."
     }
   },
   {
@@ -7428,7 +7579,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Maintains long-run endurance during the maintenance period. Even at reduced volume, regular long efforts prevent aerobic detraining and keep your ultra-distance readiness intact."
     }
   },
   {
@@ -7467,7 +7619,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -7479,7 +7632,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / step-ups / Nordic curls / core",
-    "WorkoutDescription": "Ultra Goal: Full return to structured strength — build single-leg power for Nice-Cannes trail demands.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x10 each leg — Rest 75s\nA2. Romanian Deadlift — 3x10 — Rest 90s\nB1. Single-leg Step-ups — 3x10 each leg — Rest 60s\nB2. Hip Thrust — 3x12 — Rest 60s\nC1. Single-leg Calf Raise (full ROM) — 3x15 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 55s | Dead Bugs 12 reps | Pallof Press 10 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Full return to structured strength \u2014 build single-leg power for Nice-Cannes trail demands.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x10 each leg \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 3x10 \u2014 Rest 90s\nB1. Single-leg Step-ups \u2014 3x10 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x12 \u2014 Rest 60s\nC1. Single-leg Calf Raise (full ROM) \u2014 3x15 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 55s | Dead Bugs 12 reps | Pallof Press 10 each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Build phase starts",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -7530,7 +7683,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Aerobic maintenance in the Nice 110K build phase. These easy sessions let you absorb the big volume weeks while keeping your running economy sharp. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -7583,7 +7737,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Hill power for the Nice 110K's demanding elevation profile. At this stage, hill work is about maintaining climbing strength while building race-specific endurance."
     }
   },
   {
@@ -7595,7 +7750,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Single-leg stability / balance / core",
-    "WorkoutDescription": "Ultra Goal: Rebuild single-leg stability and balance for Nice-Cannes' coastal trail technical sections.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK — STABILITY FOCUS:\nA1. Single-leg Deadlift — 3x8 each — Rest 60s\nA2. Single-leg Squat (to box) — 3x8 each — Rest 60s\nB1. Step-downs (controlled) — 3x8 each leg — Rest 60s\nB2. Single-leg Glute Bridge — 3x10 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 35s each | Pallof Press 10 each | Dead Bugs 12 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each",
+    "WorkoutDescription": "Ultra Goal: Rebuild single-leg stability and balance for Nice-Cannes' coastal trail technical sections.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK \u2014 STABILITY FOCUS:\nA1. Single-leg Deadlift \u2014 3x8 each \u2014 Rest 60s\nA2. Single-leg Squat (to box) \u2014 3x8 each \u2014 Rest 60s\nB1. Step-downs (controlled) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x10 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nSide Plank 35s each | Pallof Press 10 each | Dead Bugs 12 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each",
     "Focus": "Stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -7640,7 +7795,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -7680,7 +7836,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Peak aerobic endurance for Nice 110K. These are the sessions that build the deep fatigue resistance you'll need to keep running through the night over 110 kilometres."
     }
   },
   {
@@ -7719,7 +7876,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -7731,7 +7889,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Split squat / RDL / eccentric step-downs / core",
-    "WorkoutDescription": "Ultra Goal: Introduce eccentric tempo for Nice-Cannes descent preparation — progressive overload from W32.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 4x8 each @3010 tempo (3s down) — Rest 75s\nA2. Romanian Deadlift — 3x10 (+2.5kg from W32) — Rest 90s\nB1. Step-downs (3s eccentric) — 3x10 each leg — Rest 60s\nB2. Hip Thrust — 3x12 — Rest 60s\nC1. Single-leg Calf Raise (slow eccentric) — 3x15 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Introduce eccentric tempo for Nice-Cannes descent preparation \u2014 progressive overload from W32.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 4x8 each @3010 tempo (3s down) \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 3x10 (+2.5kg from W32) \u2014 Rest 90s\nB1. Step-downs (3s eccentric) \u2014 3x10 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x12 \u2014 Rest 60s\nC1. Single-leg Calf Raise (slow eccentric) \u2014 3x15 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Leg strength",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -7782,7 +7940,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Aerobic maintenance in the Nice 110K build phase. These easy sessions let you absorb the big volume weeks while keeping your running economy sharp. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -7794,7 +7953,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "Z3-Z4 (150-165)",
     "Details": "10min WU + 3x12min tempo + 10min CD",
-    "WorkoutDescription": "TEMPO: 3x12min at threshold. Building race-specific fitness.\n\nDOWNHILL COMPONENT: After the tempo block, add 6x2min fast controlled downhill repeats. By now your form should be dialed — focus on efficiency and relaxation at speed. This is Nice 110K-specific: the course has punishing descents that will destroy unprepared quads.",
+    "WorkoutDescription": "TEMPO: 3x12min at threshold. Building race-specific fitness.\n\nDOWNHILL COMPONENT: After the tempo block, add 6x2min fast controlled downhill repeats. By now your form should be dialed \u2014 focus on efficiency and relaxation at speed. This is Nice 110K-specific: the course has punishing descents that will destroy unprepared quads.",
     "Focus": "Threshold",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -7835,7 +7994,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Threshold maintenance in the Nice build. Even at ultra distances, a higher lactate threshold means you can sustain a faster comfortable pace for longer \u2014 critical over 110K."
     }
   },
   {
@@ -7848,7 +8008,7 @@
     "TargetHRZone": "N/A",
     "Details": "Run with headlamp in darkness",
     "WorkoutDescription": "NIGHT RUNNING SESSION: Run with headlamp in the dark. 50min easy + 3x20s strides. Goal: get comfortable running at night, practice headlamp beam management, and simulate Nice 110K racing in darkness. This is essential for sub-18h racing. Tips: use a chest-mounted light in addition to headlamp for depth perception, carry a backup light, and practice eating while moving in the dark.",
-    "Focus": "Night running practice — Nice 110K prep",
+    "Focus": "Night running practice \u2014 Nice 110K prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
     "ActualDistance": "",
@@ -7880,7 +8040,8 @@
           "description": "Short accelerations"
         }
       ],
-      "keyFocus": "Night running practice — headlamp, darkness comfort"
+      "keyFocus": "Night running practice \u2014 headlamp, darkness comfort",
+      "why": "Night-specific training for Nice 110K, which runs through the night. Develops comfort with headlamp running, night navigation, and the mental challenge of running when your body wants to sleep."
     }
   },
   {
@@ -7919,7 +8080,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -7959,7 +8121,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific endurance for Nice 110K \u2014 the session that most closely simulates race demands. Sustained climbing and descending on tired legs builds the specific resilience you'll need over 110 kilometres."
     }
   },
   {
@@ -7972,7 +8135,7 @@
     "TargetHRZone": "Z1-Z2 (<140)",
     "Details": "Easy trails, HR Z1-Z2",
     "WorkoutDescription": "CRITICAL BACK-TO-BACK for Nice 110K prep. Running 2h on legs fatigued from yesterday's 3h30 build run. This is the most race-specific training you can do. Keep HR Z1-Z2, eat every 30min, and focus on maintaining good form even when tired. This simulates km 70-90 of Nice.",
-    "Focus": "Critical back-to-back — Nice 110K prep",
+    "Focus": "Critical back-to-back \u2014 Nice 110K prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
     "ActualDistance": "",
@@ -7999,7 +8162,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Mid-week endurance in the Nice 110K build. These medium-long runs contribute to the high weekly volume your body needs to handle 110K on race day."
     }
   },
   {
@@ -8011,7 +8175,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Maintain: split squat / RDL / step-downs / core",
-    "WorkoutDescription": "Ultra Goal: Maintain peak eccentric and single-leg strength — no new load, just consistency approaching taper.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 3x8 each @3010 tempo (same weight as W33) — Rest 75s\nA2. Romanian Deadlift — 3x8 (same weight) — Rest 90s\nB1. Step-downs (3s eccentric) — 3x8 each leg — Rest 60s\nB2. Hip Thrust — 3x10 — Rest 60s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\nC2. Nordic Hamstring Curl — 3x6 — Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Side Plank 40s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Maintain peak eccentric and single-leg strength \u2014 no new load, just consistency approaching taper.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 3x8 each @3010 tempo (same weight as W33) \u2014 Rest 75s\nA2. Romanian Deadlift \u2014 3x8 (same weight) \u2014 Rest 90s\nB1. Step-downs (3s eccentric) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Hip Thrust \u2014 3x10 \u2014 Rest 60s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\nC2. Nordic Hamstring Curl \u2014 3x6 \u2014 Rest 60s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Side Plank 40s each\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Maintenance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8062,7 +8226,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Aerobic maintenance in the Nice 110K build phase. These easy sessions let you absorb the big volume weeks while keeping your running economy sharp. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -8121,7 +8286,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Climbing power + vertical endurance"
+      "keyFocus": "Climbing power + vertical endurance",
+      "why": "Hill power for the Nice 110K's demanding elevation profile. At this stage, hill work is about maintaining climbing strength while building race-specific endurance. The hill sprints add neuromuscular power \u2014 explosive force that translates to efficiency on steep terrain."
     }
   },
   {
@@ -8133,7 +8299,7 @@
     "PlannedDuration": "45-60min",
     "TargetHRZone": "N/A",
     "Details": "Single-leg stability / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Final stability session before taper phase — lock in balance and ankle confidence for race terrain.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK — STABILITY FOCUS:\nA1. Single-leg Deadlift — 3x8 each — Rest 60s\nA2. Single-leg Squat (to box) — 3x8 each — Rest 60s\nB1. Step-downs (controlled) — 3x8 each — Rest 60s\nB2. Single-leg Glute Bridge — 3x10 each — Rest 45s\nC1. Single-leg Calf Raise — 3x12 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Final stability session before taper phase \u2014 lock in balance and ankle confidence for race terrain.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Single-leg balance 30s each\n\nMAIN BLOCK \u2014 STABILITY FOCUS:\nA1. Single-leg Deadlift \u2014 3x8 each \u2014 Rest 60s\nA2. Single-leg Squat (to box) \u2014 3x8 each \u2014 Rest 60s\nB1. Step-downs (controlled) \u2014 3x8 each \u2014 Rest 60s\nB2. Single-leg Glute Bridge \u2014 3x10 each \u2014 Rest 45s\nC1. Single-leg Calf Raise \u2014 3x12 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPallof Press 12 each | Side Plank 40s each | Dead Bugs 15 reps\n\nMOBILITY (8 min): Hip flexor stretch 60s each, Ankle dorsiflexion 60s each, 90/90 stretch 60s each, Pigeon pose 60s each",
     "Focus": "Stability",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8178,7 +8344,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Recovery day \u2014 full rest or very light movement. Your body adapts during rest, not during training. Don't waste recovery opportunities."
     }
   },
   {
@@ -8190,7 +8357,7 @@
     "PlannedDuration": "4h30",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "1500m+ D+ - peak long run",
-    "WorkoutDescription": "PENULTIMATE BIG EFFORT: 4h30 with significant vertical gain. Include a mix of runnable trails and steep climbs to simulate Nice 110K terrain. Practice your full race nutrition plan (60-80g carbs/h). Run the first 3h easy, then push to race effort for the final 1h30. This is your second-to-last big session — make it count but stay injury-free.",
+    "WorkoutDescription": "PENULTIMATE BIG EFFORT: 4h30 with significant vertical gain. Include a mix of runnable trails and steep climbs to simulate Nice 110K terrain. Practice your full race nutrition plan (60-80g carbs/h). Run the first 3h easy, then push to race effort for the final 1h30. This is your second-to-last big session \u2014 make it count but stay injury-free.",
     "Focus": "Peak endurance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8218,7 +8385,8 @@
         }
       ],
       "nutrition": "60-80g carbs/h)",
-      "keyFocus": "Vertical endurance + hiking efficiency"
+      "keyFocus": "Vertical endurance + hiking efficiency",
+      "why": "Race-specific endurance for Nice 110K \u2014 the session that most closely simulates race demands. Sustained climbing and descending on tired legs builds the specific resilience you'll need over 110 kilometres."
     }
   },
   {
@@ -8231,7 +8399,7 @@
     "TargetHRZone": "Z1-Z2 (<140)",
     "Details": "Easy trails, HR Z1-Z2",
     "WorkoutDescription": "PEAK BACK-TO-BACK WEEKEND for Nice 110K. Running 2h easy on legs fatigued from yesterday's 4h30 long run. This is the hardest back-to-back of the plan. Stay disciplined with HR Z1-Z2. Practice your full Nice nutrition plan. Mental rehearsal: visualize the Nice course during this run.",
-    "Focus": "Peak back-to-back — Nice 110K prep",
+    "Focus": "Peak back-to-back \u2014 Nice 110K prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
     "ActualDistance": "",
@@ -8258,7 +8426,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Mid-week endurance in the Nice 110K build. These medium-long runs contribute to the high weekly volume your body needs to handle 110K on race day."
     }
   },
   {
@@ -8270,7 +8439,7 @@
     "PlannedDuration": "60min",
     "TargetHRZone": "N/A",
     "Details": "Last hard session: eccentric / single-leg / plyos / core",
-    "WorkoutDescription": "Ultra Goal: Final high-intensity strength session — last chance to load before taper; make it count.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat — 4x8 each @4010 tempo — Rest 90s\nA2. Romanian Deadlift — 4x8 — Rest 90s\nB1. Step-downs (4s eccentric) — 3x8 each leg — Rest 60s\nB2. Nordic Hamstring Curl — 3x8 — Rest 60s\nC1. Box Jumps (power) — 3x6 — Rest 90s\nC2. Single-leg Calf Raise (3s eccentric) — 3x15 each — Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
+    "WorkoutDescription": "Ultra Goal: Final high-intensity strength session \u2014 last chance to load before taper; make it count.\n\nWARM-UP (6 min): Leg swings x15 each, Hip circles x10 each, Glute bridges x15, A-skips x20\n\nMAIN BLOCK:\nA1. Bulgarian Split Squat \u2014 4x8 each @4010 tempo \u2014 Rest 90s\nA2. Romanian Deadlift \u2014 4x8 \u2014 Rest 90s\nB1. Step-downs (4s eccentric) \u2014 3x8 each leg \u2014 Rest 60s\nB2. Nordic Hamstring Curl \u2014 3x8 \u2014 Rest 60s\nC1. Box Jumps (power) \u2014 3x6 \u2014 Rest 90s\nC2. Single-leg Calf Raise (3s eccentric) \u2014 3x15 each \u2014 Rest 45s\n\nCORE CIRCUIT (x3, 45s rest between rounds):\nPlank 60s | Pallof Press 12 each | Dead Bugs 15 reps\n\nCOOL-DOWN (5 min): Hip flexor stretch 60s each, Pigeon pose 60s each",
     "Focus": "Maintenance",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8321,7 +8490,8 @@
           "description": "Gradual acceleration to 90%, walk back recovery"
         }
       ],
-      "keyFocus": "Aerobic base + neuromuscular activation"
+      "keyFocus": "Aerobic base + neuromuscular activation",
+      "why": "Aerobic maintenance in the Nice 110K build phase. These easy sessions let you absorb the big volume weeks while keeping your running economy sharp. The strides maintain neuromuscular speed and running economy without adding fatigue."
     }
   },
   {
@@ -8374,7 +8544,8 @@
           "description": "Easy jog"
         }
       ],
-      "keyFocus": "Race effort calibration"
+      "keyFocus": "Race effort calibration",
+      "why": "Race-specific pace work for Nice 110K. Ingrains the rhythm and effort level you'll sustain for 15+ hours. Mental rehearsal is as important as physical here."
     }
   },
   {
@@ -8386,7 +8557,7 @@
     "PlannedDuration": "35-40min",
     "TargetHRZone": "N/A",
     "Details": "Reduced load: light single-leg / core / mobility",
-    "WorkoutDescription": "Ultra Goal: Begin volume reduction — keep muscles engaged but start dropping fatigue for race week.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (reduced):\nA1. Single-leg Deadlift (light) — 2x8 each — Rest 45s\nA2. Single-leg Glute Bridge — 2x10 each — Rest 45s\nB1. Single-leg Calf Raise — 2x12 each — Rest 30s\nB2. Nordic Hamstring Curl (eccentric only) — 2x4 — Rest 45s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nMOBILITY (12 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Begin volume reduction \u2014 keep muscles engaged but start dropping fatigue for race week.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (reduced):\nA1. Single-leg Deadlift (light) \u2014 2x8 each \u2014 Rest 45s\nA2. Single-leg Glute Bridge \u2014 2x10 each \u2014 Rest 45s\nB1. Single-leg Calf Raise \u2014 2x12 each \u2014 Rest 30s\nB2. Nordic Hamstring Curl (eccentric only) \u2014 2x4 \u2014 Rest 45s\n\nCORE CIRCUIT (x2, 45s rest):\nPlank 45s | Dead Bugs 10 reps | Side Plank 30s each\n\nMOBILITY (12 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
     "Focus": "Taper prep",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8422,7 +8593,7 @@
     "PlannedDuration": "5h",
     "TargetHRZone": "Z2 (130-145)",
     "Details": "Last big effort - full race nutrition practice",
-    "WorkoutDescription": "PEAK LONG RUN — FINAL RACE SIM: 5h with full Nice 110K simulation. Race kit, nutrition every 45min (aim for 60-80g carbs/h), poles. Include a night section (start at dusk or run final 1h with headlamp). Practice headlamp management, eating in the dark, navigating with reduced visibility. This is the most important training session of the entire plan. After this, trust the work is done.",
+    "WorkoutDescription": "PEAK LONG RUN \u2014 FINAL RACE SIM: 5h with full Nice 110K simulation. Race kit, nutrition every 45min (aim for 60-80g carbs/h), poles. Include a night section (start at dusk or run final 1h with headlamp). Practice headlamp management, eating in the dark, navigating with reduced visibility. This is the most important training session of the entire plan. After this, trust the work is done.",
     "Focus": "Final long run",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8463,7 +8634,8 @@
         }
       ],
       "nutrition": "60-80g carbs/h), poles",
-      "keyFocus": "Race simulation — full kit, nutrition, pacing + night running"
+      "keyFocus": "Race simulation \u2014 full kit, nutrition, pacing + night running",
+      "why": "The final dress rehearsal before Nice 110K. Tests every element \u2014 nutrition timing, gear, pacing discipline, and mental resilience over race-like duration. Your last chance to identify and fix problems before the real thing."
     }
   },
   {
@@ -8502,7 +8674,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Active recovery to promote blood flow and repair. Very easy effort \u2014 this is about healing, not training. Walking is perfectly acceptable if legs feel heavy."
     }
   },
   {
@@ -8514,7 +8687,7 @@
     "PlannedDuration": "30-40min",
     "TargetHRZone": "N/A",
     "Details": "Taper: light single-leg / extended mobility",
-    "WorkoutDescription": "Ultra Goal: Taper week — maintain movement patterns at 50% load to stay sharp without accumulating fatigue.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (50% weight, 2 sets):\nA1. Bulgarian Split Squat — 2x6 each (50% weight) — Rest 45s\nA2. Romanian Deadlift — 2x6 (50% weight) — Rest 60s\nB1. Step-ups (bodyweight) — 2x6 each — Rest 45s\nB2. Glute Bridge — 2x10 — Rest 30s\nC1. Calf Raise (bodyweight) — 2x12 — Rest 30s\n\nCORE (1 round):\nPlank 40s | Dead Bugs 8 reps | Side Plank 25s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Taper week \u2014 maintain movement patterns at 50% load to stay sharp without accumulating fatigue.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x10\n\nMAIN BLOCK (50% weight, 2 sets):\nA1. Bulgarian Split Squat \u2014 2x6 each (50% weight) \u2014 Rest 45s\nA2. Romanian Deadlift \u2014 2x6 (50% weight) \u2014 Rest 60s\nB1. Step-ups (bodyweight) \u2014 2x6 each \u2014 Rest 45s\nB2. Glute Bridge \u2014 2x10 \u2014 Rest 30s\nC1. Calf Raise (bodyweight) \u2014 2x12 \u2014 Rest 30s\n\nCORE (1 round):\nPlank 40s | Dead Bugs 8 reps | Side Plank 25s each\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 60s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min",
     "Focus": "Taper",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8558,7 +8731,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Nice 110K. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -8618,7 +8792,8 @@
           "description": "Easy jog, let HR drop"
         }
       ],
-      "keyFocus": "Lactate threshold development"
+      "keyFocus": "Lactate threshold development",
+      "why": "Threshold maintenance in the Nice build. Even at ultra distances, a higher lactate threshold means you can sustain a faster comfortable pace for longer \u2014 critical over 110K."
     }
   },
   {
@@ -8674,7 +8849,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Nice 110K. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -8714,7 +8890,8 @@
         }
       ],
       "nutrition": "30-40g carbs every 45min",
-      "keyFocus": "Aerobic endurance + time on feet"
+      "keyFocus": "Aerobic endurance + time on feet",
+      "why": "Peak aerobic endurance for Nice 110K. These are the sessions that build the deep fatigue resistance you'll need to keep running through the night over 110 kilometres."
     }
   },
   {
@@ -8753,7 +8930,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Active recovery, blood flow"
+      "keyFocus": "Active recovery, blood flow",
+      "why": "Gentle movement to promote blood flow and recovery. Keeps the body loose and the mind calm as you approach Nice 110K."
     }
   },
   {
@@ -8765,7 +8943,7 @@
     "PlannedDuration": "25-30min",
     "TargetHRZone": "N/A",
     "Details": "Taper: very light activation / mobility only",
-    "WorkoutDescription": "Ultra Goal: Race week — minimal activation to keep neuromuscular pathways firing without any tissue stress.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x8\n\nMAIN BLOCK (activation only):\nA1. Bodyweight Bulgarian Split Squat — 1x6 each — Rest 30s\nA2. Bodyweight Walking Lunges — 1x6 each — Rest 30s\nB1. Glute Bridge — 1x10 — Rest 30s\nB2. Calf Raise (bodyweight) — 1x12 — Rest 30s\n\nCORE (1 round):\nPlank 30s | Dead Bugs 6 reps\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 90s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Quad foam roll 2 min",
+    "WorkoutDescription": "Ultra Goal: Race week \u2014 minimal activation to keep neuromuscular pathways firing without any tissue stress.\n\nWARM-UP (5 min): Leg swings x10 each, Hip circles x10 each, Bodyweight squats x8\n\nMAIN BLOCK (activation only):\nA1. Bodyweight Bulgarian Split Squat \u2014 1x6 each \u2014 Rest 30s\nA2. Bodyweight Walking Lunges \u2014 1x6 each \u2014 Rest 30s\nB1. Glute Bridge \u2014 1x10 \u2014 Rest 30s\nB2. Calf Raise (bodyweight) \u2014 1x12 \u2014 Rest 30s\n\nCORE (1 round):\nPlank 30s | Dead Bugs 6 reps\n\nMOBILITY (15 min): Hip flexor stretch 90s each, Pigeon pose 90s each, 90/90 stretch 90s each, Hamstring stretch 60s each, Ankle dorsiflexion 60s each, Thoracic foam roll 2 min, Quad foam roll 2 min",
     "Focus": "Taper",
     "ActualDuration": "",
     "ActualHRAvg": "",
@@ -8809,7 +8987,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Nice 110K. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -8854,7 +9033,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Pre-race activation to maintain neuromuscular readiness before Nice 110K. Just enough to keep the legs feeling sharp and responsive."
     }
   },
   {
@@ -8910,7 +9090,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Keeps the aerobic system ticking over without adding fatigue before Nice 110K. Legs should feel progressively fresher as race day approaches."
     }
   },
   {
@@ -8955,7 +9136,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Pre-race activation to maintain neuromuscular readiness before Nice 110K. Just enough to keep the legs feeling sharp and responsive."
     }
   },
   {
@@ -9011,7 +9193,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Light movement to stay loose before Nice 110K. Just enough to keep muscles supple and the nervous system primed without burning any glycogen."
     }
   },
   {
@@ -9074,7 +9257,8 @@
           "description": "Short accelerations to stay sharp"
         }
       ],
-      "keyFocus": "Legs primed for race day"
+      "keyFocus": "Legs primed for race day",
+      "why": "Light activation before Nice 110K. Flushes metabolic waste, primes the nervous system, and confirms everything feels good. Short strides wake up fast-twitch fibers without adding any fatigue."
     }
   },
   {
@@ -9131,7 +9315,8 @@
           "description": "Conversational pace throughout"
         }
       ],
-      "keyFocus": "Aerobic base building"
+      "keyFocus": "Aerobic base building",
+      "why": "Rest is the priority \u2014 only move if it genuinely helps you feel better. Your fitness is fully banked for Nice 110K; now it's about arriving at the start line fresh and ready."
     }
   },
   {
@@ -9208,7 +9393,8 @@
         }
       ],
       "nutrition": "60-80g carbs/hr from km 0, switch to gels/liquids after 12h",
-      "keyFocus": "GOAL RACE — sub-18h, conservative start, execute the plan"
+      "keyFocus": "GOAL RACE \u2014 sub-18h, conservative start, execute the plan",
+      "why": "The A-race \u2014 110K through the night. Everything in this 9-month plan built toward this moment. Trust the aerobic base, the hill strength, the nutrition strategy. You've done the work. Execute patiently and enjoy the journey."
     }
   }
 ]

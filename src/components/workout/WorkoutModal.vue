@@ -383,7 +383,7 @@ function getField(field) {
                 <p class="text-xs text-text-muted">Duration</p>
                 <p class="font-semibold text-text-primary">{{ getField('Planned Duration') }}</p>
               </div>
-              <div class="card bg-bg-tertiary">
+              <div v-if="!workout.runMeta" class="card bg-bg-tertiary">
                 <Heart class="w-5 h-5 text-text-muted mb-2" />
                 <p class="text-xs text-text-muted">HR Zone</p>
                 <p class="font-semibold text-text-primary">{{ getField('Target HR/Zone') || 'N/A' }}</p>
