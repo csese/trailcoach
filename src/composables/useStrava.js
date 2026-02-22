@@ -2,6 +2,25 @@ import { ref, computed } from 'vue'
 import { useSupabase } from './useSupabase'
 import { formatPaceMinPerKm } from '@/utils/duration'
 
+const STORAGE_KEY = 'trailcoach-strava-tokens'
+
+function saveTokensLocally(tokens) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tokens))
+}
+
+function loadTokensLocally() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
+function clearTokensLocally() {
+  localStorage.removeItem(STORAGE_KEY)
+}
+
 const STRAVA_AUTH_URL = 'https://www.strava.com/oauth/authorize'
 const STRAVA_TOKEN_URL = 'https://www.strava.com/oauth/token'
 const STRAVA_API_URL = 'https://www.strava.com/api/v3'
@@ -71,12 +90,14 @@ export function useStrava() {
       const data = await response.json()
 
       // Save tokens to user settings
-      await db.saveSettings({
+      const tokenData = {
         strava_access_token: data.access_token,
         strava_refresh_token: data.refresh_token,
         strava_token_expires_at: new Date(data.expires_at * 1000).toISOString(),
         strava_athlete_id: data.athlete?.id?.toString()
-      })
+      }
+      await db.saveSettings(tokenData)
+      saveTokensLocally(tokenData)
 
       athlete.value = data.athlete
       isConnected.value = true
@@ -112,19 +133,23 @@ export function useStrava() {
     const data = await response.json()
 
     // Update tokens in settings
-    await db.saveSettings({
+    const refreshData = {
       strava_access_token: data.access_token,
       strava_refresh_token: data.refresh_token,
       strava_token_expires_at: new Date(data.expires_at * 1000).toISOString()
-    })
+    }
+    await db.saveSettings(refreshData)
+    saveTokensLocally({ ...loadTokensLocally(), ...refreshData })
 
     return data.access_token
   }
 
   // Get valid access token (refresh if needed)
   async function getValidToken() {
-    const settings = await db.getSettings()
-
+    let settings = await db.getSettings()
+    if (!settings?.strava_access_token) {
+      settings = loadTokensLocally()
+    }
     if (!settings?.strava_access_token) {
       throw new Error('Not connected to Strava')
     }
@@ -143,15 +168,19 @@ export function useStrava() {
   // Check if connected to Strava
   async function checkConnection() {
     try {
-      const settings = await db.getSettings()
+      let settings = await db.getSettings()
+      if (!settings?.strava_access_token) {
+        settings = loadTokensLocally()
+      }
       isConnected.value = !!settings?.strava_access_token
       if (settings?.strava_athlete_id) {
         athlete.value = { id: settings.strava_athlete_id }
       }
       return isConnected.value
     } catch {
-      isConnected.value = false
-      return false
+      const local = loadTokensLocally()
+      isConnected.value = !!local?.strava_access_token
+      return isConnected.value
     }
   }
 
@@ -179,6 +208,7 @@ export function useStrava() {
       strava_athlete_id: null
     })
 
+    clearTokensLocally()
     isConnected.value = false
     athlete.value = null
     activities.value = []
