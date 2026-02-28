@@ -8,6 +8,7 @@ import {
   TrendingUp,
   BarChart3,
   Sparkles,
+  MessageCircle,
   Settings,
   Mountain,
   Trophy,
@@ -32,6 +33,7 @@ const navigation = [
   { name: 'Phases', path: '/phases', icon: TrendingUp },
   { name: 'Stats', path: '/stats', icon: BarChart3 },
   { name: 'Adaptations', path: '/adaptations', icon: Sparkles },
+  { name: 'Coach', path: '/coach', icon: MessageCircle },
   { name: 'Settings', path: '/settings', icon: Settings }
 ]
 

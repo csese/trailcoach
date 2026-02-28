@@ -32,6 +32,12 @@ const routes = [
     meta: { title: 'Plan Adaptations' }
   },
   {
+    path: '/coach',
+    name: 'coach',
+    component: () => import('@/views/CoachView.vue'),
+    meta: { title: 'Coach' }
+  },
+  {
     path: '/settings',
     name: 'settings',
     component: () => import('@/views/SettingsView.vue'),
