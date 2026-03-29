@@ -34,6 +34,7 @@ const navigation = [
   { name: 'Stats', path: '/stats', icon: BarChart3 },
   { name: 'Adaptations', path: '/adaptations', icon: Sparkles },
   { name: 'Coach', path: '/coach', icon: MessageCircle },
+  { name: 'Race', path: '/race', icon: Trophy },
   { name: 'Settings', path: '/settings', icon: Settings }
 ]
 

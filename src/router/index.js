@@ -38,6 +38,12 @@ const routes = [
     meta: { title: 'Coach' }
   },
   {
+    path: '/race',
+    name: 'race',
+    component: () => import('@/views/RaceView.vue'),
+    meta: { title: 'Race Strategy' }
+  },
+  {
     path: '/settings',
     name: 'settings',
     component: () => import('@/views/SettingsView.vue'),
