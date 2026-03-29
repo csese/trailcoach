@@ -2,7 +2,37 @@ import { differenceInWeeks, addWeeks, format, subDays, parseISO, startOfWeek, en
 import { calculateLoadMetrics } from '@/utils/loadCalculator'
 import trainingPlan from '@/data/trainingPlan.json'
 
-const PLAN_START = new Date('2026-01-12')
+function parseWorkoutDateFromPlan(datesStr, day) {
+  if (!datesStr || !day) return null
+  const dayMap = { 'Mon': 0, 'Tue': 1, 'Wed': 2, 'Thu': 3, 'Fri': 4, 'Sat': 5, 'Sun': 6 }
+  const monthMap = { 'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11 }
+  try {
+    const parts = datesStr.trim().split(' ')
+    const month = monthMap[parts[0]]
+    if (month === undefined) return null
+    const startDay = parseInt(parts[1].split('-')[0])
+    const weekStart = new Date(2026, month, startDay)
+    const dayKey = day.slice(0, 3)
+    const dayOffset = dayMap[dayKey] ?? 0
+    const d = new Date(weekStart)
+    d.setDate(weekStart.getDate() + dayOffset)
+    return d
+  } catch { return null }
+}
+
+function getCurrentWeekFromPlan(today) {
+  for (const w of trainingPlan) {
+    if (!w.Dates) continue
+    const monDate = parseWorkoutDateFromPlan(w.Dates, 'Mon')
+    if (!monDate) continue
+    const sunDate = new Date(monDate)
+    sunDate.setDate(monDate.getDate() + 6)
+    if (today >= monDate && today <= sunDate) {
+      return parseInt(w.Week) || 1
+    }
+  }
+  return 1
+}
 
 const LEG_FEEL_MAP = {
   '💀': 1, '😴': 2, '👍': 3, '💪': 4
@@ -16,7 +46,7 @@ function parseLegFeel(val) {
 
 export function buildCoachContext({ workoutsStore, logsStore, adaptationsStore, stravaTokens }) {
   const today = new Date()
-  const currentWeek = Math.max(1, differenceInWeeks(today, PLAN_START) + 1)
+  const currentWeek = getCurrentWeekFromPlan(today)
   const goalRaceDate = new Date('2026-09-27')
   const weeksToGoalRace = Math.max(0, differenceInWeeks(goalRaceDate, today))
 
