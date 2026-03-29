@@ -16,6 +16,7 @@ const { messages, isStreaming, streamingContent, error, sendMessage, clearConver
 
 const input = ref('')
 const messagesEl = ref(null)
+const isReady = ref(false)
 
 const suggestedPrompts = [
   "How's my training load looking this week?",
@@ -82,10 +83,14 @@ function scrollToBottom() {
 
 watch([messages, streamingContent], scrollToBottom)
 
-onMounted(() => {
+onMounted(async () => {
   loadMessages()
-  workoutsStore.loadWorkouts()
-  logsStore.loadLogs()
+  await Promise.all([
+    workoutsStore.loadWorkouts(),
+    logsStore.loadLogs(),
+    adaptationsStore.loadProposals()
+  ])
+  isReady.value = true
 })
 </script>
 
@@ -151,7 +156,8 @@ onMounted(() => {
           @keydown.enter.exact.prevent="send"
           rows="1"
           class="flex-1 bg-gray-800 text-white rounded-lg px-3 py-2 resize-none text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500"
-          placeholder="Ask your coach..."
+          :disabled="!isReady"
+          :placeholder="isReady ? 'Ask your coach...' : 'Loading training data...'"
         />
         <button
           @click="send"

@@ -69,8 +69,14 @@ CURRENT ATHLETE STATUS:
 THIS WEEK'S SESSIONS:
 ${JSON.stringify(context.currentWeekSessions)}
 
-UPCOMING 3 WEEKS:
+UPCOMING 8 WEEKS:
 ${JSON.stringify(context.upcomingPlan)}
+
+FULL PLAN STRUCTURE:
+${JSON.stringify(context.planPhaseSummary)}
+
+COMPLETED WORKOUTS (last 4 weeks):
+${JSON.stringify(context.completedSummary)}
 
 YOUR RESPONSE STYLE:
 - Direct, specific, data-driven. Reference the athlete's actual numbers.

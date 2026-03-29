@@ -37,7 +37,20 @@ export function buildCoachContext({ workoutsStore, logsStore, adaptationsStore, 
   const recentWorkouts = allWorkouts.filter(w => w.date && w.date >= fourWeeksAgo && w.date <= today)
   const loggedWorkoutIds = new Set(allLogs.map(l => l.workoutId))
   const recentCompleted = recentWorkouts.filter(w => loggedWorkoutIds.has(w.id))
+
+  // Build a map of workoutId -> workout date for proper time filtering
+  const workoutDateMap = {}
+  allWorkouts.forEach(w => {
+    if (w.date) workoutDateMap[w.id] = w.date
+  })
+
+  // Use workout date (not completedAt) for time filtering — fixes bulk-logged sessions
   const recentLogs = allLogs.filter(l => {
+    const workoutDate = workoutDateMap[l.workoutId]
+    if (workoutDate) {
+      return workoutDate >= fourWeeksAgo && workoutDate <= today
+    }
+    // Fallback to completedAt if no workout date found
     const d = l.completedAt ? new Date(l.completedAt) : null
     return d && d >= fourWeeksAgo && d <= today
   })
@@ -56,7 +69,7 @@ export function buildCoachContext({ workoutsStore, logsStore, adaptationsStore, 
   )]
 
   // Leg feel trend from readiness — use feltVsPlanned from logs as proxy
-  const legFeelTrend = computeLegFeelTrend(recentLogs)
+  const legFeelTrend = computeLegFeelTrend(recentLogs, workoutDateMap)
 
   // Load metrics
   const activityHistory = allLogs
@@ -85,7 +98,7 @@ export function buildCoachContext({ workoutsStore, logsStore, adaptationsStore, 
 
   // Upcoming 3 weeks
   const upcomingStart = addWeeks(weekStart, 1)
-  const upcomingEnd = addWeeks(weekStart, 4)
+  const upcomingEnd = addWeeks(weekStart, 9)
   const upcomingPlan = allWorkouts
     .filter(w => w.date && w.date >= upcomingStart && w.date < upcomingEnd)
     .map(w => ({
@@ -97,6 +110,39 @@ export function buildCoachContext({ workoutsStore, logsStore, adaptationsStore, 
       focus: w.Focus,
       details: w.Details
     }))
+
+  // Full plan phase summary — tells coach about the entire 38-week structure
+  const planPhaseSummary = (() => {
+    const phases = {}
+    trainingPlan.forEach(w => {
+      const phase = w.Phase || w.phase || 'Unknown'
+      if (!phases[phase]) phases[phase] = { phase, weeks: [], sessionCount: 0 }
+      if (!phases[phase].weeks.includes(w.Week)) phases[phase].weeks.push(w.Week)
+      phases[phase].sessionCount++
+    })
+    return Object.values(phases).map(p => ({
+      phase: p.phase,
+      weekRange: `W${Math.min(...p.weeks.map(Number))}-W${Math.max(...p.weeks.map(Number))}`,
+      sessionCount: p.sessionCount
+    }))
+  })()
+
+  // Last 4 weeks completed workout summary
+  const completedSummary = recentCompleted.map(w => {
+    const log = allLogs.find(l => l.workoutId === w.id)
+    return {
+      date: w.date ? format(w.date, 'yyyy-MM-dd') : null,
+      sessionType: w.SessionType,
+      plannedDuration: w.PlannedDuration,
+      focus: w.Focus,
+      log: log ? {
+        rpe: log.rpe,
+        actualDuration: log.actualDuration,
+        feltVsPlanned: log.feltVsPlanned,
+        notes: log.notes
+      } : null
+    }
+  })
 
   // Active adaptations
   const activeAdaptations = adaptationsStore.pendingProposal
@@ -125,22 +171,30 @@ export function buildCoachContext({ workoutsStore, logsStore, adaptationsStore, 
     currentWeekSessions,
     upcomingPlan,
     activeAdaptations,
+    planPhaseSummary,
+    completedSummary,
     stravaConnected: !!stravaTokens
   }
 }
 
-function computeLegFeelTrend(recentLogs) {
+function computeLegFeelTrend(recentLogs, workoutDateMap = {}) {
   const now = new Date()
   const twoWeeksAgo = subDays(now, 14)
   const fourWeeksAgo = subDays(now, 28)
 
+  function getLogDate(l) {
+    const workoutDate = workoutDateMap[l.workoutId]
+    if (workoutDate) return workoutDate
+    return l.completedAt ? new Date(l.completedAt) : null
+  }
+
   const recent = recentLogs.filter(l => {
-    const d = new Date(l.completedAt)
-    return d >= twoWeeksAgo && d <= now
+    const d = getLogDate(l)
+    return d && d >= twoWeeksAgo && d <= now
   })
   const prior = recentLogs.filter(l => {
-    const d = new Date(l.completedAt)
-    return d >= fourWeeksAgo && d < twoWeeksAgo
+    const d = getLogDate(l)
+    return d && d >= fourWeeksAgo && d < twoWeeksAgo
   })
 
   const avgFeel = (logs) => {
