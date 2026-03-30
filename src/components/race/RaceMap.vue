@@ -14,17 +14,17 @@ const trackPoints = [[43.53545,6.94547,1],[43.5346,6.94564,1],[43.53324,6.94636,
 
 const checkpointCoords = [
   { name: "Depart - Mandelieu", km: 0, lat: 43.53545, lon: 6.94547, targetTime: "05:30", type: "start", dplus: 0, barrier: null, services: "" },
-  { name: "PC1 - Maure Vieil", km: 7, lat: 43.51572, lon: 6.91438, targetTime: "06:25", type: "water", dplus: 400, barrier: null, services: "Eau uniquement" },
-  { name: "PC2 - Col de Notre Dame", km: 17, lat: 43.50465, lon: 6.89806, targetTime: "07:52", type: "full", dplus: 976, barrier: "14h20", services: "Boisson + Nourriture + Drop bag" },
-  { name: "PC3 - Col des Lentisques", km: 21, lat: 43.48600, lon: 6.89200, targetTime: "08:20", type: "water", dplus: 1150, barrier: null, services: "Eau uniquement" },
-  { name: "PC4 - Ravin Mal Infernet", km: 26, lat: 43.46700, lon: 6.88600, targetTime: "08:55", type: "water", dplus: 1400, barrier: "11h25", key: true, services: "Eau uniquement - Barriere 11h25" },
-  { name: "PC5 - Col de l'Eveque", km: 30, lat: 43.44895, lon: 6.89138, targetTime: "09:38", type: "full", dplus: 1679, barrier: null, services: "Boisson + Nourriture + Drop bag" },
-  { name: "PC6 - Rocher St Barthelemy", km: 34, lat: 43.44200, lon: 6.87800, targetTime: "10:15", type: "water", dplus: 1850, barrier: null, services: "Eau uniquement" },
-  { name: "PC7 - Col de l'Eveque (2eme)", km: 40, lat: 43.47619, lon: 6.89895, targetTime: "10:55", type: "full", dplus: 1998, barrier: null, services: "Boisson + Nourriture" },
-  { name: "PC8 - Col Notre Dame (2eme)", km: 44, lat: 43.48216, lon: 6.89131, targetTime: "11:35", type: "full", dplus: 2534, barrier: "14h20", key: true, services: "Boisson + Nourriture + Drop bag" },
-  { name: "PC9 - Plage de Theoule", km: 55, lat: 43.44895, lon: 6.91002, targetTime: "13:05", type: "full", dplus: 3061, barrier: "16h30", services: "Boisson + Nourriture" },
-  { name: "PC10 - Maure Vieil (2eme)", km: 65, lat: 43.51000, lon: 6.91800, targetTime: "14:10", type: "water", dplus: 3400, barrier: null, services: "Eau uniquement" },
-  { name: "Arrivee - Mandelieu", km: 67, lat: 43.53545, lon: 6.94547, targetTime: "14:30", type: "finish", dplus: 3512, barrier: "19h00", services: "" },
+  { name: "PC1 - Maure Vieil", km: 7, lat: 43.51572, lon: 6.91438, targetTime: "06:25", type: "checkpoint", dplus: 400, barrier: null, services: "Checkpoint - pas de ravito" },
+  { name: "PC2 - Col de Notre Dame", km: 17, lat: 43.50465, lon: 6.89806, targetTime: "07:52", type: "water", dplus: 976, barrier: "14h20", services: "Eau + boisson sucree" },
+  { name: "PC3 - Col des Lentisques", km: 21, lat: 43.48600, lon: 6.89200, targetTime: "08:20", type: "checkpoint", dplus: 1150, barrier: null, services: "Checkpoint - pas de ravito" },
+  { name: "PC4 - Ravin Mal Infernet", km: 26, lat: 43.46700, lon: 6.88600, targetTime: "08:55", type: "checkpoint", dplus: 1400, barrier: "11h25", key: true, services: "Checkpoint - Barriere 11h25" },
+  { name: "PC5 - Col de l'Eveque", km: 30, lat: 43.44895, lon: 6.89138, targetTime: "09:38", type: "full", dplus: 1679, barrier: null, services: "Eau + eau gazeuse + boisson sucree + nourriture + fruits" },
+  { name: "PC6 - Rocher St Barthelemy", km: 34, lat: 43.44200, lon: 6.87800, targetTime: "10:15", type: "checkpoint", dplus: 1850, barrier: null, services: "Checkpoint - pas de ravito" },
+  { name: "PC7 - Col de l'Eveque (2eme)", km: 39, lat: 43.47619, lon: 6.89895, targetTime: "10:45", type: "full", dplus: 1998, barrier: null, services: "Eau + eau gazeuse + boisson sucree + nourriture + fruits" },
+  { name: "PC8 - Col Notre Dame (2eme)", km: 43.5, lat: 43.48216, lon: 6.89131, targetTime: "11:30", type: "full", dplus: 2534, barrier: "14h20", key: true, services: "Eau + boisson sucree + nourriture salee/sucree" },
+  { name: "PC9 - Theoule sur Mer", km: 55, lat: 43.44895, lon: 6.91002, targetTime: "13:05", type: "water", dplus: 3061, barrier: "16h30", services: "Eau + boisson sucree" },
+  { name: "PC10 - Maure Vieil (2eme)", km: 65, lat: 43.51000, lon: 6.91800, targetTime: "14:10", type: "checkpoint", dplus: 3400, barrier: null, services: "Checkpoint - pas de ravito" },
+  { name: "Arrivee - Mandelieu", km: 67, lat: 43.53545, lon: 6.94547, targetTime: "14:30", type: "finish", dplus: 3512, barrier: "19h00", services: "Eau + eau gazeuse + boisson sucree + nourriture + fruits + Repas" },
 ]
 
 onMounted(() => {
