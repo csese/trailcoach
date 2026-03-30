@@ -17,17 +17,18 @@ import { Line } from 'vue-chartjs'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip, annotationPlugin)
 
 const aidStations = [
-  { name: 'Départ — Mandelieu', km: 0, dplus: 0, targetTime: '05:30', type: 'start', barrier: null },
-  { name: 'PC1 — km 5', km: 5, dplus: 280, targetTime: '06:10', type: 'water', barrier: null },
-  { name: 'PC2/PC8 — Col Notre Dame', km: 17, dplus: 976, targetTime: '07:52', type: 'full', barrier: '14h20' },
-  { name: 'PC3 — km 21', km: 21, dplus: 1150, targetTime: '08:20', type: 'water', barrier: null },
-  { name: 'PC4 — km 26', km: 26, dplus: 1400, targetTime: '08:55', type: 'full', barrier: null },
-  { name: 'PC5/PC7 — Col de l\'Évêque', km: 30, dplus: 1679, targetTime: '09:38', type: 'full', barrier: '11h25', key: true },
-  { name: 'PC6 — km 34', km: 34, dplus: 1850, targetTime: '10:15', type: 'water', barrier: null },
-  { name: 'PC7 (2ème Évêque)', km: 39, dplus: 1998, targetTime: '10:45', type: 'full', barrier: null },
-  { name: 'PC8 (2ème Notre Dame)', km: 39.5, dplus: 2534, targetTime: '10:52', type: 'full', barrier: '14h20', key: true },
-  { name: 'PC9 — Théoule', km: 55, dplus: 3061, targetTime: '13:07', type: 'water', barrier: '16h30' },
-  { name: 'Arrivée — Mandelieu', km: 67, dplus: 3200, targetTime: '14:30', type: 'finish', barrier: '19h00' },
+  { name: "Depart - Mandelieu", km: 0, dplus: 0, targetTime: "05:30", type: "start", barrier: null, services: "" },
+  { name: "PC1 - Maure Vieil", km: 7, dplus: 400, targetTime: "06:25", type: "water", barrier: null, services: "Eau" },
+  { name: "PC2 - Col de Notre Dame", km: 17, dplus: 976, targetTime: "07:52", type: "full", barrier: "14h20", services: "Ravito + Medical + Drop bag" },
+  { name: "PC3 - Col des Lentisques", km: 21, dplus: 1150, targetTime: "08:20", type: "water", barrier: null, services: "Eau" },
+  { name: "PC4 - Ravin Mal Infernet", km: 26, dplus: 1400, targetTime: "08:55", type: "full", barrier: "11h25", key: true, services: "Ravito + Medical - Barriere 11h25" },
+  { name: "PC5 - Col de l'Eveque", km: 30, dplus: 1679, targetTime: "09:38", type: "full", barrier: null, services: "Ravito + Medical + Drop bag" },
+  { name: "PC6 - Rocher St Barthelemy", km: 34, dplus: 1850, targetTime: "10:15", type: "water", barrier: null, services: "Eau" },
+  { name: "PC7 - Col de l'Eveque (2eme)", km: 40, dplus: 1998, targetTime: "10:55", type: "full", barrier: null, services: "Ravito" },
+  { name: "PC8 - Col Notre Dame (2eme)", km: 44, dplus: 2534, targetTime: "11:35", type: "full", barrier: "14h20", key: true, services: "Ravito + Medical + Drop bag" },
+  { name: "PC9 - Plage de Theoule", km: 55, dplus: 3061, targetTime: "13:05", type: "full", barrier: "16h30", services: "Ravito + Medical" },
+  { name: "PC10 - Maure Vieil (2eme)", km: 65, dplus: 3400, targetTime: "14:10", type: "water", barrier: null, services: "Eau" },
+  { name: "Arrivee - Mandelieu", km: 67, dplus: 3512, targetTime: "14:30", type: "finish", barrier: "19h00", services: "" },
 ]
 
 const nutritionPlan = [
