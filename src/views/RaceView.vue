@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Trophy, MapPin, Utensils, AlertTriangle, Clock, Mountain, Droplets, Flag } from 'lucide-vue-next'
+import RaceMap from '../components/race/RaceMap.vue'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -224,6 +225,22 @@ const hasAnnotation = ref(true)
       <h1 class="text-2xl font-bold text-text-primary">Race Strategy</h1>
       <p class="text-text-muted text-sm">12 avril 2026 · Départ 5h30 · 66.6km · 3512m D+</p>
     </div>
+
+    <!-- ===== SECTION 0: Map ===== -->
+    <section class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <MapPin class="w-5 h-5 text-emerald-400" />
+        <h2 class="text-lg font-semibold text-white">Parcours UTBA 2026</h2>
+        <span class="text-xs text-gray-400 ml-auto">Estérel · 66.6km · 3512m D+</span>
+      </div>
+      <div class="text-xs text-gray-500 mb-3 flex gap-4">
+        <span>🔵 Bas &lt; 100m</span>
+        <span>🟡 Moyen ~300m</span>
+        <span>🔴 Haut &gt; 450m</span>
+        <span class="ml-auto">Tap les pins pour les détails</span>
+      </div>
+      <RaceMap />
+    </section>
 
     <!-- ===== SECTION 1: Pace Chart ===== -->
     <section class="space-y-4">
