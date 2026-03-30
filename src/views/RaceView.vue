@@ -26,16 +26,76 @@ const aidStations = [
 ]
 
 const nutritionPlan = [
-  { period: 'Avant (4h00)', action: 'Petit déjeuner', detail: 'Riz ou toast + banane + café. Pas de fibres, rien de nouveau.', glucides: null },
-  { period: 'H1 (km 0-8)', action: 'C90 seul', detail: 'Commence doucement, 1 bidon C90. Première barre à km 8.', glucides: 40 },
-  { period: 'H2 (km 8-16)', action: 'C90 + 1 barre', detail: 'NeverSecond ou Cliff Bar. Bois régulièrement.', glucides: 65 },
-  { period: 'H3 (km 17 — PC2)', action: 'C90 + 1 barre', detail: 'PC2 : remplis eau, 2 min max. Ne t\'arrête pas.', glucides: 65 },
-  { period: 'H4 (km 22-30)', action: 'C90 + 1 barre', detail: 'PC5 : ravito complet, mange fruits + salé. 5 min.', glucides: 65 },
-  { period: 'H5 (km 30-38)', action: 'C90 + ravito PC5', detail: 'Préfère NeverSecond bar (plus digeste). Évite Cliff après km 35.', glucides: 65 },
-  { period: 'H6 (km 38-44)', action: 'C90 + 1 barre', detail: 'PC7 + PC8 : ravitos complets. PC8 = ravito le plus important.', glucides: 65 },
-  { period: 'H7 (PC8 km 44)', action: 'Ravito stratégique', detail: 'Mange vraiment : fruits, salé, soupe si dispo. Recharge tout. 5 min.', glucides: 70 },
-  { period: 'H8 (km 50-58)', action: 'C90 + 1 barre', detail: 'PC9 à km 55.5 : si dans les temps, ne t\'arrête pas.', glucides: 65 },
-  { period: 'H9 (km 58-fin)', action: 'C90 seul', detail: 'Estomac fragile en fin de course. C90 uniquement si besoin. Pousse.', glucides: 50 },
+  { 
+    period: 'Avant (4h00)', 
+    action: 'Petit déjeuner', 
+    detail: 'Riz ou toast + banane + café. Pas de fibres, rien de nouveau. Bois 500ml eau au réveil.', 
+    glucides: null,
+    bottles: null
+  },
+  { 
+    period: 'H1 (km 0-8)', 
+    action: 'Bidon C90 + début barre', 
+    detail: 'Démarre doucement. Bidon C90 (500ml). Eau en parallèle. Première barre à km 6-8, pas avant.', 
+    glucides: 60,
+    bottles: '🟢 C90 | 🔵 Eau | ⚪ Réserve'
+  },
+  { 
+    period: 'H2 (km 8-16)', 
+    action: 'C90 + 1 barre + sel', 
+    detail: 'Commence les pastilles de sel (1 toutes les 35min). 1 NeverSecond ou Cliff Bar. Finis ton bidon C90.', 
+    glucides: 80,
+    bottles: '🟢 C90 → finir | 🔵 Eau'
+  },
+  { 
+    period: 'H3 — PC2 (km 17)', 
+    action: 'Refill + C90 + barre', 
+    detail: 'PC2 : eau seulement disponible. Remplis bidon eau et réserve. 2 min max. Mange une barre en repartant.', 
+    glucides: 80,
+    bottles: '🔵 Refill eau | ⚪ Refill réserve | 🟢 C90 si reste'
+  },
+  { 
+    period: 'H4 (km 22-30)', 
+    action: 'C90 + 1.5 barres', 
+    detail: 'Gros segment (8km, +700m D+). Mange plus. PC5 à km 30 = ravito complet : recharge C90 + eau + mange fruits/salé.', 
+    glucides: 85,
+    bottles: '🟢 Nouveau C90 à PC5 | 🔵 Eau | ⚪ Réserve'
+  },
+  { 
+    period: 'H5 (km 30-38)', 
+    action: 'C90 + ravito PC5 + barre', 
+    detail: 'Après PC5, descente technique (-330m) : attention aux quads. Préfère NeverSecond bar (plus digeste que Cliff à ce stade).', 
+    glucides: 85,
+    bottles: '🟢 C90 plein | 🔵 Eau plein'
+  },
+  { 
+    period: 'H6 (km 38-44)', 
+    action: 'C90 + 1.5 barres', 
+    detail: 'PC7 (km 39.5) : refill rapide, 2 min. PC8 à km 44.5 = ravito clé. Recharge tout et mange vraiment.', 
+    glucides: 85,
+    bottles: '⚪ Refill à PC7 | 🟢 Plein à PC8 | 🔵 Plein à PC8'
+  },
+  { 
+    period: 'H7 — PC8 (km 44.5) ⚠️', 
+    action: 'Ravito stratégique — le plus important', 
+    detail: 'Mange fruits, salé, soupe si dispo. Recharge les 3 bidons. Prends 5 min. Tu as encore 22km et +978m D+.', 
+    glucides: 90,
+    bottles: '🟢 C90 plein | 🔵 Eau plein | ⚪ Réserve plein'
+  },
+  { 
+    period: 'H8 (km 50-58)', 
+    action: 'C90 + 1 barre', 
+    detail: 'PC9 (km 55.5) : eau seulement. Si tu es dans les temps, ne t\'arrête pas. 11km restants.', 
+    glucides: 85,
+    bottles: '🟢 C90 | 🔵 Eau | ⚪ Refill à PC9 si besoin'
+  },
+  { 
+    period: 'H9 (km 58-fin)', 
+    action: 'C90 seul — pousse', 
+    detail: 'Estomac fragile en fin de course. C90 uniquement. Bois régulièrement. Tout ce qui reste dans les jambes.', 
+    glucides: 65,
+    bottles: '🟢 Dernier C90 | 🔵 Eau'
+  },
 ]
 
 // Elevation data extracted from GPX (every 10th point, 278 points)
@@ -261,12 +321,19 @@ const hasAnnotation = ref(true)
         <h2 class="text-lg font-bold text-text-primary">Plan nutrition</h2>
       </div>
 
+      <!-- Athlete note -->
+      <div class="px-4 py-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
+        <p class="text-sm text-blue-300">
+          ⚖️ Plan calibré pour 100kg / 1m96 — dépense ~900kcal/heure
+        </p>
+      </div>
+
       <!-- Summary -->
       <div class="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
         <p class="text-sm text-emerald-300">
-          <span class="font-semibold">Total estimé :</span> ~590g glucides
-          · Sodium : 1 pastille/45min à partir de H3
-          · Boire avant d'avoir soif
+          <span class="font-semibold">Total estimé :</span> ~715g glucides
+          · Sodium : 1 pastille/35min dès H2
+          · Hydratation : 600-800ml/heure · 3 bidons 500ml
         </p>
       </div>
 
@@ -292,6 +359,7 @@ const hasAnnotation = ref(true)
               </div>
               <p class="font-semibold text-text-primary text-sm mt-1.5">{{ item.action }}</p>
               <p class="text-xs text-text-muted mt-0.5">{{ item.detail }}</p>
+              <p v-if="item.bottles" class="text-xs text-blue-300/80 mt-1">🧴 {{ item.bottles }}</p>
             </div>
           </div>
         </div>
