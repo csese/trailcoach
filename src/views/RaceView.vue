@@ -17,13 +17,17 @@ import { Line } from 'vue-chartjs'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip, annotationPlugin)
 
 const aidStations = [
-  { name: 'Départ', km: 0, dplus: 0, targetTime: '05:30', type: 'start' },
-  { name: 'PC2 — Col Notre Dame', km: 17.0, dplus: 976, targetTime: '07:52', type: 'water' },
-  { name: 'PC5 — Col de l\'Évêque', km: 30.0, dplus: 1679, targetTime: '09:38', type: 'full' },
-  { name: 'PC7 — Col de l\'Évêque', km: 39.5, dplus: 1998, targetTime: '10:45', type: 'full' },
-  { name: 'PC8 — Col Notre Dame', km: 44.5, dplus: 2534, targetTime: '11:40', type: 'full', key: true },
-  { name: 'PC9 — Théoule', km: 55.5, dplus: 3061, targetTime: '13:07', type: 'water' },
-  { name: 'Arrivée', km: 66.6, dplus: 3512, targetTime: '14:30', type: 'finish' },
+  { name: 'Départ — Mandelieu', km: 0, dplus: 0, targetTime: '05:30', type: 'start', barrier: null },
+  { name: 'PC1 — km 5', km: 5, dplus: 280, targetTime: '06:10', type: 'water', barrier: null },
+  { name: 'PC2/PC8 — Col Notre Dame', km: 17, dplus: 976, targetTime: '07:52', type: 'full', barrier: '14h20' },
+  { name: 'PC3 — km 21', km: 21, dplus: 1150, targetTime: '08:20', type: 'water', barrier: null },
+  { name: 'PC4 — km 26', km: 26, dplus: 1400, targetTime: '08:55', type: 'full', barrier: null },
+  { name: 'PC5/PC7 — Col de l\'Évêque', km: 30, dplus: 1679, targetTime: '09:38', type: 'full', barrier: '11h25', key: true },
+  { name: 'PC6 — km 34', km: 34, dplus: 1850, targetTime: '10:15', type: 'water', barrier: null },
+  { name: 'PC7 (2ème Évêque)', km: 39, dplus: 1998, targetTime: '10:45', type: 'full', barrier: null },
+  { name: 'PC8 (2ème Notre Dame)', km: 39.5, dplus: 2534, targetTime: '10:52', type: 'full', barrier: '14h20', key: true },
+  { name: 'PC9 — Théoule', km: 55, dplus: 3061, targetTime: '13:07', type: 'water', barrier: '16h30' },
+  { name: 'Arrivée — Mandelieu', km: 67, dplus: 3200, targetTime: '14:30', type: 'finish', barrier: '19h00' },
 ]
 
 const nutritionPlan = [
