@@ -48,3 +48,4 @@ coverage
 
 # Supabase CLI temp files
 supabase/.temp
+test_parse.mjs
