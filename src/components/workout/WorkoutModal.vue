@@ -23,7 +23,9 @@ import {
   Download,
   ArrowLeftRight,
   Dumbbell,
-  ChevronRight
+  ChevronRight,
+  Sun,
+  Sunrise
 } from 'lucide-vue-next'
 
 const props = defineProps({
@@ -111,7 +113,7 @@ const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
 const userStore = useUserStore()
 
-// Form state — simplified to essentials
+// Form state
 const actualDuration = ref('')
 const actualHrAvg = ref('')
 const actualDistance = ref('')
@@ -151,6 +153,106 @@ const formattedDate = computed(() => {
   if (!props.workout?.date) return ''
   return format(props.workout.date, 'EEEE, MMMM d, yyyy')
 })
+
+// ── Dual-session parsing ──
+const dualSessions = computed(() => {
+  const desc = getField('Workout Description') || getField('WorkoutDescription') || ''
+  const hasLunch = desc.includes('LUNCH SESSION') || desc.includes('LUNCH —')
+  const hasAM = desc.includes('AM SESSION')
+
+  if (!hasLunch || !hasAM) return null
+
+  // Split on LUNCH SESSION
+  const lunchMarkers = ['LUNCH SESSION', 'LUNCH —']
+  let splitIndex = -1
+  let marker = ''
+  for (const m of lunchMarkers) {
+    const idx = desc.indexOf(m)
+    if (idx > 0) { splitIndex = idx; marker = m; break }
+  }
+  if (splitIndex < 0) return null
+
+  const amRaw = desc.substring(0, splitIndex).trim()
+  const lunchRaw = desc.substring(splitIndex).trim()
+
+  // Parse AM session
+  const amLines = amRaw.split('\n').filter(l => l.trim())
+  const amTitle = amLines[0]?.replace('AM SESSION — ', '').replace('AM SESSION —', '').trim() || 'Morning Session'
+
+  // Extract metrics from AM (look for "Distance: Xkm | D+: Xm | Duration: Xmin")
+  const metricsLine = amLines.find(l => l.includes('Distance:') && l.includes('D+:'))
+  let amMetrics = null
+  if (metricsLine) {
+    const distMatch = metricsLine.match(/Distance:\s*(\d+\.?\d*)\s*km/i)
+    const dpMatch = metricsLine.match(/D\+:\s*(\d+\.?\d*)\s*m/i)
+    const durMatch = metricsLine.match(/Duration:\s*([^\n|]+)/i)
+    amMetrics = {
+      distance: distMatch ? distMatch[1] + 'km' : null,
+      elevation: dpMatch ? dpMatch[1] + 'm' : null,
+      duration: durMatch ? durMatch[1].trim() : null
+    }
+  }
+
+  // AM description = everything after the title and metrics line
+  const amDescLines = amLines.filter(l => l !== amLines[0] && l !== metricsLine)
+  const amDescription = amDescLines.join('\n').trim()
+
+  // Parse LUNCH session
+  const lunchLines = lunchRaw.split('\n').filter(l => l.trim())
+  const lunchTitle = lunchLines[0]
+    ?.replace('LUNCH SESSION — ', '')
+    .replace('LUNCH SESSION —', '')
+    .replace('LUNCH — ', '')
+    .trim() || 'Lunch Session'
+
+  // Extract duration from lunch title (e.g., "STRENGTH A (50min)")
+  const lunchDurMatch = lunchTitle.match(/\((\d+min)\)/i)
+  const lunchDuration = lunchDurMatch ? lunchDurMatch[1] : null
+  const lunchTitleClean = lunchTitle.replace(/\s*\(\d+min\)/i, '').trim()
+
+  const lunchDescription = lunchLines.slice(1).join('\n').trim()
+
+  // Determine lunch type
+  const lunchLower = lunchTitleClean.toLowerCase()
+  let lunchType = 'other'
+  if (lunchLower.includes('strength')) lunchType = 'strength'
+  else if (lunchLower.includes('mobility')) lunchType = 'mobility'
+  else if (lunchLower.includes('core')) lunchType = 'core'
+
+  return {
+    am: {
+      title: amTitle,
+      metrics: amMetrics,
+      description: amDescription
+    },
+    lunch: {
+      title: lunchTitleClean,
+      duration: lunchDuration,
+      type: lunchType,
+      description: lunchDescription
+    }
+  }
+})
+
+const hasDualSessions = computed(() => !!dualSessions.value)
+
+// For single-session workouts, parse metrics from description
+const singleSessionMetrics = computed(() => {
+  if (hasDualSessions.value) return null
+  const desc = getField('Workout Description') || getField('WorkoutDescription') || ''
+  const metricsLine = desc.split('\n').find(l => l.includes('Distance:') && l.includes('D+:'))
+  if (!metricsLine) return null
+  const distMatch = metricsLine.match(/Distance:\s*(\d+\.?\d*)\s*km/i)
+  const dpMatch = metricsLine.match(/D\+:\s*(\d+\.?\d*)\s*m/i)
+  const durMatch = metricsLine.match(/Duration:\s*([^\n|]+)/i)
+  return {
+    distance: distMatch ? distMatch[1] + 'km' : null,
+    elevation: dpMatch ? dpMatch[1] + 'm' : null,
+    duration: durMatch ? durMatch[1].trim() : null
+  }
+})
+
+// ── End dual-session parsing ──
 
 const weekDaysForSwap = computed(() => {
   if (!props.workout?.date) return []
@@ -288,11 +390,14 @@ function getField(field) {
 
         <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-bg-secondary rounded-2xl border border-border shadow-modal animate-slide-up">
           <!-- Header -->
-          <div class="sticky top-0 bg-bg-secondary border-b border-border p-6 flex items-start justify-between">
+          <div class="sticky top-0 bg-bg-secondary border-b border-border p-6 flex items-start justify-between z-10">
             <div>
               <div class="flex items-center gap-3 mb-2">
                 <span :class="badgeClass">
                   {{ getField('Session Type') }}
+                </span>
+                <span v-if="hasDualSessions" class="badge bg-workout-strength/20 text-workout-strength text-xs">
+                  2 sessions
                 </span>
                 <span v-if="isCompleted" class="badge bg-status-completed/20 text-status-completed">
                   Completed
@@ -315,7 +420,7 @@ function getField(field) {
                 <p class="text-xs text-text-muted">Duration</p>
                 <p class="font-semibold text-text-primary">{{ getField('Planned Duration') }}</p>
               </div>
-              <div v-if="!workout.runMeta" class="card bg-bg-tertiary">
+              <div class="card bg-bg-tertiary">
                 <Heart class="w-5 h-5 text-text-muted mb-2" />
                 <p class="text-xs text-text-muted">HR Zone</p>
                 <p class="font-semibold text-text-primary">{{ getField('Target HR/Zone') || 'N/A' }}</p>
@@ -326,14 +431,106 @@ function getField(field) {
                 <p class="font-semibold text-text-primary text-sm">{{ getField('Focus') || 'General' }}</p>
               </div>
               <div class="card bg-bg-tertiary">
-                <TrendingUp class="w-5 h-5 text-text-muted mb-2" />
+                <Mountain class="w-5 h-5 text-text-muted mb-2" />
                 <p class="text-xs text-text-muted">Details</p>
                 <p class="font-semibold text-text-primary text-sm truncate">{{ getField('Details') || '-' }}</p>
               </div>
             </div>
 
-            <!-- Full Description -->
-            <div>
+            <!-- ═══ DUAL SESSION LAYOUT ═══ -->
+            <div v-if="hasDualSessions" class="space-y-4">
+
+              <!-- AM Session Card -->
+              <div class="rounded-xl border border-accent-primary/30 overflow-hidden">
+                <div class="flex items-center gap-2 px-4 py-2.5 bg-accent-primary/10 border-b border-accent-primary/20">
+                  <Sunrise class="w-4 h-4 text-accent-primary" />
+                  <span class="text-sm font-semibold text-accent-primary uppercase tracking-wider">Morning</span>
+                  <span class="text-sm text-text-primary font-medium ml-1">{{ dualSessions.am.title }}</span>
+                </div>
+
+                <!-- AM Metrics -->
+                <div v-if="dualSessions.am.metrics" class="grid grid-cols-3 gap-3 px-4 pt-3 pb-1">
+                  <div v-if="dualSessions.am.metrics.distance" class="text-center">
+                    <p class="text-lg font-bold text-text-primary">{{ dualSessions.am.metrics.distance }}</p>
+                    <p class="text-xs text-text-muted">Distance</p>
+                  </div>
+                  <div v-if="dualSessions.am.metrics.elevation" class="text-center">
+                    <p class="text-lg font-bold text-text-primary">{{ dualSessions.am.metrics.elevation }}</p>
+                    <p class="text-xs text-text-muted">D+</p>
+                  </div>
+                  <div v-if="dualSessions.am.metrics.duration" class="text-center">
+                    <p class="text-lg font-bold text-text-primary">{{ dualSessions.am.metrics.duration }}</p>
+                    <p class="text-xs text-text-muted">Duration</p>
+                  </div>
+                </div>
+
+                <!-- AM Description -->
+                <div class="px-4 py-3">
+                  <p class="text-sm text-text-secondary whitespace-pre-wrap leading-relaxed">{{ dualSessions.am.description }}</p>
+                </div>
+              </div>
+
+              <!-- LUNCH Session Card -->
+              <div class="rounded-xl border overflow-hidden"
+                :class="[
+                  dualSessions.lunch.type === 'strength'
+                    ? 'border-workout-strength/30'
+                    : dualSessions.lunch.type === 'mobility'
+                    ? 'border-workout-easy/30'
+                    : 'border-border'
+                ]"
+              >
+                <div class="flex items-center gap-2 px-4 py-2.5 border-b"
+                  :class="[
+                    dualSessions.lunch.type === 'strength'
+                      ? 'bg-workout-strength/10 border-workout-strength/20'
+                      : dualSessions.lunch.type === 'mobility'
+                      ? 'bg-workout-easy/10 border-workout-easy/20'
+                      : 'bg-bg-tertiary border-border'
+                  ]"
+                >
+                  <Sun class="w-4 h-4"
+                    :class="[
+                      dualSessions.lunch.type === 'strength' ? 'text-workout-strength' :
+                      dualSessions.lunch.type === 'mobility' ? 'text-workout-easy' : 'text-text-muted'
+                    ]"
+                  />
+                  <span class="text-sm font-semibold uppercase tracking-wider"
+                    :class="[
+                      dualSessions.lunch.type === 'strength' ? 'text-workout-strength' :
+                      dualSessions.lunch.type === 'mobility' ? 'text-workout-easy' : 'text-text-muted'
+                    ]"
+                  >Lunch</span>
+                  <span class="text-sm text-text-primary font-medium ml-1">{{ dualSessions.lunch.title }}</span>
+                  <span v-if="dualSessions.lunch.duration" class="ml-auto text-xs text-text-muted font-mono">
+                    {{ dualSessions.lunch.duration }}
+                  </span>
+                </div>
+
+                <div class="px-4 py-3">
+                  <p class="text-sm text-text-secondary whitespace-pre-wrap leading-relaxed">{{ dualSessions.lunch.description }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ═══ SINGLE SESSION LAYOUT (long runs, rest days, race) ═══ -->
+            <div v-else>
+              <!-- Run metrics for single sessions -->
+              <div v-if="singleSessionMetrics" class="grid grid-cols-3 gap-3 mb-4">
+                <div v-if="singleSessionMetrics.distance" class="card bg-bg-tertiary text-center">
+                  <p class="text-xl font-bold text-text-primary">{{ singleSessionMetrics.distance }}</p>
+                  <p class="text-xs text-text-muted">Distance</p>
+                </div>
+                <div v-if="singleSessionMetrics.elevation" class="card bg-bg-tertiary text-center">
+                  <p class="text-xl font-bold text-text-primary">{{ singleSessionMetrics.elevation }}</p>
+                  <p class="text-xs text-text-muted">D+</p>
+                </div>
+                <div v-if="singleSessionMetrics.duration" class="card bg-bg-tertiary text-center">
+                  <p class="text-xl font-bold text-text-primary">{{ singleSessionMetrics.duration }}</p>
+                  <p class="text-xs text-text-muted">Duration</p>
+                </div>
+              </div>
+
               <div v-if="hasRunMeta">
                 <RunSessionDisplay :workout="workout" />
                 <div class="mt-3">
@@ -532,7 +729,6 @@ function getField(field) {
                 </div>
               </div>
 
-              <!-- Notes -->
               <div class="mb-4">
                 <label class="block text-xs text-text-muted mb-1">Notes</label>
                 <textarea
@@ -542,7 +738,6 @@ function getField(field) {
                 ></textarea>
               </div>
 
-              <!-- External Link -->
               <div class="mb-6">
                 <label class="block text-xs text-text-muted mb-1">Strava/Garmin Link (optional)</label>
                 <div class="relative">
@@ -556,7 +751,6 @@ function getField(field) {
                 </div>
               </div>
 
-              <!-- Actions -->
               <div class="flex items-center justify-between">
                 <button
                   v-if="isCompleted"
