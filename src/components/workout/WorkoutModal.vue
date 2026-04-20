@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
 import { useUserStore } from '@/stores/user'
-import { useReadinessStore } from '@/stores/readiness'
 import { useStrava } from '@/composables/useStrava'
 import StravaImportModal from '@/components/strava/StravaImportModal.vue'
 import ExerciseDetailModal from '@/components/workout/ExerciseDetailModal.vue'
@@ -65,7 +64,6 @@ const isStrengthWorkout = computed(() => {
   return workoutType.value === 'strength' && parsedExercises.value.length > 0
 })
 
-// Group parsed exercises by section for rendering
 const groupedExercises = computed(() => {
   const groups = []
   let currentSection = null
@@ -86,7 +84,6 @@ const sectionLabels = {
   cooldown: 'Cool-Down'
 }
 
-// Pre-resolve exercise objects for click handling
 function resolveExercise(ex) {
   if (!ex.exerciseId) return null
   return getExerciseById(ex.exerciseId)
@@ -104,7 +101,6 @@ function closeExerciseDetail() {
   selectedExercise.value = null
 }
 
-// Check Strava connection on mount
 onMounted(() => {
   if (stravaConfigured.value) {
     checkConnection()
@@ -114,29 +110,12 @@ onMounted(() => {
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
 const userStore = useUserStore()
-const readinessStore = useReadinessStore()
 
-// Leg feel options
-const legFeelOptions = [
-  { emoji: '💀', label: 'Wrecked', desc: 'Heavy, sore, struggling', value: 2 },
-  { emoji: '😴', label: 'Tired', desc: 'Sluggish but manageable', value: 4 },
-  { emoji: '👍', label: 'Good', desc: 'Feeling solid', value: 7 },
-  { emoji: '💪', label: 'Fresh', desc: 'Ready to go', value: 9 }
-]
-const legFeel = ref(null)
-
-// Form state
+// Form state — simplified to essentials
 const actualDuration = ref('')
 const actualHrAvg = ref('')
 const actualDistance = ref('')
 const actualElevation = ref('')
-const rpe = ref(5)
-const feltVsPlanned = ref('as_planned')
-const pain = ref(1)
-const terrain = ref('')
-const conditions = ref('')
-const fueling = ref('')
-const issues = ref('')
 const notes = ref('')
 const externalLink = ref('')
 
@@ -173,7 +152,6 @@ const formattedDate = computed(() => {
   return format(props.workout.date, 'EEEE, MMMM d, yyyy')
 })
 
-// Get all days of the week for swap selector
 const weekDaysForSwap = computed(() => {
   if (!props.workout?.date) return []
 
@@ -186,7 +164,6 @@ const weekDaysForSwap = computed(() => {
     const dateStr = format(date, 'yyyy-MM-dd')
     const workoutDateStr = format(workoutDate, 'yyyy-MM-dd')
 
-    // Skip the current workout's day
     if (dateStr === workoutDateStr) continue
 
     const otherWorkout = workoutsStore.getWorkoutByDate(date)
@@ -202,20 +179,12 @@ const weekDaysForSwap = computed(() => {
   return days
 })
 
-// Watch for workout changes to load existing log
 watch(() => props.workout, (newWorkout) => {
   if (newWorkout && existingLog.value) {
     actualDuration.value = existingLog.value.actualDuration || ''
     actualHrAvg.value = existingLog.value.actualHrAvg || ''
     actualDistance.value = existingLog.value.actualDistance || ''
     actualElevation.value = existingLog.value.actualElevation || ''
-    rpe.value = existingLog.value.rpe || 5
-    feltVsPlanned.value = existingLog.value.feltVsPlanned || 'as_planned'
-    pain.value = existingLog.value.pain ?? 1
-    terrain.value = existingLog.value.terrain || ''
-    conditions.value = existingLog.value.conditions || ''
-    fueling.value = existingLog.value.fueling || ''
-    issues.value = existingLog.value.issues || ''
     notes.value = existingLog.value.notes || ''
     externalLink.value = existingLog.value.externalLink || ''
   } else {
@@ -228,16 +197,8 @@ function resetForm() {
   actualHrAvg.value = ''
   actualDistance.value = ''
   actualElevation.value = ''
-  rpe.value = 5
-  feltVsPlanned.value = 'as_planned'
-  pain.value = 1
-  terrain.value = ''
-  conditions.value = ''
-  fueling.value = ''
-  issues.value = ''
   notes.value = ''
   externalLink.value = ''
-  legFeel.value = null
 }
 
 async function saveLog() {
@@ -248,32 +209,9 @@ async function saveLog() {
     actualHrAvg: actualHrAvg.value ? parseInt(actualHrAvg.value) : null,
     actualDistance: actualDistance.value ? parseFloat(actualDistance.value) : null,
     actualElevation: actualElevation.value ? parseInt(actualElevation.value) : null,
-    rpe: rpe.value,
-    feltVsPlanned: feltVsPlanned.value,
-    pain: pain.value,
-    terrain: terrain.value,
-    conditions: conditions.value,
-    fueling: fueling.value,
-    issues: issues.value,
     notes: notes.value,
     externalLink: externalLink.value
   })
-
-  // Save leg feel as readiness entry for this workout's date
-  if (legFeel.value && props.workout?.date) {
-    const dateStr = format(props.workout.date, 'yyyy-MM-dd')
-    await readinessStore.saveEntry({
-      date: dateStr,
-      sleep: 5,
-      soreness: 5,
-      stress: 5,
-      mood: 5,
-      motivation: 5,
-      pain: 1,
-      notes: '',
-      readinessScore: legFeel.value
-    })
-  }
 
   emit('close')
 }
@@ -304,10 +242,8 @@ function confirmSwap() {
   const targetDay = selectedSwapDay.value
 
   if (targetDay.workout) {
-    // Swap two workouts
     workoutsStore.swapWorkouts(props.workout.id, targetDay.workout.id)
   } else {
-    // Move to a rest day
     workoutsStore.moveWorkoutToDate(props.workout.id, targetDay.date)
   }
 
@@ -322,7 +258,6 @@ function goToSettings() {
 }
 
 function handleStravaImport(logData) {
-  // Update form with imported data
   actualDuration.value = logData.actualDuration || ''
   actualHrAvg.value = logData.actualHrAvg || ''
   actualDistance.value = logData.actualDistance || ''
@@ -333,7 +268,6 @@ function handleStravaImport(logData) {
   showStravaImport.value = false
 }
 
-// Get workout field helper
 function getField(field) {
   if (!props.workout) return ''
   return props.workout[field] || props.workout[field.replace(/\s/g, '')] || ''
@@ -347,13 +281,11 @@ function getField(field) {
         v-if="show && workout"
         class="fixed inset-0 z-50 flex items-center justify-center p-4"
       >
-        <!-- Backdrop -->
         <div
           class="absolute inset-0 bg-black/70 backdrop-blur-sm"
           @click="close"
         ></div>
 
-        <!-- Modal -->
         <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-bg-secondary rounded-2xl border border-border shadow-modal animate-slide-up">
           <!-- Header -->
           <div class="sticky top-0 bg-bg-secondary border-b border-border p-6 flex items-start justify-between">
@@ -402,10 +334,8 @@ function getField(field) {
 
             <!-- Full Description -->
             <div>
-              <!-- Structured run session display -->
               <div v-if="hasRunMeta">
                 <RunSessionDisplay :workout="workout" />
-                <!-- Collapsible full notes -->
                 <div class="mt-3">
                   <button
                     @click="showFullNotes = !showFullNotes"
@@ -422,11 +352,9 @@ function getField(field) {
                 </div>
               </div>
 
-              <!-- Structured exercise list for strength workouts -->
               <div v-else-if="isStrengthWorkout" class="space-y-3">
                 <h3 class="text-sm font-semibold text-text-primary mb-2">Workout Description</h3>
                 <div v-for="(group, gi) in groupedExercises" :key="gi">
-                  <!-- Section header -->
                   <p class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-1.5" :class="{ 'mt-2': gi > 0 }">
                     {{ sectionLabels[group.section] || group.section }}
                   </p>
@@ -442,7 +370,7 @@ function getField(field) {
                     >
                       <Dumbbell class="w-4 h-4 text-text-muted shrink-0" />
                       <div class="flex-1 min-w-0">
-                        <span v-if="ex.sets" class="text-xs font-mono text-accent-primary mr-2">{{ ex.sets }}×{{ ex.reps }}</span>
+                        <span v-if="ex.sets" class="text-xs font-mono text-accent-primary mr-2">{{ ex.sets }}x{{ ex.reps }}</span>
                         <span v-else-if="ex.reps" class="text-xs font-mono text-accent-primary mr-2">{{ ex.reps }}</span>
                         <span :class="['text-sm', ex.exerciseId ? 'text-text-primary font-medium' : 'text-text-muted']">
                           {{ ex.exerciseName }}
@@ -455,7 +383,6 @@ function getField(field) {
                 </div>
               </div>
 
-              <!-- Plain text fallback -->
               <div v-else>
                 <h3 class="text-sm font-semibold text-text-primary mb-2">Workout Description</h3>
                 <div class="card bg-bg-tertiary">
@@ -477,7 +404,6 @@ function getField(field) {
                 Swap with another day
               </button>
 
-              <!-- Swap Selector Panel -->
               <div v-else class="card bg-bg-tertiary">
                 <h4 class="text-sm font-semibold text-text-primary mb-3">Select day to swap with:</h4>
                 <div class="space-y-2 mb-4">
@@ -541,7 +467,7 @@ function getField(field) {
               </div>
             </div>
 
-            <!-- Log Form -->
+            <!-- Simplified Log Form -->
             <div class="border-t border-border pt-6">
               <div class="flex items-center justify-between mb-4">
                 <h3 class="text-sm font-semibold text-text-primary">
@@ -564,28 +490,6 @@ function getField(field) {
                   <Download class="w-4 h-4" />
                   Connect Strava to import
                 </button>
-              </div>
-
-              <!-- Leg Feel Selector -->
-              <div class="mb-5">
-                <label class="block text-xs text-text-muted mb-2">How did your legs feel before this workout?</label>
-                <div class="grid grid-cols-4 gap-2">
-                  <button
-                    v-for="option in legFeelOptions"
-                    :key="option.value"
-                    type="button"
-                    @click="legFeel = option.value"
-                    class="flex flex-col items-center gap-1 p-3 rounded-xl border-2 transition-all duration-200"
-                    :class="[
-                      legFeel === option.value
-                        ? 'border-accent-primary bg-accent-primary/10'
-                        : 'border-border bg-bg-tertiary hover:border-text-muted'
-                    ]"
-                  >
-                    <span class="text-2xl">{{ option.emoji }}</span>
-                    <span class="text-xs font-medium text-text-primary">{{ option.label }}</span>
-                  </button>
-                </div>
               </div>
 
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
@@ -628,105 +532,13 @@ function getField(field) {
                 </div>
               </div>
 
-              <!-- RPE Slider -->
-              <div class="mb-4">
-                <label class="block text-xs text-text-muted mb-2">
-                  RPE (Rate of Perceived Exertion): <span class="text-accent-primary font-semibold">{{ rpe }}/10</span>
-                </label>
-                <input
-                  v-model.number="rpe"
-                  type="range"
-                  min="1"
-                  max="10"
-                  class="w-full h-2 bg-bg-tertiary rounded-lg appearance-none cursor-pointer accent-accent-primary"
-                />
-                <div class="flex justify-between text-xs text-text-muted mt-1">
-                  <span>Easy</span>
-                  <span>Moderate</span>
-                  <span>Hard</span>
-                  <span>Max</span>
-                </div>
-              </div>
-
-              <!-- Feel & Recovery -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label class="block text-xs text-text-muted mb-1">Felt vs Planned</label>
-                  <select v-model="feltVsPlanned" class="input">
-                    <option value="easier">Easier than planned</option>
-                    <option value="as_planned">As planned</option>
-                    <option value="harder">Harder than planned</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-xs text-text-muted mb-1">
-                    Pain / Discomfort: <span class="text-accent-primary font-semibold">{{ pain }}/10</span>
-                  </label>
-                <input
-                    v-model.number="pain"
-                    type="range"
-                    min="0"
-                    max="10"
-                    class="w-full h-2 bg-bg-tertiary rounded-lg appearance-none cursor-pointer accent-accent-primary"
-                  />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label class="block text-xs text-text-muted mb-1">Terrain</label>
-                  <select v-model="terrain" class="input">
-                    <option value="">Select terrain</option>
-                    <option value="road">Road</option>
-                    <option value="trail">Trail</option>
-                    <option value="technical">Technical</option>
-                    <option value="uphill">Uphill</option>
-                    <option value="downhill">Downhill</option>
-                    <option value="mixed">Mixed</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-xs text-text-muted mb-1">Conditions</label>
-                  <select v-model="conditions" class="input">
-                    <option value="">Select conditions</option>
-                    <option value="dry">Dry</option>
-                    <option value="wet">Wet</option>
-                    <option value="hot">Hot</option>
-                    <option value="cold">Cold</option>
-                    <option value="windy">Windy</option>
-                    <option value="snow_ice">Snow/Ice</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label class="block text-xs text-text-muted mb-1">Fueling (optional)</label>
-                  <input
-                    v-model="fueling"
-                    type="text"
-                    class="input"
-                    placeholder="Gels, carbs, hydration..."
-                  />
-                </div>
-                <div>
-                  <label class="block text-xs text-text-muted mb-1">Issues / Niggles</label>
-                  <input
-                    v-model="issues"
-                    type="text"
-                    class="input"
-                    placeholder="Anything to flag?"
-                  />
-                </div>
-              </div>
-
               <!-- Notes -->
               <div class="mb-4">
                 <label class="block text-xs text-text-muted mb-1">Notes</label>
                 <textarea
                   v-model="notes"
                   class="input min-h-[80px]"
-                  placeholder="How did it feel? Any issues?"
+                  placeholder="How did it feel? Anything to note?"
                 ></textarea>
               </div>
 
@@ -767,7 +579,6 @@ function getField(field) {
       </div>
     </Transition>
 
-    <!-- Strava Import Modal -->
     <StravaImportModal
       :show="showStravaImport"
       :workout="workout"
@@ -775,7 +586,6 @@ function getField(field) {
       @imported="handleStravaImport"
     />
 
-    <!-- Exercise Detail Modal -->
     <ExerciseDetailModal
       :show="showExerciseDetail"
       :exercise="selectedExercise"

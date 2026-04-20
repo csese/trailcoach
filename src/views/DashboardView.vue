@@ -3,7 +3,6 @@ import { ref, computed, onMounted } from 'vue'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
 import { useUserStore } from '@/stores/user'
-import { useAdaptationsStore } from '@/stores/adaptations'
 import { format, differenceInDays, startOfWeek, addDays, isToday } from 'date-fns'
 import {
   Calendar,
@@ -17,38 +16,29 @@ import {
   Circle
 } from 'lucide-vue-next'
 import WorkoutModal from '@/components/workout/WorkoutModal.vue'
-import WeeklySummaryCard from '@/components/WeeklySummaryCard.vue'
 
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
 const userStore = useUserStore()
-const adaptationsStore = useAdaptationsStore()
 
-onMounted(async () => {
+onMounted(() => {
   logsStore.loadLogs()
   userStore.loadSettings()
-  adaptationsStore.loadProposals()
-  // Trigger weekly adaptation check (runs on Monday or if >6 days since last)
-  await adaptationsStore.checkAndRunWeeklyAdaptation()
 })
 
 const selectedWorkout = ref(null)
 const showModal = ref(false)
-const showAdaptationDetails = ref(false)
-const adaptationDismissed = ref(false)
 
 // Computed
-const currentWeekWorkouts = computed(() => workoutsStore.currentWeekWorkouts)
 const todaysWorkout = computed(() => workoutsStore.todaysWorkout)
 const nextWorkout = computed(() => workoutsStore.nextWorkout)
 const currentPhase = computed(() => workoutsStore.currentPhase)
 const races = computed(() => userStore.races)
-const pendingProposal = computed(() => adaptationsStore.pendingProposal)
 
 // Full week with all 7 days (including rest days)
 const fullWeekDays = computed(() => {
   const today = new Date()
-  const weekStart = startOfWeek(today, { weekStartsOn: 1 }) // Monday
+  const weekStart = startOfWeek(today, { weekStartsOn: 1 })
   const days = []
 
   for (let i = 0; i < 7; i++) {
@@ -132,66 +122,6 @@ const workoutColors = {
 
 <template>
   <div class="space-y-6">
-    <!-- Weekly Summary Card -->
-    <WeeklySummaryCard
-      v-if="adaptationsStore.weeklyAdaptation && adaptationsStore.weeklyAdaptation.status !== 'dismissed'"
-      :adaptation="adaptationsStore.weeklyAdaptation"
-      @approve="() => {
-        if (pendingProposal) adaptationsStore.approveProposal(pendingProposal.id)
-        adaptationsStore.dismissWeeklyAdaptation()
-      }"
-      @reject="adaptationsStore.dismissWeeklyAdaptation()"
-    />
-
-    <!-- Inline Adaptation Alert -->
-    <div v-if="pendingProposal && pendingProposal.changes.length > 0 && !adaptationDismissed" class="card border border-accent-primary/30 bg-accent-primary/10">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="text-lg">⚡</span>
-          <span class="font-semibold text-text-primary">Your plan has been adapted</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <button
-            @click="showAdaptationDetails = !showAdaptationDetails"
-            class="btn-secondary text-sm"
-          >
-            {{ showAdaptationDetails ? 'Hide' : 'View changes' }}
-          </button>
-          <button
-            @click="adaptationDismissed = true; adaptationsStore.rejectProposal(pendingProposal.id)"
-            class="btn-ghost text-sm text-text-muted"
-          >
-            Dismiss
-          </button>
-        </div>
-      </div>
-      <div v-if="showAdaptationDetails" class="mt-4 space-y-2 border-t border-border pt-3">
-        <div
-          v-for="change in pendingProposal.changes"
-          :key="change.id"
-          class="flex items-start gap-3 p-3 rounded-lg bg-bg-tertiary"
-        >
-          <div class="flex-1">
-            <p class="text-sm font-medium text-text-primary">
-              {{ change.from?.sessionType }} → {{ change.to?.sessionType || change.from?.sessionType }}
-            </p>
-            <p v-if="change.from?.plannedDuration !== change.to?.plannedDuration" class="text-xs text-text-muted">
-              Duration: {{ change.from?.plannedDuration }} → {{ change.to?.plannedDuration }}
-            </p>
-            <p class="text-xs text-text-muted mt-1">{{ change.reasonText }}</p>
-          </div>
-        </div>
-        <div class="flex justify-end pt-2">
-          <button
-            @click="adaptationsStore.approveProposal(pendingProposal.id); adaptationDismissed = true"
-            class="btn-primary text-sm"
-          >
-            Accept changes
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- Stats Overview -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
       <div class="card">
@@ -270,7 +200,6 @@ const workoutColors = {
               { 'ring-2 ring-accent-primary': day.isToday && day.workout }
             ]"
           >
-            <!-- Completion status / Rest indicator -->
             <div class="flex-shrink-0">
               <CheckCircle2
                 v-if="day.workout && isWorkoutCompleted(day.workout)"
@@ -288,7 +217,6 @@ const workoutColors = {
               </div>
             </div>
 
-            <!-- Workout type indicator -->
             <div
               :class="[
                 'w-3 h-12 rounded-full flex-shrink-0',
@@ -298,7 +226,6 @@ const workoutColors = {
               ]"
             ></div>
 
-            <!-- Workout info -->
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2">
                 <span
@@ -324,7 +251,6 @@ const workoutColors = {
               </p>
             </div>
 
-            <!-- Day -->
             <div class="text-right flex-shrink-0">
               <p class="text-sm font-medium" :class="day.isToday ? 'text-accent-primary' : 'text-text-primary'">
                 {{ formatDayName(day.date) }}

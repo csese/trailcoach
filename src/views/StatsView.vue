@@ -2,20 +2,14 @@
 import { computed, onMounted } from 'vue'
 import { useWorkoutsStore } from '@/stores/workouts'
 import { useLogsStore } from '@/stores/logs'
-import { useReadinessStore } from '@/stores/readiness'
 import { BarChart3, Clock, Mountain, TrendingUp, Target, Activity } from 'lucide-vue-next'
 
 const workoutsStore = useWorkoutsStore()
 const logsStore = useLogsStore()
-const readinessStore = useReadinessStore()
 
 onMounted(() => {
   logsStore.loadLogs()
-  readinessStore.loadEntries()
 })
-
-// Stats calculations
-const totalWorkoutsPlanned = computed(() => workoutsStore.workouts.length)
 
 const pastWorkouts = computed(() => {
   const today = new Date()
@@ -33,14 +27,10 @@ const completionRate = computed(() => {
 const totalDuration = computed(() => logsStore.totalActualDuration)
 const totalDistance = computed(() => logsStore.totalActualDistance)
 const totalElevation = computed(() => logsStore.totalActualElevation)
-const averageRpe = computed(() => logsStore.averageRpe)
-const readinessAverage = computed(() => readinessStore.recentAverage)
 
-// Hours breakdown
 const totalHours = computed(() => Math.round(totalDuration.value / 60))
 const totalMinutes = computed(() => totalDuration.value % 60)
 
-// Workout type distribution
 const workoutTypeStats = computed(() => {
   const types = {}
   logsStore.logs.forEach(log => {
@@ -63,7 +53,6 @@ const typeColors = {
   recovery: { bg: 'bg-workout-recovery', label: 'Recovery' }
 }
 
-// Weekly stats (last 4 weeks)
 const weeklyStats = computed(() => {
   const weeks = []
   const today = new Date()
@@ -147,31 +136,6 @@ const maxWeeklyDuration = computed(() => {
       </div>
     </div>
 
-    <div v-if="readinessAverage" class="card">
-      <h3 class="text-lg font-semibold text-text-primary mb-2">Readiness (7-day average)</h3>
-      <div class="flex items-center gap-4">
-        <div class="text-4xl font-mono font-bold text-accent-primary">{{ readinessAverage.toFixed(1) }}</div>
-        <div class="flex-1">
-          <div class="h-3 bg-bg-tertiary rounded-full overflow-hidden">
-            <div
-              class="h-full rounded-full transition-all duration-500"
-              :class="[
-                readinessAverage <= 4 ? 'bg-status-missed' :
-                readinessAverage <= 6 ? 'bg-workout-long' :
-                'bg-status-completed'
-              ]"
-              :style="{ width: `${(readinessAverage / 10) * 100}%` }"
-            ></div>
-          </div>
-          <div class="flex justify-between text-xs text-text-muted mt-1">
-            <span>Low</span>
-            <span>Moderate</span>
-            <span>High</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <!-- Weekly Volume Chart -->
       <div class="card">
@@ -220,37 +184,6 @@ const maxWeeklyDuration = computed(() => {
 
           <div v-if="Object.keys(workoutTypeStats).length === 0" class="text-center py-8 text-text-muted">
             No completed workouts yet
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Average RPE -->
-    <div class="card">
-      <h3 class="text-lg font-semibold text-text-primary mb-4">Average Perceived Effort</h3>
-
-      <div class="flex items-center gap-4">
-        <div class="text-4xl font-mono font-bold text-accent-primary">
-          {{ averageRpe.toFixed(1) }}
-        </div>
-        <div class="flex-1">
-          <div class="h-3 bg-bg-tertiary rounded-full overflow-hidden">
-            <div
-              class="h-full rounded-full transition-all duration-500"
-              :class="[
-                averageRpe <= 3 ? 'bg-workout-easy' :
-                averageRpe <= 5 ? 'bg-workout-long' :
-                averageRpe <= 7 ? 'bg-workout-tempo' :
-                'bg-workout-intervals'
-              ]"
-              :style="{ width: `${(averageRpe / 10) * 100}%` }"
-            ></div>
-          </div>
-          <div class="flex justify-between text-xs text-text-muted mt-1">
-            <span>Easy (1-3)</span>
-            <span>Moderate (4-6)</span>
-            <span>Hard (7-8)</span>
-            <span>Max (9-10)</span>
           </div>
         </div>
       </div>
