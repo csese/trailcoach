@@ -65,10 +65,10 @@
     "Dates": "Apr 20-26",
     "Day": "Sat",
     "SessionType": "Long Run",
-    "PlannedDuration": "3h-3h30",
+    "PlannedDuration": "3h30-4h",
     "TargetHRZone": "Z1-Z2 (<153)",
-    "Details": "22km / 900m D+ \u2014 Jura or Sal\u00e8ve traverse, poles",
-    "WorkoutDescription": "KEY SESSION \u2014 LONG MOUNTAIN RUN\nDistance: 22km | D+: 900m | D-: 900m | Duration: 3h-3h30\nRoute: Jura traverse or Sal\u00e8ve south traverse. Poles required.\nFueling practice: 80g carbs/hour (C90 every hour). Start eating at minute 30.\nWalk all climbs >15%. Run flats at 8:30-9:00/km. Easy descents.\nHR: Z1-Z2 entire run. HIGH calorie day.",
+    "Details": "1,000-1,200m D+ \u2014 Ski touring (replaces long run)",
+    "WorkoutDescription": "KEY SESSION \u2014 SKI TOURING (replaces long mountain run)\nD+: 1,000-1,200m | Duration: 3h30-4h | Descents: ski down\n\nSki touring is an excellent substitute \u2014 sustained climbing with poles at race effort, high calorie burn, altitude exposure.\n\nASCENT:\nSteady skinning at Z2 (138-153). This IS your race-pace climbing practice.\nBreathing rhythm: 3 steps in, 3 steps out. If HR above 153, slow down.\nTarget 3-4 ascents totaling 1,000-1,200m D+.\n\nNUTRITION \u2014 FULL RACE PROTOCOL:\nPractice fueling while skinning. C90 sachet every hour (80g carbs/h).\nWater 500ml/h. Eat while moving, not just at transitions.\nThis is your fueling rehearsal \u2014 treat it exactly like a long run.\n\nDESCENT:\nSki down. Enjoy it. Won't train running descent but that's fine for one session.\n\nPOST-SESSION:\nLarge recovery meal within 30min. HIGH calorie day.\n\nWhy this works: skinning at Z2 with poles for 3-4 hours is closer to race-day climbing than any flat long run. The altitude is a bonus.",
     "Focus": "Mountain endurance + nutrition practice"
   },
   {
@@ -76,11 +76,11 @@
     "Phase": "Mountain Introduction",
     "Dates": "Apr 20-26",
     "Day": "Sun",
-    "SessionType": "Easy Run",
-    "PlannedDuration": "40min",
+    "SessionType": "Recovery",
+    "PlannedDuration": "30-40min",
     "TargetHRZone": "Z1 (<138)",
-    "Details": "6km / 30m D+ \u2014 flat recovery",
-    "WorkoutDescription": "EASY RECOVERY RUN\nDistance: 6km | D+: 30m | Duration: 40min\nFlat only. HR under 138. Active recovery. LOW calorie day.",
+    "Details": "Downhill skiing + optional evening easy run 5km",
+    "WorkoutDescription": "DOWNHILL SKIING + OPTIONAL EVENING RUN\n\nDAY SESSION \u2014 DOWNHILL SKIING:\nEnjoy the skiing. This counts as active recovery \u2014 quad engagement on turns, fresh air, movement.\nStay hydrated. Eat well at lunch.\n\nEVENING SESSION (optional, if legs feel OK):\nEasy run 5km | D+: 30m | Duration: 30-40min\nFlat route only. Z1 (HR under 138). Very easy shake-out.\nIf legs are heavy from skiing: SKIP IT. Walk 30min instead. No guilt.\n\nLOW calorie day (unless skiing was very intense, then MODERATE).",
     "Focus": "Active recovery"
   },
   {
