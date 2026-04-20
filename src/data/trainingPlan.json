@@ -20,7 +20,7 @@
     "PlannedDuration": "1h05",
     "TargetHRZone": "Z3 (153-168)",
     "Details": "9km / 300m D+ \u2014 6x4min hill repeats",
-    "WorkoutDescription": "AM SESSION \u2014 HILL REPEATS\nDistance: 9km | D+: 300m | Duration: 65min\n10min easy warm-up on flat (Z1). Main set: 6x4min on moderate incline (10-15% grade), effort at Z3 (HR 153-168). Walk/jog down recovery between reps (HR must drop below 140). 10min easy cool-down. Focus on short steps, upright posture, active arms.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nHip openers: 90/90 stretch 60s each side | Pigeon pose 60s each\nAnkle: Wall ankle stretch 45s each\nThoracic: Open book rotation 8 each side | Cat-cow x10\nFoam roll: Quads 2min | Calves 2min | IT band 2min",
+    "WorkoutDescription": "AM SESSION \u2014 HILL REPEATS\nDistance: 9km | D+: 300m | Duration: 65min\n10min easy warm-up on flat (Z1). Main set: 6x4min on moderate incline (10-15% grade), effort at Z3 (HR 153-168). Walk/jog down recovery between reps (HR must drop below 140). 10min easy cool-down. Focus on short steps, upright posture, active arms.\n\nTREADMILL ALTERNATIVE:\n10min warm-up at 1% incline, easy pace.\n6x4min at 10-12% gradient, 5.5-6.5 km/h \u2014 adjust speed to hit Z3 (HR 153-168).\n2min standing rest between reps (HR must drop below 140 before next rep).\n10min cool-down at 1%, easy pace.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nHip openers: 90/90 stretch 60s each side | Pigeon pose 60s each\nAnkle: Wall ankle stretch 45s each\nThoracic: Open book rotation 8 each side | Cat-cow x10\nFoam roll: Quads 2min | Calves 2min | IT band 2min",
     "Focus": "Climbing power + hip mobility"
   },
   {
@@ -188,7 +188,7 @@
     "PlannedDuration": "1h15",
     "TargetHRZone": "Z3-Z4 (153-183)",
     "Details": "10km / 500m D+ \u2014 8x3min steep hill (>15%)",
-    "WorkoutDescription": "AM SESSION \u2014 STEEP HILL REPEATS\nDistance: 10km | D+: 500m | Duration: 75min\n10min warm-up. 8x3min on >15% grade. Z3-Z4 (HR 153-183). Walk down recovery. 10min cool-down.\n\nLUNCH SESSION \u2014 MOBILITY (25min)\nHip: 90/90 60s each | Pigeon 60s each | Hip circles 10 each\nAnkle: Wall stretch 45s each | Calf raises on step 15 reps\nThoracic: Open book 8 each | Thread the needle 8 each\nFoam roll: Quads 3min | Calves 2min | IT band 2min | Glutes 2min\nHIGH calorie day.",
+    "WorkoutDescription": "AM SESSION \u2014 STEEP HILL REPEATS\nDistance: 10km | D+: 500m | Duration: 75min\n10min easy warm-up. Main set: 8x3min on STEEP incline (>15% grade). Hard hiking effort, Z3-Z4 (HR 153-183). Walk down recovery (HR below 140 before next rep). 10min cool-down jog.\nFocus: Power hiking at high intensity \u2014 arms driving, poles planted aggressively, short powerful steps.\n\nTREADMILL ALTERNATIVE:\n10min warm-up at 1% incline.\n8x3min at 15% gradient, 5.0-6.0 km/h \u2014 adjust speed to hit Z3-Z4 (HR 153-183).\n90s standing rest between reps (HR must drop below 140).\n10min cool-down at 1%.\nGrip the front bar lightly for balance if needed at 15% \u2014 do NOT lean on it.\n\nLUNCH SESSION \u2014 MOBILITY (25min)\nHip: 90/90 stretch 60s each | Pigeon 60s each | Hip circles 10 each\nAnkle: Wall stretch 45s each | Calf raises on step 15 reps\nThoracic: Open book 8 each | Thread the needle 8 each\nFoam roll: Quads 3min | Calves 2min | IT band 2min | Glutes 2min\nHIGH calorie day.",
     "Focus": "Climbing power at race-steep gradients"
   },
   {
@@ -356,7 +356,7 @@
     "PlannedDuration": "50min",
     "TargetHRZone": "Z3 (153-168)",
     "Details": "8km / 300m D+ \u2014 5x3min hill repeats (last quality session)",
-    "WorkoutDescription": "AM SESSION \u2014 HILL REPEATS (last quality session)\nDistance: 8km | D+: 300m | Duration: 50min\n10min warm-up. 5x3min at Z3. Walk/jog recovery. 10min cool-down.\nLAST hard session. Run with confidence.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nFull lower body mobility + foam roll.",
+    "WorkoutDescription": "AM SESSION \u2014 HILL REPEATS (last quality session)\nDistance: 8km | D+: 300m | Duration: 50min\n10min easy warm-up. Main set: 5x3min at Z3 (HR 153-168) on moderate incline. Walk/jog recovery. 10min cool-down.\nThis is your LAST hard session. Run with confidence.\n\nTREADMILL ALTERNATIVE:\n10min warm-up at 1% incline.\n5x3min at 12% gradient, 5.5-6.5 km/h \u2014 adjust speed to hit Z3 (HR 153-168).\n90s standing rest between reps (HR below 140).\n10min cool-down at 1%.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nFull lower body mobility + foam roll.",
     "Focus": "Last quality effort before taper"
   },
   {
