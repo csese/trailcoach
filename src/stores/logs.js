@@ -3,7 +3,6 @@ import { ref, computed } from 'vue'
 import { useSupabase } from '@/composables/useSupabase'
 
 export const useLogsStore = defineStore('logs', () => {
-  // State - workout logs (actual data)
   const logs = ref([])
   const loading = ref(false)
 
@@ -12,11 +11,7 @@ export const useLogsStore = defineStore('logs', () => {
     const actualHrAvg = log.actualHrAvg ?? log.actual_hr_avg ?? null
     const actualDistance = log.actualDistance ?? log.actual_distance ?? null
     const actualElevation = log.actualElevation ?? log.actual_elevation ?? null
-    const pain = log.pain ?? null
-    const rpe = log.rpe ?? null
     const maxHr = log.maxHr || log.max_hr || null
-    const trainingLoad = log.trainingLoad || log.training_load || null
-    const relativeEffort = log.relativeEffort || log.relative_effort || null
 
     return {
       id: log.id || `log-${Date.now()}`,
@@ -25,25 +20,15 @@ export const useLogsStore = defineStore('logs', () => {
       actualHrAvg: actualHrAvg !== null ? Number(actualHrAvg) : null,
       actualDistance: actualDistance !== null ? Number(actualDistance) : null,
       actualElevation: actualElevation !== null ? Number(actualElevation) : null,
-      rpe: rpe !== null ? Number(rpe) : null,
+      maxHr: maxHr !== null ? Number(maxHr) : null,
       notes: log.notes || '',
       externalLink: log.externalLink || log.external_link || '',
       stravaActivityId: log.stravaActivityId || log.strava_activity_id || null,
       completedAt: log.completedAt || log.completed_at || new Date().toISOString(),
-      feltVsPlanned: log.feltVsPlanned || log.felt_vs_planned || 'as_planned',
-      pain: pain !== null ? Number(pain) : null,
-      terrain: log.terrain || '',
-      conditions: log.conditions || '',
-      fueling: log.fueling || '',
-      issues: log.issues || '',
-      avgPace: log.avgPace || log.avg_pace || null,
-      maxHr: maxHr !== null ? Number(maxHr) : null,
-      trainingLoad: trainingLoad !== null ? Number(trainingLoad) : null,
-      relativeEffort: relativeEffort !== null ? Number(relativeEffort) : null
+      avgPace: log.avgPace || log.avg_pace || null
     }
   }
 
-  // Load logs from localStorage or Supabase if logged in
   async function loadLogs() {
     loading.value = true
     try {
@@ -67,12 +52,10 @@ export const useLogsStore = defineStore('logs', () => {
     }
   }
 
-  // Save logs to localStorage
   function saveLogs() {
     localStorage.setItem('trailcoach-logs', JSON.stringify(logs.value))
   }
 
-  // Add or update a workout log
   async function saveLog(workoutId, logData) {
     const existingIndex = logs.value.findIndex(l => l.workoutId === workoutId)
 
@@ -106,17 +89,14 @@ export const useLogsStore = defineStore('logs', () => {
     return log
   }
 
-  // Get log for a workout
   function getLogByWorkoutId(workoutId) {
     return logs.value.find(l => l.workoutId === workoutId)
   }
 
-  // Check if workout is completed
   function isCompleted(workoutId) {
     return logs.value.some(l => l.workoutId === workoutId)
   }
 
-  // Delete a log
   async function deleteLog(workoutId) {
     logs.value = logs.value.filter(l => l.workoutId !== workoutId)
     saveLogs()
@@ -134,7 +114,6 @@ export const useLogsStore = defineStore('logs', () => {
     }
   }
 
-  // Stats
   const completedCount = computed(() => logs.value.length)
 
   const totalActualDuration = computed(() => {
@@ -149,12 +128,6 @@ export const useLogsStore = defineStore('logs', () => {
     return logs.value.reduce((sum, log) => sum + (log.actualElevation || 0), 0)
   })
 
-  const averageRpe = computed(() => {
-    const logsWithRpe = logs.value.filter(l => l.rpe)
-    if (logsWithRpe.length === 0) return 0
-    return logsWithRpe.reduce((sum, l) => sum + l.rpe, 0) / logsWithRpe.length
-  })
-
   return {
     logs,
     loading,
@@ -166,7 +139,6 @@ export const useLogsStore = defineStore('logs', () => {
     completedCount,
     totalActualDuration,
     totalActualDistance,
-    totalActualElevation,
-    averageRpe
+    totalActualElevation
   }
 })

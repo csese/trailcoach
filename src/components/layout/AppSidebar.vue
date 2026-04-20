@@ -7,7 +7,6 @@ import {
   Calendar,
   TrendingUp,
   BarChart3,
-  Sparkles,
   Settings,
   Mountain,
   Trophy,
@@ -31,7 +30,6 @@ const navigation = [
   { name: 'Calendar', path: '/calendar', icon: Calendar },
   { name: 'Phases', path: '/phases', icon: TrendingUp },
   { name: 'Stats', path: '/stats', icon: BarChart3 },
-  { name: 'Adaptations', path: '/adaptations', icon: Sparkles },
   { name: 'Settings', path: '/settings', icon: Settings }
 ]
 
@@ -54,7 +52,7 @@ const nextRace = computed(() => userStore.daysUntilNextRace)
           </div>
           <div>
             <h1 class="text-lg font-bold text-text-primary">TrailCoach</h1>
-            <p class="text-xs text-text-muted">Nice 110K Training</p>
+            <p class="text-xs text-text-muted">Gypaete 77K Training</p>
           </div>
         </div>
         <button
