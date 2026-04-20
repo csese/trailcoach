@@ -275,6 +275,24 @@ export const useWorkoutsStore = defineStore('workouts', () => {
     return 'easy'
   }
 
+  // Check if a workout has a lunch session (dual session day)
+  function getLunchSession(workout) {
+    if (!workout) return null
+    const desc = workout.WorkoutDescription || workout['Workout Description'] || ''
+    if (!desc.includes('LUNCH SESSION')) return null
+    const match = desc.match(/LUNCH SESSION — ([^\n(]+)(?:\((\d+min)\))?/)
+    if (!match) return null
+    const title = match[1].trim()
+    const duration = match[2] || null
+    const lower = title.toLowerCase()
+    let type = 'other'
+    if (lower.includes('strength')) type = 'strength'
+    else if (lower.includes('metabolic')) type = 'strength'
+    else if (lower.includes('mobility')) type = 'easy'
+    else if (lower.includes('core')) type = 'easy'
+    return { title, duration, type }
+  }
+
   function isRaceSpecific(workout) {
     if (!workout) return false
     const fields = [
@@ -354,6 +372,7 @@ export const useWorkoutsStore = defineStore('workouts', () => {
     getWorkoutsForMonth,
     getWorkoutByDate,
     getWorkoutType,
+    getLunchSession,
     isRaceSpecific,
     swapWorkouts,
     moveWorkoutToDate,

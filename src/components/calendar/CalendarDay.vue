@@ -35,10 +35,18 @@ const workoutColor = computed(() => {
   return colors[workoutType.value] || 'bg-workout-easy'
 })
 
+const lunchSession = computed(() => {
+  return workoutsStore.getLunchSession(props.day.workout)
+})
+
+const lunchColor = computed(() => {
+  if (!lunchSession.value) return ''
+  return lunchSession.value.type === 'strength' ? 'bg-workout-strength' : 'bg-workout-easy'
+})
+
 const sessionLabel = computed(() => {
   if (!props.day.workout) return ''
   const sessionType = props.day.workout['Session Type'] || props.day.workout.SessionType || ''
-  // Shorten long session names
   if (sessionType.length > 12) {
     return sessionType.substring(0, 10) + '...'
   }
@@ -94,7 +102,7 @@ const isRaceDay = computed(() => workoutType.value === 'race')
 
     <!-- Workout info -->
     <div v-if="day.workout" class="space-y-1">
-      <!-- Workout type indicator -->
+      <!-- AM session -->
       <div class="flex items-center gap-1.5">
         <div :class="['w-2 h-2 rounded-full flex-shrink-0', workoutColor]"></div>
         <span class="text-xs font-medium text-text-primary truncate">
@@ -106,6 +114,14 @@ const isRaceDay = computed(() => workoutType.value === 'race')
       <p class="text-xs text-text-muted truncate">
         {{ day.workout['Planned Duration'] || day.workout.PlannedDuration }}
       </p>
+
+      <!-- Lunch session indicator -->
+      <div v-if="lunchSession" class="flex items-center gap-1.5 mt-0.5">
+        <div :class="['w-2 h-2 rounded-full flex-shrink-0', lunchColor]"></div>
+        <span class="text-[10px] text-text-muted truncate">
+          {{ lunchSession.title }}
+        </span>
+      </div>
     </div>
 
     <!-- Empty day -->

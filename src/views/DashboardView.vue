@@ -80,6 +80,10 @@ function getWorkoutType(sessionType) {
   return workoutsStore.getWorkoutType(sessionType)
 }
 
+function getLunchSession(workout) {
+  return workoutsStore.getLunchSession(workout)
+}
+
 function isWorkoutCompleted(workout) {
   return logsStore.isCompleted(workout.id)
 }
@@ -217,14 +221,24 @@ const workoutColors = {
               </div>
             </div>
 
-            <div
-              :class="[
-                'w-3 h-12 rounded-full flex-shrink-0',
-                day.workout
-                  ? workoutColors[getWorkoutType(day.workout['Session Type'] || day.workout.SessionType)]
-                  : 'bg-workout-rest'
-              ]"
-            ></div>
+            <!-- Color bar: split for dual sessions -->
+            <div class="flex flex-col gap-0.5 flex-shrink-0" v-if="day.workout">
+              <div
+                :class="[
+                  'w-3 rounded-full flex-shrink-0',
+                  workoutColors[getWorkoutType(day.workout['Session Type'] || day.workout.SessionType)],
+                  getLunchSession(day.workout) ? 'h-6' : 'h-12'
+                ]"
+              ></div>
+              <div
+                v-if="getLunchSession(day.workout)"
+                :class="[
+                  'w-3 h-5 rounded-full flex-shrink-0',
+                  getLunchSession(day.workout).type === 'strength' ? 'bg-workout-strength' : 'bg-workout-easy'
+                ]"
+              ></div>
+            </div>
+            <div v-else class="w-3 h-12 rounded-full flex-shrink-0 bg-workout-rest"></div>
 
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2">
@@ -233,6 +247,12 @@ const workoutColors = {
                   :class="day.workout ? 'text-text-primary' : 'text-text-muted'"
                 >
                   {{ day.workout ? (day.workout['Session Type'] || day.workout.SessionType) : 'Rest Day' }}
+                </span>
+                <span
+                  v-if="day.workout && getLunchSession(day.workout)"
+                  class="text-xs text-workout-strength font-medium"
+                >
+                  + {{ getLunchSession(day.workout).title }}
                 </span>
                 <span
                   v-if="day.isToday"
