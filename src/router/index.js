@@ -26,6 +26,12 @@ const routes = [
     meta: { title: 'Statistics' }
   },
   {
+    path: '/nutrition',
+    name: 'nutrition',
+    component: () => import('@/views/NutritionView.vue'),
+    meta: { title: 'Nutrition' }
+  },
+  {
     path: '/settings',
     name: 'settings',
     component: () => import('@/views/SettingsView.vue'),

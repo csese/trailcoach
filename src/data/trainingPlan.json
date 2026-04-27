@@ -9,7 +9,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "8km / 50m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 8km | D+: 50m | Duration: 50min\nFlat route along Arve or lakeside. HR strictly under 138. Conversational pace. Black coffee only before.\n\nLUNCH SESSION \u2014 STRENGTH A (55min)\nUltra Goal: Balanced eccentric (descent protection) + explosive concentric (climbing power) for 5,000m of descent. Metabolic finisher for conditioning + calorie burn.\n\nWARM-UP (5min):\nLeg swings x15 each | Glute bridges x15 | Bodyweight squats x15 | Ankle circles x15 each\n\nMAIN BLOCK \u2014 Heavy Eccentrics:\nA1. Back Squat (eccentric) \u2014 4x6 @ 60% 1RM \u2014 4s descent, EXPLOSIVE drive up \u2014 Rest 90s\nA2. Bulgarian Split Squat \u2014 3x8 each leg \u2014 bodyweight or light DB \u2014 Rest 60s\nB1. Weighted Step-ups (40cm box) \u2014 3x10 each leg \u2014 light DB \u2014 Rest 60s\nB2. Romanian Deadlift (DB) \u2014 3x8 \u2014 slow descent, squeeze glutes at top \u2014 Rest 60s\nC1. Explosive Step-ups (40cm box) \u2014 3x6 each leg \u2014 drive up fast, controlled down \u2014 Rest 60s\nC2. Calf Raises \u2014 2x15 \u2014 controlled full ROM \u2014 Rest 30s\n\nCORE CIRCUIT (x2, 30s rest between rounds):\nPlank 45s | Dead Bug 10 each side | Pallof Press 10 each side\n\nMETABOLIC FINISHER \u2014 8min EMOM (every minute on the minute):\nEven minutes: 10 Kettlebell Swings (16-20kg) + 5 Box Jumps (or Step-ups)\nOdd minutes: 10 Push-ups + 10 Air Squats\n\nCOOL-DOWN (3min):\nHip flexor stretch 45s each | Pigeon 45s each",
-    "Focus": "Aerobic base + eccentric strength intro"
+    "Focus": "Aerobic base + eccentric strength intro",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "1",
@@ -21,7 +22,8 @@
     "TargetHRZone": "Z3 (153-168)",
     "Details": "9km / 300m D+ \u2014 6x4min hill repeats",
     "WorkoutDescription": "AM SESSION \u2014 HILL REPEATS\nDistance: 9km | D+: 300m | Duration: 65min\n10min easy warm-up on flat (Z1). Main set: 6x4min on moderate incline (10-15% grade), effort at Z3 (HR 153-168). Walk/jog down recovery between reps (HR must drop below 140). 10min easy cool-down. Focus on short steps, upright posture, active arms.\n\nTREADMILL ALTERNATIVE:\n10min warm-up at 1% incline, easy pace.\n6x4min at 10-12% gradient, 5.5-6.5 km/h \u2014 adjust speed to hit Z3 (HR 153-168).\n2min standing rest between reps (HR must drop below 140 before next rep).\n10min cool-down at 1%, easy pace.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nHip openers: 90/90 stretch 60s each side | Pigeon pose 60s each\nAnkle: Wall ankle stretch 45s each\nThoracic: Open book rotation 8 each side | Cat-cow x10\nFoam roll: Quads 2min | Calves 2min | IT band 2min",
-    "Focus": "Climbing power + hip mobility"
+    "Focus": "Climbing power + hip mobility",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "1",
@@ -33,7 +35,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "7km / 50m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 7km | D+: 50m | Duration: 45min\nFlat route. HR under 153. Easy effort, recovery from yesterday's hill repeats.\n\nLUNCH SESSION \u2014 METABOLIC CIRCUIT (45min)\nUltra Goal: High-intensity conditioning + pole-specific upper body + calorie burn. Keep heart rate elevated throughout. This replaces traditional strength B.\n\nWARM-UP (5min):\nArm circles x20 | Band pull-aparts x15 | Scapular push-ups x10 | 1min jump rope or jumping jacks\n\nCIRCUIT A \u2014 Upper Body Power (4 rounds, 40s work / 20s rest per exercise):\n1. Lat Pulldown (moderate weight, fast controlled reps)\n2. Push-ups (or incline if needed)\n3. Dumbbell Shoulder Press (standing, moderate weight)\n4. Bent-over Rows (DB, moderate weight)\nRest 60s between rounds.\n\nCIRCUIT B \u2014 Core + Explosive (3 rounds, 40s work / 20s rest):\n1. Russian Twists (5kg plate)\n2. Box Step-ups (alternating, fast, 40cm box)\n3. Mountain Climbers\n4. KB Swings (16kg)\nRest 45s between rounds.\n\nCIRCUIT C \u2014 Burner (2 rounds, no rest between exercises):\n30s Battle Ropes (or DB Thrusters if no ropes) \u2192 30s Plank \u2192 30s Air Squats \u2192 30s Side Plank (switch halfway)\nRest 60s between rounds.\n\nCOOL-DOWN (5min):\nThoracic opener 60s | Lat stretch 45s each | Pec stretch 45s each | Child's pose 60s",
-    "Focus": "Recovery run + pole-specific upper body"
+    "Focus": "Recovery run + pole-specific upper body",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "1",
@@ -45,7 +48,8 @@
     "TargetHRZone": "Z2 (138-153)",
     "Details": "10km / 800m D+ \u2014 Sal\u00e8ve climb with poles",
     "WorkoutDescription": "SAL\u00c8VE CLIMB\nDistance: 10km | D+: 800m | D-: 800m | Duration: 2h15\nRoute: Pas de l'\u00c9chelle \u2192 summit via main trail.\nASCENT (~1h30): Hike with poles at race effort. Target vertical speed: 400-450 m/h. HR in Z2 (138-153). Short steps, upright posture, rhythmic pole plants.\nDESCENT (~45min): Easy controlled run down. Short quick steps on technical sections. No hard braking.\n\nGYM ALTERNATIVE \u2014 STEP RUNNER (if Sal\u00e8ve not possible):\nDuration: 60-75min total (no descent = shorter session)\n\nWARM-UP: 5min at low resistance, easy pace\nMAIN BLOCK: 50-60min at Z2 (HR 138-153). Adjust resistance/speed to stay in zone.\nCOOL-DOWN: 5min easy stepping\n\nRULES:\n- Upright posture \u2014 do NOT lean on handrails (cheats the load, changes hiking posture)\n- Light touch on rails for balance only\n- Target step rate: 30-35 steps/min at moderate resistance\n- If HR above 153, reduce speed\n\nOPTIONAL COMBO: Since you're at the gym, add a 10min metabolic finisher after:\n8min EMOM: Even min: 10 KB swings + 5 box jumps | Odd min: 10 push-ups + 10 air squats\n\nWhat you lose vs Sal\u00e8ve: descent practice, technical terrain, pole work.\nWhat you gain: controlled vertical effort, gym combo opportunity.",
-    "Focus": "Mountain introduction + climbing rhythm"
+    "Focus": "Mountain introduction + climbing rhythm",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "1",
@@ -57,7 +61,8 @@
     "TargetHRZone": "N/A",
     "Details": "Rest + light mobility",
     "WorkoutDescription": "REST DAY\nLight 20min mobility/stretching only.\nHip flexors 60s each | Hamstrings 60s each | Calves 45s each | Thoracic rotation 8 each\nFoam roll if needed. 10,000 steps walking. LOW calorie day.",
-    "Focus": "Recovery + weight cut"
+    "Focus": "Recovery + weight cut",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "1",
@@ -69,7 +74,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "1,000-1,200m D+ \u2014 Ski touring (replaces long run)",
     "WorkoutDescription": "KEY SESSION \u2014 SKI TOURING (replaces long mountain run)\nD+: 1,000-1,200m | Duration: 3h30-4h | Descents: ski down\n\nSki touring is an excellent substitute \u2014 sustained climbing with poles at race effort, high calorie burn, altitude exposure.\n\nASCENT:\nSteady skinning at Z2 (138-153). This IS your race-pace climbing practice.\nBreathing rhythm: 3 steps in, 3 steps out. If HR above 153, slow down.\nTarget 3-4 ascents totaling 1,000-1,200m D+.\n\nNUTRITION \u2014 FULL RACE PROTOCOL:\nPractice fueling while skinning. C90 sachet every hour (80g carbs/h).\nWater 500ml/h. Eat while moving, not just at transitions.\nThis is your fueling rehearsal \u2014 treat it exactly like a long run.\n\nDESCENT:\nSki down. Enjoy it. Won't train running descent but that's fine for one session.\n\nPOST-SESSION:\nLarge recovery meal within 30min. HIGH calorie day.\n\nWhy this works: skinning at Z2 with poles for 3-4 hours is closer to race-day climbing than any flat long run. The altitude is a bonus.",
-    "Focus": "Mountain endurance + nutrition practice"
+    "Focus": "Mountain endurance + nutrition practice",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "1",
@@ -81,7 +87,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "Downhill skiing + optional evening easy run 5km",
     "WorkoutDescription": "DOWNHILL SKIING + OPTIONAL EVENING RUN\n\nDAY SESSION \u2014 DOWNHILL SKIING:\nEnjoy the skiing. This counts as active recovery \u2014 quad engagement on turns, fresh air, movement.\nStay hydrated. Eat well at lunch.\n\nEVENING SESSION (optional, if legs feel OK):\nEasy run 5km | D+: 30m | Duration: 30-40min\nFlat route only. Z1 (HR under 138). Very easy shake-out.\nIf legs are heavy from skiing: SKIP IT. Walk 30min instead. No guilt.\n\nLOW calorie day (unless skiing was very intense, then MODERATE).",
-    "Focus": "Active recovery"
+    "Focus": "Active recovery",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "2",
@@ -93,7 +100,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "9km / 50m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 9km | D+: 50m | Duration: 55min\nFlat, easy. Monday weigh-in.\n\nLUNCH SESSION \u2014 STRENGTH A (60min)\nUltra Goal: Heavy eccentric for descent protection + explosive concentric for climbing power. Increase load. Finisher increases in intensity.\n\nWARM-UP (6min):\nLeg swings x15 each | Glute bridges x15 | Bodyweight squats x15 | Walking lunges x10 each\n\nMAIN BLOCK \u2014 Heavy Eccentrics:\nA1. Back Squat (eccentric) \u2014 5x5 @ 70% 1RM \u2014 4s descent, EXPLOSIVE drive up \u2014 Rest 90s\nA2. Weighted Step-ups (40cm box) \u2014 3x10 each leg \u2014 moderate DB \u2014 Rest 60s\nB1. Romanian Deadlift (DB) \u2014 3x8 \u2014 controlled 3s descent \u2014 Rest 60s\nB2. Bulgarian Split Squat \u2014 3x8 each leg \u2014 DB in each hand \u2014 Rest 60s\nC1. Explosive Step-ups (40cm box) \u2014 3x8 each leg \u2014 drive up fast, step down controlled \u2014 Rest 60s\nC2. Calf Raises \u2014 2x15 \u2014 controlled full ROM \u2014 Rest 30s\n\nCORE CIRCUIT (x2, 30s rest between rounds):\nPlank 45s | Dead Bug 10 each side | Pallof Press 10 each side\n\nMETABOLIC FINISHER \u2014 10min AMRAP (as many rounds as possible):\n8 Kettlebell Swings (20kg) \u2192 6 Goblet Squats (16kg) \u2192 8 Push-ups \u2192 200m Row\nLog your rounds. Beat this number in Week 3.\n\nCOOL-DOWN (3min):\nHip flexor stretch 45s each | Quad stretch 45s each",
-    "Focus": "Aerobic base + heavy eccentric loading"
+    "Focus": "Aerobic base + heavy eccentric loading",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "2",
@@ -105,7 +113,8 @@
     "TargetHRZone": "Z2-Z3 (138-168)",
     "Details": "14km / 1,200m D+ \u2014 Sal\u00e8ve repeats: 2x climb (~600m each)",
     "WorkoutDescription": "AM SESSION \u2014 SAL\u00c8VE REPEATS\nDistance: 14km | D+: 1,200m | D-: 1,200m | Duration: 2h30\nREP 1: Hike up with poles (~600m D+, ~45min). Target 450 m/h. HR Z2. Run down (~20min).\nRest 5-10min. Refuel with gel.\nREP 2: Same route, maintain vertical speed even though tired.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nHip: 90/90 stretch 60s each | Pigeon 60s each\nAnkle: Wall stretch 45s each\nFoam roll: Quads 3min | Calves 2min | Glutes 2min\nHIGH calorie day.",
-    "Focus": "Vertical capacity + repeated climbing"
+    "Focus": "Vertical capacity + repeated climbing",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "2",
@@ -117,7 +126,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "8km / 50m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 8km | D+: 50m | Duration: 50min\nRecovery from Sal\u00e8ve repeats.\n\nLUNCH SESSION \u2014 METABOLIC CIRCUIT (45min)\nUltra Goal: Build on Week 1 circuit. Increase weights where possible. Same structure, harder effort.\n\nWARM-UP (5min):\nArm circles x20 | Band pull-aparts x15 | Scapular push-ups x10 | 1min jump rope\n\nCIRCUIT A \u2014 Upper Body Power (4 rounds, 40s work / 20s rest per exercise):\n1. Lat Pulldown (increase weight from W1)\n2. Push-ups (add weight vest or elevate feet if easy)\n3. Dumbbell Shoulder Press (standing, increase weight)\n4. Bent-over Rows (DB, increase weight)\nRest 60s between rounds.\n\nCIRCUIT B \u2014 Core + Explosive (3 rounds, 40s work / 20s rest):\n1. Russian Twists (8kg plate or heavier)\n2. Box Step-ups (faster tempo, 40cm box)\n3. Mountain Climbers (fast)\n4. KB Swings (20kg)\nRest 45s between rounds.\n\nCIRCUIT C \u2014 Burner (3 rounds this week, no rest between exercises):\n30s Battle Ropes (or DB Thrusters) \u2192 30s Plank \u2192 30s Jump Squats (or Air Squats) \u2192 30s Side Plank\nRest 60s between rounds.\n\nCOOL-DOWN (5min):\nThoracic opener 60s | Lat stretch 45s each | Child's pose 60s",
-    "Focus": "Recovery + upper body maintenance"
+    "Focus": "Recovery + upper body maintenance",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "2",
@@ -129,7 +139,8 @@
     "TargetHRZone": "Z2-Z3 (138-168)",
     "Details": "11km / 200m D+ \u2014 3x10min tempo on rolling trails",
     "WorkoutDescription": "TRAIL TEMPO\nDistance: 11km | D+: 200m | Duration: 70min\n15min warm-up (Z1). 3x10min at Z2-Z3 on rolling trails. 5min jog between. 10min cool-down.\nConsistent effort on varied terrain.",
-    "Focus": "Trail running economy"
+    "Focus": "Trail running economy",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "2",
@@ -141,7 +152,8 @@
     "TargetHRZone": "N/A",
     "Details": "Rest + light mobility",
     "WorkoutDescription": "REST DAY\nLight 15min mobility. 10,000 steps walking. LOW calorie day.",
-    "Focus": "Recovery + weight cut"
+    "Focus": "Recovery + weight cut",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "2",
@@ -153,7 +165,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "28km / 1,500m D+ \u2014 mountain long run, poles, full nutrition practice",
     "WorkoutDescription": "KEY SESSION \u2014 LONG MOUNTAIN RUN\nDistance: 28km | D+: 1,500m | D-: 1,500m | Duration: 4h\nJura traverse or Sal\u00e8ve extended. Poles. Full race nutrition: C90 every hour (80-90g carbs/h), water 500ml/h.\nWalk ALL climbs. Target 450 m/h early, 400 m/h late. Run flats 8:30-9:00/km.\nPractice aid station routine at halfway. HIGH calorie day.",
-    "Focus": "Volume + vertical + nutrition practice"
+    "Focus": "Volume + vertical + nutrition practice",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "2",
@@ -165,7 +178,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "10km / 600m D+ \u2014 back-to-back mountain hike with poles",
     "WorkoutDescription": "BACK-TO-BACK SESSION\nDistance: 10km | D+: 600m | D-: 600m | Duration: 1h30\nEasy mountain hike with poles. NOT a run. Train on tired legs.\nHR under 138. Practice eating while hiking. HIGH calorie day.",
-    "Focus": "Tired legs + back-to-back adaptation"
+    "Focus": "Tired legs + back-to-back adaptation",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "3",
@@ -177,7 +191,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "8km / 50m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 8km | D+: 50m | Duration: 50min\nMonday weigh-in. Recovery from weekend.\n\nLUNCH SESSION \u2014 STRENGTH A (60min)\nUltra Goal: Peak loading \u2014 heaviest squats + most explosive concentric work. Biggest finisher. After this week, strength tapers.\n\nWARM-UP (6min):\nLeg swings x15 each | Glute bridges x15 | Bodyweight squats x15 | Walking lunges x10 each\n\nMAIN BLOCK \u2014 Peak Eccentrics:\nA1. Back Squat (eccentric) \u2014 4x6 @ 75-80% 1RM \u2014 4s down, explosive up \u2014 Rest 2min\nA2. Bulgarian Split Squat \u2014 3x8 each leg \u2014 heavy DB \u2014 Rest 75s\nB1. Romanian Deadlift (DB) \u2014 3x8 \u2014 heavy, 3s descent \u2014 Rest 60s\nB2. Weighted Step-ups (40cm box) \u2014 3x10 each leg \u2014 moderate DB \u2014 Rest 60s\nC1. Jump Squats \u2014 3x8 \u2014 full depth, max height, soft landing \u2014 Rest 60s\nC2. Calf Raises \u2014 2x15 \u2014 controlled full ROM \u2014 Rest 30s\n\nCORE CIRCUIT (x2, 30s rest between rounds):\nPlank 45s | Dead Bug 10 each side | Pallof Press 10 each side\n\nMETABOLIC FINISHER \u2014 10min AMRAP:\n8 Kettlebell Swings (20-24kg) \u2192 6 Goblet Squats (20kg) \u2192 8 Push-ups \u2192 200m Row\nBeat last week's rounds.\n\nCOOL-DOWN (3min):\nHip flexor stretch 45s each | Pigeon 45s each | Quad stretch 45s each",
-    "Focus": "Recovery + peak eccentric loading"
+    "Focus": "Recovery + peak eccentric loading",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "3",
@@ -189,7 +204,8 @@
     "TargetHRZone": "Z3-Z4 (153-183)",
     "Details": "10km / 500m D+ \u2014 8x3min steep hill (>15%)",
     "WorkoutDescription": "AM SESSION \u2014 STEEP HILL REPEATS\nDistance: 10km | D+: 500m | Duration: 75min\n10min easy warm-up. Main set: 8x3min on STEEP incline (>15% grade). Hard hiking effort, Z3-Z4 (HR 153-183). Walk down recovery (HR below 140 before next rep). 10min cool-down jog.\nFocus: Power hiking at high intensity \u2014 arms driving, poles planted aggressively, short powerful steps.\n\nTREADMILL ALTERNATIVE:\n10min warm-up at 1% incline.\n8x3min at 15% gradient, 5.0-6.0 km/h \u2014 adjust speed to hit Z3-Z4 (HR 153-183).\n90s standing rest between reps (HR must drop below 140).\n10min cool-down at 1%.\nGrip the front bar lightly for balance if needed at 15% \u2014 do NOT lean on it.\n\nLUNCH SESSION \u2014 MOBILITY (25min)\nHip: 90/90 stretch 60s each | Pigeon 60s each | Hip circles 10 each\nAnkle: Wall stretch 45s each | Calf raises on step 15 reps\nThoracic: Open book 8 each | Thread the needle 8 each\nFoam roll: Quads 3min | Calves 2min | IT band 2min | Glutes 2min\nHIGH calorie day.",
-    "Focus": "Climbing power at race-steep gradients"
+    "Focus": "Climbing power at race-steep gradients",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "3",
@@ -201,7 +217,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "7km / 50m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 7km | D+: 50m | Duration: 45min\nRecovery between hard sessions.\n\nLUNCH SESSION \u2014 METABOLIC CIRCUIT (50min)\nUltra Goal: Peak conditioning week. Maximum intensity. Longest circuits. Match the effort of your peak running week.\n\nWARM-UP (5min):\nArm circles x20 | Band pull-aparts x15 | 1min jump rope | 30s high knees\n\nCIRCUIT A \u2014 Upper Body Power (5 rounds, 40s work / 20s rest per exercise):\n1. Lat Pulldown (heavy, controlled)\n2. Push-ups (feet elevated or weighted)\n3. Dumbbell Shoulder Press (standing, heavy)\n4. Bent-over Rows (DB, heavy)\nRest 50s between rounds.\n\nCIRCUIT B \u2014 Core + Explosive (4 rounds, 40s work / 20s rest):\n1. Russian Twists (8-10kg)\n2. Box Step-ups (fast, explosive)\n3. Mountain Climbers (max speed)\n4. KB Swings (20-24kg)\nRest 40s between rounds.\n\nCIRCUIT C \u2014 Burner (3 rounds, no rest between exercises):\n30s Battle Ropes \u2192 30s Plank \u2192 30s Jump Squats \u2192 30s Side Plank\nRest 45s between rounds.\n\nAMRAP FINISHER \u2014 5min:\n5 Burpees \u2192 10 KB Swings \u2192 15 Air Squats\nAs many rounds as possible. Log it.\n\nCOOL-DOWN (5min):\nThoracic opener 60s | Lat stretch 45s each",
-    "Focus": "Recovery + upper body maintenance"
+    "Focus": "Recovery + upper body maintenance",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "3",
@@ -213,7 +230,8 @@
     "TargetHRZone": "Z2 (138-153)",
     "Details": "16km / 1,000m D+ \u2014 Sal\u00e8ve full climb + traverse, poles",
     "WorkoutDescription": "MOUNTAIN-SPECIFIC SESSION\nDistance: 16km | D+: 1,000m | D-: 1,000m | Duration: 2h30\nSal\u00e8ve full climb + ridge traverse. Poles. Target 450 m/h vertical speed.\nHR in Z2. If above 153, slow down. No lunch session. HIGH calorie day.",
-    "Focus": "Sustained climbing at race vertical speed"
+    "Focus": "Sustained climbing at race vertical speed",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "3",
@@ -225,7 +243,8 @@
     "TargetHRZone": "N/A",
     "Details": "Rest \u2014 prepare for peak weekend",
     "WorkoutDescription": "REST DAY\nLight 15min mobility. Prep gear for 5 AM start tomorrow.\nLOW calorie day. Bed by 9:00 PM.",
-    "Focus": "Recovery + race prep"
+    "Focus": "Recovery + race prep",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "3",
@@ -237,7 +256,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "37km / 2,000m D+ \u2014 KEY SESSION, 5:00 AM start, full race kit + nutrition",
     "WorkoutDescription": "*** KEY SESSION OF THE PLAN ***\nDistance: 37km | D+: 2,000m | D-: 2,000m | Duration: 5h-5h30\nSTART: 5:00 AM\n\nFull race kit, poles, headlamp, all nutrition.\nC90 every hour (80-90g carbs/h), water 500-700ml/h, bar every 2h, salt caps every 45min.\nWalk ALL climbs (450 m/h). Run flats 8:30-9:00/km. HR never above 153.\nLog how you feel at hour 3, 4, 5. HIGH+ calorie day.",
-    "Focus": "Race simulation \u2014 pacing, fueling, kit, early start"
+    "Focus": "Race simulation \u2014 pacing, fueling, kit, early start",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "3",
@@ -249,7 +269,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "13km / 700m D+ \u2014 back-to-back mountain, easy, poles",
     "WorkoutDescription": "BACK-TO-BACK SESSION\nDistance: 13km | D+: 700m | D-: 700m | Duration: 2h\nEasy mountain on tired legs. Hike up with poles, walk/easy jog down.\nHR under 138. Practice eating while hiking.\nIf destroyed: reduce to 1h30 / 10km / 500m D+. HIGH calorie day.",
-    "Focus": "Tired-leg endurance + fueling"
+    "Focus": "Tired-leg endurance + fueling",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "4",
@@ -261,7 +282,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "7km / 50m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 7km | D+: 50m | Duration: 45min\nMonday weigh-in. Recover from peak weekend.\n\nLUNCH SESSION \u2014 STRENGTH A (45min)\nUltra Goal: Maintenance \u2014 preserve both eccentric and concentric adaptations. Finisher stays moderate.\n\nWARM-UP (5min):\nLeg swings x15 each | Glute bridges x15 | Bodyweight squats x15\n\nMAIN BLOCK \u2014 Maintenance:\nA1. Back Squat (eccentric) \u2014 3x6 @ 65% 1RM \u2014 4s down, explosive up \u2014 Rest 90s\nA2. Step-ups (40cm box) \u2014 2x8 each leg \u2014 light DB \u2014 Rest 60s\nB1. Romanian Deadlift (DB) \u2014 2x8 \u2014 moderate \u2014 Rest 60s\n\nCORE CIRCUIT (x2, 30s rest between rounds):\nPlank 40s | Dead Bug 8 each side | Pallof Press 8 each side\n\nMETABOLIC FINISHER \u2014 6min EMOM:\nEven minutes: 8 Kettlebell Swings (16kg) + 5 Box Step-ups\nOdd minutes: 8 Push-ups + 8 Air Squats\n\nCOOL-DOWN (3min):\nHip flexor stretch 45s each | Quad stretch 45s each",
-    "Focus": "Recovery + strength maintenance"
+    "Focus": "Recovery + strength maintenance",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "4",
@@ -273,7 +295,8 @@
     "TargetHRZone": "Z2-Z3 (138-168)",
     "Details": "12km / 400m D+ \u2014 4x8min tempo on mountain trails",
     "WorkoutDescription": "AM SESSION \u2014 MOUNTAIN TRAIL TEMPO\nDistance: 12km | D+: 400m | Duration: 75min\n15min warm-up. 4x8min at Z2-Z3 on undulating mountain trail. 4min jog between. 10min cool-down.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nHip: 90/90 60s each | Pigeon 60s each\nAnkle: Wall stretch 45s each\nFoam roll: Quads 2min | Calves 2min | IT band 2min",
-    "Focus": "Race-pace on varied terrain"
+    "Focus": "Race-pace on varied terrain",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "4",
@@ -285,7 +308,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "6km / 30m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 6km | D+: 30m | Duration: 40min\n\nLUNCH SESSION \u2014 METABOLIC CIRCUIT (35min)\n*** LAST GYM SESSION OF THE PLAN ***\nUltra Goal: Final conditioning hit. Moderate volume, high intensity. Leave the gym feeling sharp, not destroyed.\n\nWARM-UP (5min):\nArm circles x20 | Band pull-aparts x15 | 1min jump rope\n\nCIRCUIT A \u2014 Upper Body (3 rounds, 40s work / 20s rest per exercise):\n1. Lat Pulldown (moderate)\n2. Push-ups\n3. Shoulder Press (moderate)\n4. Bent-over Rows (moderate)\nRest 60s between rounds.\n\nCIRCUIT B \u2014 Core + Explosive (2 rounds, 40s work / 20s rest):\n1. Russian Twists (5kg)\n2. Box Step-ups (controlled)\n3. Mountain Climbers\n4. KB Swings (16kg)\nRest 45s between rounds.\n\nFINISHER \u2014 4min EMOM:\n8 KB Swings + 5 Push-ups each minute\n\nCOOL-DOWN (5min):\nFull body stretching. You're done with the gym. Trust the work.",
-    "Focus": "Recovery + last strength session"
+    "Focus": "Recovery + last strength session",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "4",
@@ -297,7 +321,8 @@
     "TargetHRZone": "N/A",
     "Details": "Rest + mobility \u2014 pre-dress-rehearsal",
     "WorkoutDescription": "REST DAY\nLight 20min mobility. Prep ALL race gear for Saturday.\nLOW calorie day. Bed by 9:00 PM.",
-    "Focus": "Recovery + gear preparation"
+    "Focus": "Recovery + gear preparation",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "4",
@@ -309,7 +334,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "5km / 20m D+ \u2014 shakeout + 4x20s strides",
     "WorkoutDescription": "SHAKEOUT + STRIDES\nDistance: 5km | D+: 20m | Duration: 30min\n20min easy jog. 4x20s strides (60s walk between). Activate legs for tomorrow.",
-    "Focus": "Activation before dress rehearsal"
+    "Focus": "Activation before dress rehearsal",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "4",
@@ -321,7 +347,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "40km / 2,300m D+ \u2014 DRESS REHEARSAL, 5:00 AM start, full race kit",
     "WorkoutDescription": "*** DRESS REHEARSAL \u2014 RACE SIMULATION ***\nDistance: 40km | D+: 2,300m | D-: 2,300m | Duration: 5h30-6h\nSTART: 5:00 AM\n\nWake 3:00 AM. Pre-race meal at 3:15 (rice cakes + honey + banana + coffee).\nFull race kit: same vest, shoes, socks, poles, layers, anti-chafe.\nExact race nutrition: C90 every hour, bar every 2h, salt caps every 45min, water 500-700ml/h.\nMock aid station at km 20: refill, eat salty food, leave in <5 min.\nWalk ALL climbs (450 m/h early, 400 m/h after 3h). Flats 8:30-9:00/km. HR max 153.\nLOG EVERYTHING: nutrition feel, chafing, shoe comfort, pole straps. HIGH+ calorie day.",
-    "Focus": "Complete race simulation"
+    "Focus": "Complete race simulation",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "4",
@@ -333,7 +360,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "7km / 30m D+ \u2014 flat recovery",
     "WorkoutDescription": "EASY RECOVERY RUN\nDistance: 7km | D+: 30m | Duration: 45min\nFlat, very easy. Note any residual soreness.",
-    "Focus": "Recovery"
+    "Focus": "Recovery",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "5",
@@ -345,7 +373,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "6km / 30m D+ \u2014 flat, fasted. STOP CREATINE TODAY",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 6km | D+: 30m | Duration: 40min\nMonday weigh-in.\n*** STOP CREATINE TODAY \u2014 expect 1-2kg water weight drop over next 10 days. ***\n\nLUNCH SESSION \u2014 LIGHT STRENGTH + MOBILITY (30min)\n*** LAST STRENGTH SESSION ***\n\nACTIVATION (10min):\nBodyweight squats 2x15 | Glute bridges 2x12 | Calf raises 2x15\n\nCORE (5min):\nPlank 2x30s | Dead Bug 2x8 each\n\nMOBILITY (15min):\nHip flexors 60s each | Pigeon 60s each | Hamstrings 45s each | Ankles 30s each\nFoam roll: Quads 2min | Calves 2min",
-    "Focus": "Taper begins + creatine stop"
+    "Focus": "Taper begins + creatine stop",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "5",
@@ -357,7 +386,8 @@
     "TargetHRZone": "Z3 (153-168)",
     "Details": "8km / 300m D+ \u2014 5x3min hill repeats (last quality session)",
     "WorkoutDescription": "AM SESSION \u2014 HILL REPEATS (last quality session)\nDistance: 8km | D+: 300m | Duration: 50min\n10min easy warm-up. Main set: 5x3min at Z3 (HR 153-168) on moderate incline. Walk/jog recovery. 10min cool-down.\nThis is your LAST hard session. Run with confidence.\n\nTREADMILL ALTERNATIVE:\n10min warm-up at 1% incline.\n5x3min at 12% gradient, 5.5-6.5 km/h \u2014 adjust speed to hit Z3 (HR 153-168).\n90s standing rest between reps (HR below 140).\n10min cool-down at 1%.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nFull lower body mobility + foam roll.",
-    "Focus": "Last quality effort before taper"
+    "Focus": "Last quality effort before taper",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "5",
@@ -369,7 +399,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "5km / 20m D+ \u2014 flat, fasted",
     "WorkoutDescription": "EASY RUN (fasted)\nDistance: 5km | D+: 20m | Duration: 35min\nFlat, very easy. LOW calorie day.",
-    "Focus": "Easy recovery"
+    "Focus": "Easy recovery",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "5",
@@ -381,7 +412,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "10km / 700m D+ \u2014 mountain run with poles",
     "WorkoutDescription": "MOUNTAIN RUN\nDistance: 10km | D+: 700m | D-: 700m | Duration: 1h30\nSal\u00e8ve or local mountain. Hike up with poles, easy run down. HR Z1-Z2. HIGH calorie day.",
-    "Focus": "Mountain maintenance"
+    "Focus": "Mountain maintenance",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "5",
@@ -393,7 +425,8 @@
     "TargetHRZone": "N/A",
     "Details": "Rest + light mobility",
     "WorkoutDescription": "REST DAY\nLight 15min mobility. LOW calorie day.",
-    "Focus": "Recovery"
+    "Focus": "Recovery",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "5",
@@ -405,7 +438,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "20km / 1,100m D+ \u2014 LAST LONG RUN, test final race nutrition",
     "WorkoutDescription": "LAST LONG RUN\nDistance: 20km | D+: 1,100m | D-: 1,100m | Duration: 2h30-3h\nMountain. Poles. Final nutrition test \u2014 use exact race-day products.\nZ1-Z2. Finish feeling like you could do 2 more hours. HIGH calorie day.",
-    "Focus": "Final nutrition test + confidence builder"
+    "Focus": "Final nutrition test + confidence builder",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "5",
@@ -417,7 +451,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "5km / 20m D+ \u2014 flat, easy",
     "WorkoutDescription": "EASY RUN\nDistance: 5km | D+: 20m | Duration: 30min\nFlat, very easy. LOW calorie day.",
-    "Focus": "Active recovery"
+    "Focus": "Active recovery",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "6",
@@ -429,7 +464,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "5km / 20m D+ \u2014 flat, fasted",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN (fasted)\nDistance: 5km | D+: 20m | Duration: 30min\nMonday weigh-in. Trust the taper.\n\nLUNCH SESSION \u2014 MOBILITY (20min)\nGentle stretching and foam roll. No strength.\nHip flexors 60s each | Hamstrings 45s each | Quads 45s each\nFoam roll: full body light pass",
-    "Focus": "Taper \u2014 trust the process"
+    "Focus": "Taper \u2014 trust the process",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "6",
@@ -441,7 +477,8 @@
     "TargetHRZone": "Z1-Z3",
     "Details": "6km / 50m D+ \u2014 4x2min Z3 pickups",
     "WorkoutDescription": "SHORT QUALITY\nDistance: 6km | D+: 50m | Duration: 35min\n15min warm-up. 4x2min at Z3. 2min jog between. 10min cool-down. Feel snappy. LOW calorie day.",
-    "Focus": "Sharpening"
+    "Focus": "Sharpening",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "6",
@@ -453,7 +490,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "4km / 10m D+ \u2014 flat, very easy",
     "WorkoutDescription": "AM SESSION \u2014 EASY RUN\nDistance: 4km | D+: 10m | Duration: 25min\nMinimal.\n\nLUNCH SESSION \u2014 LIGHT CORE (15min)\nPlanks 2x30s | Dead Bug 2x8 each | Glute Bridges 2x12\nLOW calorie day.",
-    "Focus": "Minimal maintenance"
+    "Focus": "Minimal maintenance",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "6",
@@ -465,7 +503,8 @@
     "TargetHRZone": "Z1-Z2 (<153)",
     "Details": "5km / 350m D+ \u2014 easy hike with poles",
     "WorkoutDescription": "EASY HIKE WITH POLES\nDistance: 5km | D+: 350m | D-: 350m | Duration: 45min\nLast mountain touch before race day. HR under 153. Visualize race day.",
-    "Focus": "Mountain feel + visualization"
+    "Focus": "Mountain feel + visualization",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "6",
@@ -477,7 +516,8 @@
     "TargetHRZone": "N/A",
     "Details": "Rest + light mobility",
     "WorkoutDescription": "REST DAY\nLight 15min mobility. LOW calorie day. Check mandatory gear list.",
-    "Focus": "Recovery"
+    "Focus": "Recovery",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "6",
@@ -489,7 +529,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "5km / 20m D+ \u2014 easy + 3x15s strides",
     "WorkoutDescription": "SHAKEOUT + STRIDES\nDistance: 5km | D+: 20m | Duration: 30min\n25min easy jog + 3x15s strides (60s walk between). Taper heaviness is normal.",
-    "Focus": "Activation"
+    "Focus": "Activation",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "6",
@@ -501,7 +542,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "3km / 10m D+ \u2014 flat, or complete rest",
     "WorkoutDescription": "EASY JOG OR REST\nDistance: 3km | D+: 10m | Duration: 20min\nVery easy jog or complete rest. LOW calorie day.",
-    "Focus": "Recovery"
+    "Focus": "Recovery",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "7",
@@ -513,7 +555,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "3km / 10m D+ \u2014 easy jog",
     "WorkoutDescription": "EASY JOG\nDistance: 3km | D+: 10m | Duration: 20min\nVery easy. Normal eating.",
-    "Focus": "Minimal maintenance"
+    "Focus": "Minimal maintenance",
+    "NutritionDay": "LOW"
   },
   {
     "Week": "7",
@@ -525,7 +568,8 @@
     "TargetHRZone": "N/A",
     "Details": "Mobility + glute activation",
     "WorkoutDescription": "LIGHT MOBILITY + ACTIVATION\nClamshells 2x15 each | Banded walks 2x20 steps | Glute bridges 2x15\nHip openers 60s each | Ankle mobility 30s each\nNo running.",
-    "Focus": "Glute activation"
+    "Focus": "Glute activation",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "7",
@@ -537,7 +581,8 @@
     "TargetHRZone": "Z1 (<138)",
     "Details": "2km / 0m D+ \u2014 shakeout + 3x15s strides",
     "WorkoutDescription": "FINAL SHAKEOUT\nDistance: 2km | D+: 0m | Duration: 15min\n10min easy jog + 3x15s strides (60s walk between).\nBEGIN CARB LOADING: 6-7g/kg = 570-665g carbs. White rice, pasta, bread, honey, jam, juice.",
-    "Focus": "Final activation + carb loading"
+    "Focus": "Final activation + carb loading",
+    "NutritionDay": "MODERATE"
   },
   {
     "Week": "7",
@@ -549,7 +594,8 @@
     "TargetHRZone": "N/A",
     "Details": "FULL REST \u2014 J-2 heavy carb loading",
     "WorkoutDescription": "FULL REST\nHEAVY CARB LOADING: 8-10g/kg = 760-950g carbs.\nEat every 2-3h: white rice, pasta, bread, pancakes, honey, jam, juice, sports drinks.\nMinimal fiber/fat. +1-2kg water = glycogen fuel. Bed by 9:30 PM.",
-    "Focus": "Glycogen supercompensation"
+    "Focus": "Glycogen supercompensation",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "7",
@@ -561,7 +607,8 @@
     "TargetHRZone": "N/A",
     "Details": "FULL REST \u2014 J-1, pack race bag, early bed",
     "WorkoutDescription": "FULL REST\nBig carb breakfast + big pasta lunch. Light dinner by 6 PM.\nPack race bag. Lay out clothes. Pin bib. Charge headlamp + watch.\nSet 2 alarms for 3:00 AM. Magnesium at 8:30 PM. Bed by 9:00 PM.\nYou are ready.",
-    "Focus": "Final preparation"
+    "Focus": "Final preparation",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "7",
@@ -573,7 +620,8 @@
     "TargetHRZone": "Z1-Z3",
     "Details": "76.9km / 5,000m D+ \u2014 Trail du Gypa\u00e8te Les 3 Lacs \u2014 SUB-14H GOAL",
     "WorkoutDescription": "*** RACE DAY ***\nDistance: 76.9km | D+: 5,000m | Goal: Sub-14 hours\n\n3:00 AM Wake | 3:15 AM Pre-race meal | 5:00 AM START\n\nFlat: 8-9/km Z1-Z2 | Moderate climb: 12-15/km Z2 poles | Steep: 18-25/km Z2-Z3 poles\nEasy descent: 7-8/km | Technical: 9-12/km\n\n80-90g carbs/h. C90 every hour. Bar every 2h. Salt cap every 45min. Water 500-700ml/h.\nCaffeine 100mg at hour 3, then every 3h.\n\nWalk ALL climbs. Never exceed Z3. Start conservative. Aid stations <5 min. DO NOT SIT DOWN.",
-    "Focus": "RACE DAY"
+    "Focus": "RACE DAY",
+    "NutritionDay": "HIGH"
   },
   {
     "Week": "7",
@@ -585,6 +633,7 @@
     "TargetHRZone": "N/A",
     "Details": "Post-race recovery \u2014 no running 7-10 days",
     "WorkoutDescription": "POST-RACE RECOVERY\nNo running. Walk only. Foam roll gently. Eat well. Compression socks. Celebrate.\nDays 1-7: No running | Days 8-14: Light easy runs 3x/week | Week 3+: Normal running | Week 4+: 114K build",
-    "Focus": "Celebrate + recover"
+    "Focus": "Celebrate + recover",
+    "NutritionDay": "LOW"
   }
 ]

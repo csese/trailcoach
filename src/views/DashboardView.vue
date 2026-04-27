@@ -261,9 +261,20 @@ const workoutColors = {
                   Today
                 </span>
               </div>
-              <p class="text-sm text-text-muted truncate">
+              <p class="text-sm text-text-muted truncate flex items-center gap-2">
                 <template v-if="day.workout">
                   {{ day.workout['Planned Duration'] || day.workout.PlannedDuration }} • {{ day.workout.Focus }}
+                  <span
+                    v-if="day.workout.NutritionDay"
+                    class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider flex-shrink-0"
+                    :class="{
+                      'bg-green-500/20 text-green-400': day.workout.NutritionDay === 'HIGH',
+                      'bg-yellow-500/20 text-yellow-400': day.workout.NutritionDay === 'MODERATE',
+                      'bg-blue-500/20 text-blue-400': day.workout.NutritionDay === 'LOW'
+                    }"
+                  >
+                    {{ day.workout.NutritionDay === 'HIGH' ? 'H' : day.workout.NutritionDay === 'MODERATE' ? 'M' : 'L' }}
+                  </span>
                 </template>
                 <template v-else>
                   Recovery & adaptation

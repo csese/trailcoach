@@ -122,6 +122,20 @@ const isRaceDay = computed(() => workoutType.value === 'race')
           {{ lunchSession.title }}
         </span>
       </div>
+
+      <!-- Nutrition badge -->
+      <div v-if="day.workout.NutritionDay" class="mt-1">
+        <span
+          class="inline-flex px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider"
+          :class="{
+            'bg-green-500/20 text-green-400': day.workout.NutritionDay === 'HIGH',
+            'bg-yellow-500/20 text-yellow-400': day.workout.NutritionDay === 'MODERATE',
+            'bg-blue-500/20 text-blue-400': day.workout.NutritionDay === 'LOW'
+          }"
+        >
+          {{ day.workout.NutritionDay }}
+        </span>
+      </div>
     </div>
 
     <!-- Empty day -->
