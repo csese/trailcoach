@@ -1,13 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { Flame, Zap, Snowflake, ChevronDown } from 'lucide-vue-next'
 
 const activeTab = ref('HIGH')
-const expandedMeal = ref(null)
-
-function toggleMeal(id) {
-  expandedMeal.value = expandedMeal.value === id ? null : id
-}
 
 const tabs = [
   { id: 'HIGH', label: 'High', icon: Flame, color: 'text-green-400', bg: 'bg-green-500/20', border: 'border-green-500/30', cal: '~3,000 kcal', desc: 'Long runs, race sims, back-to-back weekends, mountain days' },
@@ -20,7 +15,6 @@ const meals = {
     macros: { carbs: '5g/kg (~475g)', protein: '2g/kg (~190g)', fat: '0.8g/kg (~76g)' },
     schedule: [
       {
-        id: 'h-breakfast',
         time: '7:00-8:00',
         name: 'Breakfast (post-training)',
         protein: '35-40g',
@@ -30,7 +24,6 @@ const meals = {
         ]
       },
       {
-        id: 'h-shake',
         time: '10:00',
         name: 'Protein Shake',
         protein: '40g',
@@ -39,9 +32,8 @@ const meals = {
         ]
       },
       {
-        id: 'h-lunch',
         time: '12:30-13:30',
-        name: 'Lunch',
+        name: 'Lunch — full portions',
         protein: '45g',
         options: [
           { title: 'Grain Bowl', desc: '200g quinoa + 250g firm tofu (pan-fried) + roasted broccoli, peppers, edamame + tahini-lemon dressing' },
@@ -52,7 +44,6 @@ const meals = {
         ]
       },
       {
-        id: 'h-snack',
         time: '15:30-16:00',
         name: 'Afternoon Snack',
         protein: '20g',
@@ -62,9 +53,8 @@ const meals = {
         ]
       },
       {
-        id: 'h-dinner',
         time: '19:00-20:00',
-        name: 'Dinner',
+        name: 'Dinner — full portions',
         protein: '45g',
         options: [
           { title: 'Lentil Bolognese', desc: 'Red lentil sauce over 150g pasta + side salad' },
@@ -76,9 +66,8 @@ const meals = {
         ]
       },
       {
-        id: 'h-evening',
         time: '21:00',
-        name: 'Evening',
+        name: 'Evening Snack',
         protein: '20g',
         options: [
           { title: 'Cottage Cheese', desc: '150g cottage cheese with pumpkin seeds' },
@@ -91,57 +80,59 @@ const meals = {
     macros: { carbs: '3g/kg (~285g)', protein: '2g/kg (~190g)', fat: '0.8g/kg (~76g)' },
     schedule: [
       {
-        id: 'm-breakfast',
         time: '7:00-8:00',
-        name: 'Breakfast',
+        name: 'Breakfast (same as HIGH)',
         protein: '35-40g',
         options: [
-          { title: '4 Eggs + Oats (same as HIGH)', desc: 'Same breakfast options as HIGH day. Post-training fuel stays the same.' }
+          { title: '4 Eggs + Oats Bowl', desc: '4 eggs scrambled + 100g oats with soy milk, banana, chia seeds, nuts. Tea + PeptiStrong 2.4g' },
+          { title: '4 Eggs + Sourdough', desc: '4 eggs poached + 2 slices sourdough toast, 1/2 avocado, spinach, olive oil. Tea + PeptiStrong 2.4g' }
         ]
       },
       {
-        id: 'm-shake',
         time: '10:00',
         name: 'Protein Shake',
         protein: '40g',
         options: [
-          { title: 'Pea Protein Shake', desc: '40g pea/rice protein blend with water. Same as every day.' }
+          { title: 'Pea Protein Shake', desc: '40g pea/rice protein blend with water.' }
         ]
       },
       {
-        id: 'm-lunch',
         time: '12:30-13:30',
-        name: 'Lunch (reduced carbs)',
+        name: 'Lunch — REDUCED carbs (-30%)',
         protein: '45g',
         options: [
-          { title: 'Same meals as HIGH but...', desc: 'Reduce carb base by 30%: 130g rice/quinoa instead of 200g. Keep protein portion the same (250g tofu, 300g lentils). Add extra vegetables to fill the plate.' }
+          { title: 'Grain Bowl (reduced)', desc: '130g quinoa (not 200g) + 250g firm tofu + roasted broccoli, peppers, edamame + extra vegetables to fill the plate' },
+          { title: 'Lentil Plate (reduced)', desc: '130g brown rice (not 200g) + 300g lentils + extra roasted vegetables + olive oil' },
+          { title: 'Chickpea Salad (no wrap)', desc: '200g spiced chickpeas over large salad (no tortilla) + shredded veg + hummus' },
+          { title: 'Tempeh Stir-fry (reduced)', desc: '130g rice noodles (not 200g) + 150g tempeh + double the vegetables' },
+          { title: 'Egg Bowl (reduced)', desc: '130g rice (not 200g) + 3 eggs + 100g edamame + extra greens' }
         ]
       },
       {
-        id: 'm-snack',
         time: '15:30',
-        name: 'Afternoon Snack (lighter)',
+        name: 'Afternoon — lighter',
         protein: '15g',
         options: [
-          { title: 'Greek Yogurt Only', desc: '150g Greek yogurt, no nuts, no honey. Or skip if not hungry.' }
+          { title: 'Greek Yogurt Only', desc: '150g Greek yogurt. No nuts, no honey. Skip if not hungry.' }
         ]
       },
       {
-        id: 'm-dinner',
         time: '19:00-20:00',
-        name: 'Dinner (reduced carbs)',
+        name: 'Dinner — REDUCED carbs (-30%)',
         protein: '45g',
         options: [
-          { title: 'Same meals as HIGH but...', desc: 'Reduce carb portion by 30% (less pasta/rice/bread). Double the vegetables. Keep protein the same.' }
+          { title: 'Lentil Bolognese (light)', desc: 'Red lentil sauce over 100g pasta (not 150g) + large side salad' },
+          { title: 'Tofu Curry (light rice)', desc: 'Coconut curry with 250g tofu, chickpeas, spinach, over 100g rice' },
+          { title: 'Shakshuka (no bread)', desc: '4 eggs in spiced tomato sauce. Large salad on the side. Skip the bread.' },
+          { title: 'Veggie Chili (less grain)', desc: 'Kidney beans, black beans, peppers, tomato over 100g quinoa + extra veg' }
         ]
       },
       {
-        id: 'm-evening',
         time: '21:00',
-        name: 'Evening',
+        name: 'Evening — skip',
         protein: '0g',
         options: [
-          { title: 'No evening snack', desc: 'Skip unless genuinely hungry. Herbal tea only.' }
+          { title: 'No evening snack', desc: 'Herbal tea only. Stop eating after dinner.' }
         ]
       }
     ]
@@ -150,63 +141,68 @@ const meals = {
     macros: { carbs: '2g/kg (~190g)', protein: '2.2g/kg (~210g)', fat: '0.9g/kg (~86g)' },
     schedule: [
       {
-        id: 'l-breakfast',
         time: '7:00-8:00',
-        name: 'Breakfast (high protein, low carb)',
+        name: 'Breakfast — NO carbs',
         protein: '35g',
         options: [
-          { title: '4 Eggs + Vegetables', desc: '4 eggs scrambled with spinach, mushrooms, peppers. No toast. No oats. Tea + PeptiStrong 2.4g.' }
+          { title: '4 Eggs + Vegetables', desc: '4 eggs scrambled with spinach, mushrooms, peppers. NO toast. NO oats. Tea + PeptiStrong 2.4g.' }
         ]
       },
       {
-        id: 'l-shake',
         time: '10:00',
         name: 'Protein Shake',
         protein: '40g',
         options: [
-          { title: 'Pea Protein with Water', desc: '40g pea/rice protein + water only. No banana, no extras.' }
+          { title: 'Pea Protein + Water', desc: '40g pea/rice protein + water only. No banana, no extras.' }
         ]
       },
       {
-        id: 'l-lunch',
         time: '12:30-13:30',
-        name: 'Lunch (protein + veg, no starch)',
+        name: 'Lunch — NO starch',
         protein: '45g',
         options: [
-          { title: 'Big Protein Salad', desc: 'Large salad with 250g tofu or tempeh, avocado, seeds, olive oil dressing. No rice, no bread.' },
-          { title: '4-Egg Omelette', desc: '4-egg omelette with vegetables (peppers, mushrooms, spinach). Side salad. No bread.' }
+          { title: 'Big Protein Salad', desc: 'Large salad with 250g tofu or tempeh, avocado, seeds, olive oil dressing. No rice, no bread, no grains.' },
+          { title: '4-Egg Omelette', desc: '4-egg omelette with peppers, mushrooms, spinach, cheese. Side salad. No bread.' }
         ]
       },
       {
-        id: 'l-snack',
         time: '15:30',
-        name: 'Afternoon',
+        name: 'Afternoon — SKIP',
         protein: '0g',
         options: [
-          { title: 'Skip or herbal tea', desc: 'No snack. Drink water or herbal tea. Stay busy.' }
+          { title: 'Nothing', desc: 'No snack. Water or herbal tea only. Stay busy — boredom eating is the enemy.' }
         ]
       },
       {
-        id: 'l-dinner',
-        time: '19:00 (stop eating by 20:00)',
-        name: 'Dinner (protein + veg, no starch)',
+        time: '19:00 (stop by 20:00)',
+        name: 'Dinner — NO starch, stop by 8PM',
         protein: '45g',
         options: [
-          { title: 'Tofu/Tempeh Stir-fry', desc: '250g tofu or tempeh with vegetables (no rice, no noodles).' },
-          { title: 'Frittata + Salad', desc: '4-egg frittata with roasted vegetables. Large side salad.' }
+          { title: 'Tofu/Tempeh Stir-fry', desc: '250g tofu or tempeh with vegetables only. No rice, no noodles.' },
+          { title: 'Frittata + Salad', desc: '4-egg frittata with roasted vegetables. Large side salad. No bread.' }
         ]
       },
       {
-        id: 'l-evening',
         time: '',
-        name: 'Evening',
+        name: 'Evening — 14h FAST begins',
         protein: '0g',
         options: [
-          { title: 'Nothing after 20:00', desc: '14h fasting window until breakfast. Herbal tea only.' }
+          { title: 'Nothing after 20:00', desc: '14-hour fasting window until breakfast. Herbal tea only. No snacking.' }
         ]
       }
     ]
   }
+}
+
+const currentTab = computed(() => tabs.find(t => t.id === activeTab.value))
+const currentMeals = computed(() => meals[activeTab.value])
+
+// Reset expanded meals when switching tabs
+const expandedMeal = ref(null)
+watch(activeTab, () => { expandedMeal.value = null })
+
+function toggleMeal(idx) {
+  expandedMeal.value = expandedMeal.value === idx ? null : idx
 }
 
 const rules = [
@@ -263,46 +259,46 @@ const supplements = [
       </button>
     </div>
 
-    <!-- Active Day Type -->
-    <div v-for="tab in tabs" :key="tab.id" v-show="activeTab === tab.id">
+    <!-- Active Day Content (single render, no v-for) -->
+    <div :key="activeTab">
       <!-- Description -->
-      <div :class="['card border', tab.border, tab.bg]" class="mb-4">
-        <p :class="['text-sm font-medium', tab.color]">{{ tab.desc }}</p>
+      <div :class="['card border mb-4', currentTab.border, currentTab.bg]">
+        <p :class="['text-sm font-medium', currentTab.color]">{{ currentTab.desc }}</p>
         <div class="flex gap-6 mt-3 text-xs text-text-muted">
-          <span>Carbs: <span class="text-text-primary font-medium">{{ meals[tab.id].macros.carbs }}</span></span>
-          <span>Protein: <span class="text-text-primary font-medium">{{ meals[tab.id].macros.protein }}</span></span>
-          <span>Fat: <span class="text-text-primary font-medium">{{ meals[tab.id].macros.fat }}</span></span>
+          <span>Carbs: <span class="text-text-primary font-medium">{{ currentMeals.macros.carbs }}</span></span>
+          <span>Protein: <span class="text-text-primary font-medium">{{ currentMeals.macros.protein }}</span></span>
+          <span>Fat: <span class="text-text-primary font-medium">{{ currentMeals.macros.fat }}</span></span>
         </div>
       </div>
 
       <!-- Meal Schedule -->
       <div class="space-y-2">
         <div
-          v-for="meal in meals[tab.id].schedule"
-          :key="meal.id"
+          v-for="(meal, idx) in currentMeals.schedule"
+          :key="activeTab + '-' + idx"
           class="card bg-bg-tertiary overflow-hidden"
         >
           <!-- Meal Header -->
           <div
-            @click="toggleMeal(meal.id)"
+            @click="toggleMeal(idx)"
             class="flex items-center justify-between cursor-pointer"
           >
             <div class="flex items-center gap-3">
-              <span v-if="meal.time" class="text-xs font-mono text-text-muted w-16 flex-shrink-0">{{ meal.time }}</span>
-              <span v-else class="w-16 flex-shrink-0"></span>
+              <span v-if="meal.time" class="text-xs font-mono text-text-muted w-20 flex-shrink-0">{{ meal.time }}</span>
+              <span v-else class="w-20 flex-shrink-0"></span>
               <div>
                 <p class="text-sm font-semibold text-text-primary">{{ meal.name }}</p>
                 <p class="text-xs text-text-muted">{{ meal.protein }} protein</p>
               </div>
             </div>
             <ChevronDown
-              class="w-4 h-4 text-text-muted transition-transform"
-              :class="{ 'rotate-180': expandedMeal === meal.id }"
+              class="w-4 h-4 text-text-muted transition-transform flex-shrink-0"
+              :class="{ 'rotate-180': expandedMeal === idx }"
             />
           </div>
 
           <!-- Meal Options (expanded) -->
-          <div v-if="expandedMeal === meal.id" class="mt-3 space-y-2 border-t border-border pt-3">
+          <div v-if="expandedMeal === idx" class="mt-3 space-y-2 border-t border-border pt-3">
             <div
               v-for="(option, oi) in meal.options"
               :key="oi"
