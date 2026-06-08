@@ -255,8 +255,8 @@
     "PlannedDuration": "2h30",
     "TargetHRZone": "Z2 (138-153)",
     "Details": "22km / 800m D+ — rolling trail",
-    "WorkoutDescription": "LONG RUN 2h30 Z2. Gut training starts NOW: 90g carbs/h on every run >1h30 — this is a free performance gain.",
-    "Focus": "Endurance + gut training",
+    "WorkoutDescription": "SUB-16H CONTEXT: 16h = 5:53/effort-km = your exact Gypaète effort-pace, held over 40% more distance.\nThe limiter is not your engine (HR 122 at Gypaète proves it) — it's quad durability at km 95 and time lost stopped.\nSo this block over-weights two things: descent armor and aid-station efficiency. Bank them now.\n\nLONG RUN 2h30 Z2. Gut training starts NOW: 90g carbs/h on every run >1h30.\n\nAID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.",
+    "Focus": "Endurance + gut + aid drill",
     "NutritionDay": "HIGH"
   },
   {
@@ -346,8 +346,8 @@
     "PlannedDuration": "4h",
     "TargetHRZone": "Z2 (138-153)",
     "Details": "32km / 1,800m D+ — big mountain loop",
-    "WorkoutDescription": "LONG RUN 4h. Z2 cap, walk all climbs with poles, run everything runnable. Full race fueling: 90g carbs/h, salt /45min, 500-700ml/h.\nGYPAÈTE LESSON: descents CONTROLLED — cadence 85+, no hero descending (your max HR at Gypaète was in the km 20 descent, not a climb).",
-    "Focus": "Long endurance",
+    "WorkoutDescription": "LONG RUN 4h. Z2 cap, walk all climbs with poles, run everything runnable. Full race fueling: 90g carbs/h, salt /45min, 500-700ml/h.\nGYPAÈTE LESSON: descents CONTROLLED — cadence 85+, no hero descending (your max HR at Gypaète was in the km 20 descent, not a climb).\n\nAID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.",
+    "Focus": "Long endurance + aid drill",
     "NutritionDay": "HIGH"
   },
   {
@@ -355,12 +355,12 @@
     "Phase": "Front-Load Build",
     "Dates": "Jun 29-Jul 5",
     "Day": "Sun",
-    "SessionType": "Easy Run",
+    "SessionType": "Downhill Technique",
     "PlannedDuration": "1h",
-    "TargetHRZone": "Z1 (<138)",
-    "Details": "9km / 200m D+",
-    "WorkoutDescription": "Easy trail jog 1h on tired legs.",
-    "Focus": "Volume consolidation",
+    "TargetHRZone": "Z1-Z2 (<153)",
+    "Details": "9km / 350m D+ — descent on tired legs",
+    "WorkoutDescription": "DOWNHILL TECHNIQUE on pre-fatigued legs (sub-16h descent armor).\n15min easy climb. Then 3-4 controlled descents of ~4-6min on moderate technical trail: cadence 85+, soft knees, eyes 3m ahead, relaxed shoulders. Hike up easy between.\nRunning descents the day AFTER a 4h run is exactly km 80-109 at Nice — this is where 16h is won.",
+    "Focus": "Descent resistance (doubled)",
     "NutritionDay": "MODERATE"
   },
   {
@@ -437,8 +437,8 @@
     "PlannedDuration": "5h",
     "TargetHRZone": "Z2 (138-153)",
     "Details": "40km / 2,400m D+ — big mountain day",
-    "WorkoutDescription": "WEEK-END CHOC DAY 1 — 5h, 40km / 2,400m D+.\nZ2 ceiling. Climbs 450 m/h poles. Descents controlled-firm, cadence 85+.\nFull race protocol: 90g carbs/h, salt /45min, 500-700ml/h, caffeine 100mg at h3.\nThis weekend is moved UP from August — bank it before the baby.",
-    "Focus": "Race simulation",
+    "WorkoutDescription": "WEEK-END CHOC DAY 1 — 5h, 40km / 2,400m D+.\nZ2 ceiling. Climbs 450 m/h poles. Descents controlled-firm, cadence 85+.\nFull race protocol: 90g carbs/h, salt /45min, 500-700ml/h, caffeine 100mg at h3.\nThis weekend is moved UP from August — bank it before the baby.\n\nAID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.",
+    "Focus": "Race simulation + aid drill",
     "NutritionDay": "HIGH"
   },
   {
@@ -563,11 +563,11 @@
     "Phase": "Menu — Newborn Mode",
     "Dates": "Jul 20-26",
     "Day": "Tue",
-    "SessionType": "Hill Repeats (menu P2)",
+    "SessionType": "Hill+Downhill (menu P2)",
     "PlannedDuration": "1h",
     "TargetHRZone": "Z2-Z3",
-    "Details": "8km / 300m D+ — 6x3min Z3",
-    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP2 — HILL REPEATS 6x3min Z3 (shortened newborn version). 10min warm-up/cool-down.\nSkip if <5h sleep — trainer Z2 instead.",
+    "Details": "8km / 350m D+ — 4x3min up Z3 + 4x3min down",
+    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP2 — UP/DOWN COMBO (sub-16h): 4x3min climb at Z3, then 4x3min controlled-hard descent (cadence 85+). Now every menu week trains descent.\nSkip if <5h sleep — trainer Z2 instead.",
     "Focus": "Quality session",
     "NutritionDay": "MODERATE"
   },
@@ -619,7 +619,7 @@
     "PlannedDuration": "2h30",
     "TargetHRZone": "Z2 (138-153)",
     "Details": "20km / 1,000m D+",
-    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 2h30, 1,000m D+. Z2, poles on climbs, controlled descents. 90g carbs/h.\nShort on time? Maximize D+ per hour instead of distance.",
+    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 2h30, 1,000m D+. Z2, poles on climbs, controlled descents. 90g carbs/h.\nShort on time? Maximize D+ per hour instead of distance.\n\nAID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.",
     "Focus": "THE key session",
     "NutritionDay": "HIGH"
   },
@@ -710,7 +710,7 @@
     "PlannedDuration": "3h",
     "TargetHRZone": "Z2 (138-153)",
     "Details": "24km / 1,400m D+",
-    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 3h, 1,400m D+. Z2 discipline. Full race fueling.\nInclude one sustained descent of 400m+ D- at firm effort, cadence 85+.",
+    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 3h, 1,400m D+. Z2 discipline. Full race fueling.\nInclude one sustained descent of 400m+ D- at firm effort, cadence 85+.\n\nAID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.",
     "Focus": "THE key session",
     "NutritionDay": "HIGH"
   },
@@ -745,11 +745,11 @@
     "Phase": "Menu — Newborn Mode",
     "Dates": "Aug 3-9",
     "Day": "Tue",
-    "SessionType": "Hill Repeats (menu P2)",
+    "SessionType": "Hill+Downhill (menu P2)",
     "PlannedDuration": "1h",
     "TargetHRZone": "Z2-Z3",
-    "Details": "9km / 350m D+ — 7x3min Z3",
-    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP2 — HILL REPEATS 7x3min Z3.\nSkip if <5h sleep — trainer Z2 instead.",
+    "Details": "9km / 400m D+ — 4x4min up Z3 + 5x3min down",
+    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP2 — UP/DOWN COMBO (sub-16h): 4x4min climb at Z3, then 5x3min controlled-hard descent, cadence 85+.\nSkip if <5h sleep — trainer Z2 instead.",
     "Focus": "Quality session",
     "NutritionDay": "MODERATE"
   },
@@ -801,7 +801,7 @@
     "PlannedDuration": "4h",
     "TargetHRZone": "Z2 (138-153)",
     "Details": "30km / 1,800m D+",
-    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 4h, 1,800m D+. Dress rehearsal lite: full race kit, vest, poles, 90g carbs/h, caffeine at h3.\nLast hour: deliberately practice running on tired legs — all runnable gradients get run.",
+    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 4h, 1,800m D+. Dress rehearsal lite: full race kit, vest, poles, 90g carbs/h, caffeine at h3.\nLast hour: deliberately practice running on tired legs — all runnable gradients get run.\n\nAID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.",
     "Focus": "THE key session",
     "NutritionDay": "HIGH"
   },
@@ -892,7 +892,7 @@
     "PlannedDuration": "4h30",
     "TargetHRZone": "Z2 (138-153)",
     "Details": "34km / 2,000m D+",
-    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 4h30, 2,000m D+. Biggest menu-mode session.\nZ2 cap, race fueling, long descents at firm effort. If the window is only 3h30: same D+ in less distance.",
+    "WorkoutDescription": "MENU WEEK RULES (newborn mode — days are SUGGESTIONS, swap freely):\nP1 (non-negotiable, negotiate the slot with your partner): the weekend mountain run.\nP2 (important): one hill/downhill session ~1h.\nP3 (filler): home trainer blocks during naps — accumulate what you can.\nSLEEP RULES: <5h sleep = no intensity today, trainer Z2 instead. Resting HR +8bpm = full rest day.\nNo fasted sessions until further notice — your cortisol is high enough.\n\nP1 — MOUNTAIN RUN 4h30, 2,000m D+. Biggest menu-mode session.\nZ2 cap, race fueling, long descents at firm effort. If the window is only 3h30: same D+ in less distance.\n\nAID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.",
     "Focus": "THE key session",
     "NutritionDay": "HIGH"
   },
@@ -1161,12 +1161,12 @@
     "Phase": "Peak",
     "Dates": "Aug 31-Sep 6",
     "Day": "Sat",
-    "SessionType": "Long Run",
-    "PlannedDuration": "3h",
+    "SessionType": "MINI-SIMULATION 2",
+    "PlannedDuration": "4h",
     "TargetHRZone": "Z2 (138-153)",
-    "Details": "26km / 1,200m D+",
-    "WorkoutDescription": "LONG RUN 3h Z2. Last 40min at race effort. Final fueling rehearsal. After this: the hay is in the barn.",
-    "Focus": "Last long run",
+    "Details": "32km / 1,800m D+ — second dress rehearsal",
+    "WorkoutDescription": "MINI-SIMULATION #2 (sub-16h insurance) — 4h, 32km / 1,800m D+.\nStart at race time, full kit, exact race nutrition 90g carbs/h. This second simulation is what separates 16h from 17h: it confirms the descent armor and fueling under fatigue a second time.\nLast hour at race effort on descents. AID-STATION DRILL (sub-16h gain — practice EVERY long run):\nAt Gypaète you lost 39min stopped. Sub-16h needs <20min total on race day.\nSimulate 2-3 aid stops during this run: stop watch, refill flasks, eat, restock — target UNDER 3min each.\nDrill the moves: flasks pre-mixed, gels in easy-reach pocket, eat WHILE walking out. Never sit. No phone.\nThis is ~20 free minutes on race day with zero added fatigue — the single safest path to 16h.\nAfter this: the hay is in the barn.",
+    "Focus": "Second simulation",
     "NutritionDay": "HIGH"
   },
   {
@@ -1174,12 +1174,12 @@
     "Phase": "Peak",
     "Dates": "Aug 31-Sep 6",
     "Day": "Sun",
-    "SessionType": "Rest",
-    "PlannedDuration": "0min",
-    "TargetHRZone": "N/A",
-    "Details": "Family day",
-    "WorkoutDescription": "Family day. Stroller walk.",
-    "Focus": "Recovery",
+    "SessionType": "Recovery Hike",
+    "PlannedDuration": "1h",
+    "TargetHRZone": "Z1 (<138)",
+    "Details": "5km / 300m D+ — easy hike on tired legs",
+    "WorkoutDescription": "Easy hike 1h with poles on tired legs (if family allows) — caps a true back-to-back. Otherwise family day + stroller walk.",
+    "Focus": "Fatigue resistance",
     "NutritionDay": "MODERATE"
   },
   {
@@ -1438,7 +1438,7 @@
     "PlannedDuration": "17h",
     "TargetHRZone": "Z1-Z3",
     "Details": "109km / 5,400m D+ — Nice Côte d'Azur by UTMB",
-    "WorkoutDescription": "*** RACE DAY — NICE 100K — 26 SEPT 2026 ***\nDistance: 109km | D+: 5,400m\nGOAL A: 17h (≈6:15/effort-km) | GOAL B: finish strong, sub-18h30\nYou ran Gypaète at 5:55/ekm at avg HR 122 — you have the engine. August was newborn mode: trust Goal A, accept Goal B without ego if the day says so.\n\nPACING:\nClimbs: 450-500 m/h, poles, Z2 max | Flats: 6:30-7:00/km Z1-Z2 | Descents: CONTROLLED, cadence 85+ — remember km 20 at Gypaète (HR 179): never again that early.\nFirst 30km (high Mercantour): deliberately slow, Z1-Z2 — feel embarrassed by how easy it is.\nKm 30-70: steady Z2. Aid stations <4min, NEVER sit. Target <30min total stopped (39min at Gypaète).\nKm 70-109: the race starts here. The descents to the sea = where the time is won. Trust the downhill work.\n\nNUTRITION (Gypaète-validated): 80-90g carbs/h | C90 hourly | bar every 2h | salt /45min | 500-700ml/h, more in afternoon heat | caffeine 100mg at h3, then every 3h.\nHEAT: trained all summer on the no-fan trainer — still: ice/water on neck at every aid station from km 60.\nNIGHT START: headlamp until ~7h30.\n\nWalk ALL climbs. NEVER exceed Z3. Your kid is waiting on the Promenade.",
+    "WorkoutDescription": "*** RACE DAY — NICE 100K — 26 SEPT 2026 ***\nDistance: 109km | D+: 5,400m\nGOAL A: 16h (≈5:53/effort-km = your Gypaète effort-pace) | GOAL B: 17h | GOAL C: finish strong, sub-18h30\nYou ran Gypaète at 5:55/ekm at avg HR 122 — the engine is there. 16h = hold that pace 40% longer. Decide at halfway, not at the start.\nDECISION RULE: at km 55, if avg HR <125 AND quads feel fresh on descents → green light for 16h, press the second half. If not → settle into 17h, finish strong. No ego.\n\nPACING:\nClimbs: 450-500 m/h, poles, Z2 max | Flats: 6:30-7:00/km Z1-Z2 | Descents: CONTROLLED, cadence 85+ — remember km 20 at Gypaète (HR 179): never again that early.\nFirst 30km (high Mercantour): deliberately slow, Z1-Z2 — feel embarrassed by how easy it is.\nKm 30-70: steady Z2. Aid stations <3min, NEVER sit, eat walking out. Target <20min total stopped (39min at Gypaète = your biggest free time saving).\nKm 70-109: the race starts here. The descents to the sea = where the time is won. Trust the downhill work.\n\nNUTRITION (Gypaète-validated): 80-90g carbs/h | C90 hourly | bar every 2h | salt /45min | 500-700ml/h, more in afternoon heat | caffeine 100mg at h3, then every 3h.\nHEAT: trained all summer on the no-fan trainer — still: ice/water on neck at every aid station from km 60.\nNIGHT START: headlamp until ~7h30.\n\nWalk ALL climbs. NEVER exceed Z3. Your kid is waiting on the Promenade.",
     "Focus": "RACE DAY",
     "NutritionDay": "HIGH"
   },
