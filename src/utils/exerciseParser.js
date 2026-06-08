@@ -29,7 +29,8 @@ const aliases = {
   'hip-flexor-stretch': ['hip flexor stretch', 'hip flexors'],
   'hamstring-stretch': ['hamstring stretch', 'hamstrings'],
   'single-leg-deadlift': ['single leg deadlift', 'single leg deadlifts', 'single-leg deadlifts'],
-  'step-down': ['step-downs', 'step downs', 'step-down'],
+  'step-down': ['step-downs', 'step downs', 'step-down', 'eccentric step-down', 'eccentric step-downs', 'box step-down'],
+  'spanish-squat': ['spanish squat', 'spanish squats'],
   'pigeon-pose': ['pigeon pose'],
   'ninety-ninety-stretch': ['90/90 stretch']
 }
