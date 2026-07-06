@@ -1,7 +1,17 @@
 -- TrailCoach Database Schema
 
 -- Enable UUID extension
+-- Use pgcrypto for gen_random_uuid (modern Postgres) with fallback to uuid-ossp
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Compatibility: create uuid_generate_v4 using gen_random_uuid if not available
+CREATE OR REPLACE FUNCTION uuid_generate_v4()
+RETURNS UUID AS $$
+BEGIN
+  RETURN gen_random_uuid();
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
 
 -- ============================================
 -- WORKOUTS TABLE
