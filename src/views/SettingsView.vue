@@ -2,7 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { useStrava } from '@/composables/useStrava'
-import { User, Heart, Sun, Moon, Download, Save, Link2, Unlink, Loader2, AlertCircle } from 'lucide-vue-next'
+import { useBiometrics } from '@/composables/useBiometrics'
+import { User, Heart, Sun, Moon, Download, Save, Link2, Unlink, Loader2, AlertCircle, Bed, Activity, Smartphone } from 'lucide-vue-next'
 
 const userStore = useUserStore()
 const {
@@ -15,15 +16,71 @@ const {
   checkConnection: checkStravaConnection
 } = useStrava()
 
+const {
+  loading: bioLoading,
+  syncEightSleep,
+  syncGoogleFit,
+  syncGarminConnect,
+  getIntegrationStatus
+} = useBiometrics()
+
 const displayName = ref('')
 const hrZones = ref({})
+const integrations = ref([])
+const eightSleepForm = ref({ email: '', password: '' })
+const googleFitForm = ref({ refresh_token: '' })
+const garminForm = ref({ email: '', password: '' })
+const showForms = ref({
+  eight_sleep: false,
+  google_fit: false,
+  garmin_connect: false
+})
 
 onMounted(async () => {
   userStore.loadSettings()
   displayName.value = userStore.displayName
   hrZones.value = JSON.parse(JSON.stringify(userStore.hrZones))
   await checkStravaConnection()
+  await loadIntegrations()
 })
+
+async function loadIntegrations() {
+  integrations.value = await getIntegrationStatus()
+}
+
+function getIntegration(provider) {
+  return integrations.value.find(i => i.provider === provider)
+}
+
+async function handleEightSleepSync() {
+  const result = await syncEightSleep(eightSleepForm.value)
+  if (result.status === 'success') {
+    await loadIntegrations()
+    showForms.value.eight_sleep = false
+  }
+}
+
+async function handleGoogleFitSync() {
+  const result = await syncGoogleFit({ 
+    refresh_token: googleFitForm.value.refresh_token,
+    access_token: '' 
+  })
+  if (result.status === 'success') {
+    await loadIntegrations()
+    showForms.value.google_fit = false
+  }
+}
+
+async function handleGarminSync() {
+  const result = await syncGarminConnect({ 
+    email: garminForm.value.email,
+    password: garminForm.value.password 
+  })
+  if (result.status === 'success') {
+    await loadIntegrations()
+    showForms.value.garmin_connect = false
+  }
+}
 
 function saveProfile() {
   userStore.setDisplayName(displayName.value)
@@ -157,6 +214,155 @@ async function handleDisconnectStrava() {
           <Link2 v-else class="w-4 h-4" />
           Connect Strava
         </button>
+      </div>
+    </div>
+
+    <!-- Biometrics Integrations -->
+    <div class="card">
+      <h2 class="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+        <Activity class="w-5 h-5 text-text-muted" />
+        Biometrics Sources
+      </h2>
+
+      <p class="text-sm text-text-muted mb-4">
+        Connect health data sources for automated daily sync via Vercel cron.
+      </p>
+
+      <!-- Eight Sleep -->
+      <div class="border border-border rounded-xl p-4 mb-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <Bed class="w-5 h-5 text-accent-primary" />
+            <div>
+              <p class="font-medium text-text-primary">Eight Sleep</p>
+              <p class="text-sm text-text-muted">
+                <span v-if="getIntegration('eight_sleep')" class="text-status-ready">
+                  Connected • Last sync: {{ new Date(getIntegration('eight_sleep').last_sync).toLocaleDateString() }}
+                </span>
+                <span v-else>Not connected</span>
+              </p>
+            </div>
+          </div>
+          <button
+            v-if="!showForms.eight_sleep"
+            @click="showForms.eight_sleep = true"
+            class="btn-secondary flex items-center gap-2"
+          >
+            <Link2 class="w-4 h-4" />
+            {{ getIntegration('eight_sleep') ? 'Reconnect' : 'Connect' }}
+          </button>
+        </div>
+
+        <div v-if="showForms.eight_sleep" class="mt-4 pt-4 border-t border-border space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs text-text-muted mb-1">Email</label>
+              <input v-model="eightSleepForm.email" type="email" class="input" placeholder="you@example.com" />
+            </div>
+            <div>
+              <label class="block text-xs text-text-muted mb-1">Password</label>
+              <input v-model="eightSleepForm.password" type="password" class="input" placeholder="••••••••" />
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button @click="handleEightSleepSync" class="btn-primary flex items-center gap-2" :disabled="bioLoading">
+              <Loader2 v-if="bioLoading" class="w-4 h-4 animate-spin" />
+              <span v-else>Sync Now</span>
+            </button>
+            <button @click="showForms.eight_sleep = false" class="btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Fit -->
+      <div class="border border-border rounded-xl p-4 mb-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-[#4285F4]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+            <div>
+              <p class="font-medium text-text-primary">Google Fit</p>
+              <p class="text-sm text-text-muted">
+                <span v-if="getIntegration('google_fit')" class="text-status-ready">
+                  Connected • Last sync: {{ new Date(getIntegration('google_fit').last_sync).toLocaleDateString() }}
+                </span>
+                <span v-else>Not connected</span>
+              </p>
+            </div>
+          </div>
+          <button
+            v-if="!showForms.google_fit"
+            @click="showForms.google_fit = true"
+            class="btn-secondary flex items-center gap-2"
+          >
+            <Link2 class="w-4 h-4" />
+            {{ getIntegration('google_fit') ? 'Reconnect' : 'Connect' }}
+          </button>
+        </div>
+
+        <div v-if="showForms.google_fit" class="mt-4 pt-4 border-t border-border space-y-4">
+          <div>
+            <label class="block text-xs text-text-muted mb-1">Refresh Token</label>
+            <input v-model="googleFitForm.refresh_token" type="text" class="input" placeholder="Google Fit refresh token" />
+            <p class="text-xs text-text-muted mt-1">
+              Get a token using: bun scripts/get-google-fit-token.js
+            </p>
+          </div>
+          <div class="flex gap-2">
+            <button @click="handleGoogleFitSync" class="btn-primary flex items-center gap-2" :disabled="bioLoading">
+              <Loader2 v-if="bioLoading" class="w-4 h-4 animate-spin" />
+              <span v-else>Sync Now</span>
+            </button>
+            <button @click="showForms.google_fit = false" class="btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Garmin Connect -->
+      <div class="border border-border rounded-xl p-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <Smartphone class="w-5 h-5 text-accent-primary" />
+            <div>
+              <p class="font-medium text-text-primary">Garmin Connect</p>
+              <p class="text-sm text-text-muted">
+                <span v-if="getIntegration('garmin_connect')" class="text-status-ready">
+                  Connected • Last sync: {{ new Date(getIntegration('garmin_connect').last_sync).toLocaleDateString() }}
+                </span>
+                <span v-else>Not connected</span>
+              </p>
+            </div>
+          </div>
+          <button
+            v-if="!showForms.garmin_connect"
+            @click="showForms.garmin_connect = true"
+            class="btn-secondary flex items-center gap-2"
+          >
+            <Link2 class="w-4 h-4" />
+            {{ getIntegration('garmin_connect') ? 'Reconnect' : 'Connect' }}
+          </button>
+        </div>
+
+        <div v-if="showForms.garmin_connect" class="mt-4 pt-4 border-t border-border space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs text-text-muted mb-1">Email</label>
+              <input v-model="garminForm.email" type="email" class="input" placeholder="you@example.com" />
+            </div>
+            <div>
+              <label class="block text-xs text-text-muted mb-1">Password</label>
+              <input v-model="garminForm.password" type="password" class="input" placeholder="••••••••" />
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button @click="handleGarminSync" class="btn-primary flex items-center gap-2" :disabled="bioLoading">
+              <Loader2 v-if="bioLoading" class="w-4 h-4 animate-spin" />
+              <span v-else>Sync Now</span>
+            </button>
+            <button @click="showForms.garmin_connect = false" class="btn-secondary">Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
 
