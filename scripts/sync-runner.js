@@ -36,8 +36,15 @@ const targetUserId = args.includes('--user')
   ? args[args.indexOf('--user') + 1] 
   : null
 
-// Eight Sleep API
+// Eight Sleep API (unofficial). Auth moved to OAuth2 — the legacy
+// /v1/login session tokens are no longer accepted by data endpoints.
 const EIGHT_SLEEP_API = 'https://client-api.8slp.net/v1'
+const EIGHT_SLEEP_AUTH_URL = 'https://auth-api.8slp.net/v1/tokens'
+// Public OAuth client credentials of the official Eight Sleep app,
+// widely published by open-source integrations (pyEight, Home Assistant).
+// These identify the app, not a user — user credentials stay encrypted in DB.
+const EIGHT_SLEEP_CLIENT_ID = process.env.EIGHT_SLEEP_CLIENT_ID || '0894c7f33bb94800a03f1f4df13a4f38'
+const EIGHT_SLEEP_CLIENT_SECRET = process.env.EIGHT_SLEEP_CLIENT_SECRET || 'f0954a3ed5763ba3d06834c73731a32f15f168f47d4f164751275def86db0c76'
 
 /**
  * Main orchestrator
@@ -232,29 +239,38 @@ async function syncProvider(supabase, userId, integration, triggeredBy = 'schedu
  * Eight Sleep sync
  */
 async function syncEightSleep(supabase, userId, credentials) {
-  // Login
-  const loginResp = await fetch(`${EIGHT_SLEEP_API}/login`, {
+  // OAuth2 password grant (the legacy /v1/login flow returns tokens
+  // that data endpoints reject with 401)
+  const authResp = await fetch(EIGHT_SLEEP_AUTH_URL, {
     method: 'POST',
-    headers: { 'content-type': 'application/json' },
+    headers: {
+      'content-type': 'application/json',
+      'accept': 'application/json',
+      'user-agent': 'okhttp/4.9.3'
+    },
     body: JSON.stringify({
-      email: credentials.email,
+      client_id: EIGHT_SLEEP_CLIENT_ID,
+      client_secret: EIGHT_SLEEP_CLIENT_SECRET,
+      grant_type: 'password',
+      username: credentials.email,
       password: credentials.password
     })
   })
 
-  if (!loginResp.ok) {
-    throw new Error(`Eight Sleep login failed: ${loginResp.status}`)
+  if (!authResp.ok) {
+    throw new Error(`Eight Sleep auth failed: ${authResp.status}`)
   }
 
-  // The login response contains the Eight Sleep user id — no
-  // separate /users/me call needed
-  const loginData = await loginResp.json()
-  const session = loginData?.session
-  if (!session?.token || !session?.userId) {
-    throw new Error('Eight Sleep login returned an unexpected response')
+  const authData = await authResp.json()
+  if (!authData?.access_token || !authData?.userId) {
+    throw new Error('Eight Sleep auth returned an unexpected response')
   }
-  const headers = { 'Session-Token': session.token }
-  const eightUserId = session.userId
+  const headers = {
+    'authorization': `Bearer ${authData.access_token}`,
+    'accept': 'application/json',
+    'user-agent': 'okhttp/4.9.3'
+  }
+  const eightUserId = authData.userId
 
   // Date range (last 3 days to catch any late-processing sleep)
   const now = new Date()
