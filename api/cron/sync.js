@@ -9,19 +9,27 @@
  * @cron schedule: "0 3 * * *" (runs at 3:00 UTC daily)
  */
 
+import { timingSafeEqual } from 'node:crypto'
 import { runSync } from '../../scripts/sync-runner.js'
 
-export default async function handler(req, res) {
-  // Verify this is a legitimate cron request
-  const authHeader = req.headers.authorization
+function isAuthorized(req) {
   const cronSecret = process.env.CRON_SECRET
+  // Fail closed: no configured secret means no access.
+  if (!cronSecret) return false
 
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  const header = req.headers.authorization || ''
+  const expected = Buffer.from(`Bearer ${cronSecret}`)
+  const provided = Buffer.from(header)
+  return expected.length === provided.length && timingSafeEqual(expected, provided)
+}
+
+export default async function handler(req, res) {
+  if (!isAuthorized(req)) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
 
-  // Only allow POST
-  if (req.method !== 'POST') {
+  // Vercel cron invokes with GET; allow manual POST triggers too
+  if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
@@ -48,11 +56,12 @@ export default async function handler(req, res) {
     const duration = Date.now() - startTime
     console.error(`[cron] Sync failed after ${duration}ms:`, error)
     
+    // Details stay in server logs; don't leak internals to the caller
     return res.status(500).json({
       success: false,
       timestamp,
       duration_ms: duration,
-      error: error.message
+      error: 'Sync failed'
     })
   }
 }

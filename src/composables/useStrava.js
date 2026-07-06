@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { useSupabase } from './useSupabase'
+import { apiFetch } from './useApi'
 import { formatPaceMinPerKm } from '@/utils/duration'
 
 const STORAGE_KEY = 'trailcoach-strava-tokens'
@@ -22,7 +23,6 @@ function clearTokensLocally() {
 }
 
 const STRAVA_AUTH_URL = 'https://www.strava.com/oauth/authorize'
-const STRAVA_TOKEN_URL = 'https://www.strava.com/oauth/token'
 const STRAVA_API_URL = 'https://www.strava.com/api/v3'
 
 const loading = ref(false)
@@ -35,10 +35,10 @@ export function useStrava() {
   const { db, user } = useSupabase()
 
   const clientId = import.meta.env.VITE_STRAVA_CLIENT_ID
-  const clientSecret = import.meta.env.VITE_STRAVA_CLIENT_SECRET
   const redirectUri = import.meta.env.VITE_STRAVA_REDIRECT_URI
 
-  const isConfigured = computed(() => !!clientId && !!clientSecret)
+  // The client secret lives server-side only (/api/strava/token)
+  const isConfigured = computed(() => !!clientId)
 
   function getAuthUrl() {
     if (!clientId) {
@@ -66,24 +66,12 @@ export function useStrava() {
     error.value = null
 
     try {
-      const response = await fetch(STRAVA_TOKEN_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          client_id: clientId,
-          client_secret: clientSecret,
-          code: code,
-          grant_type: 'authorization_code'
-        })
+      // Exchange happens server-side so the client secret never
+      // reaches the browser
+      const data = await apiFetch('/api/strava/token', {
+        grant_type: 'authorization_code',
+        code
       })
-
-      if (!response.ok) {
-        throw new Error('Failed to exchange token')
-      }
-
-      const data = await response.json()
 
       const tokenData = {
         strava_access_token: data.access_token,
@@ -107,24 +95,10 @@ export function useStrava() {
   }
 
   async function refreshToken(refreshToken) {
-    const response = await fetch(STRAVA_TOKEN_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        client_id: clientId,
-        client_secret: clientSecret,
-        refresh_token: refreshToken,
-        grant_type: 'refresh_token'
-      })
+    const data = await apiFetch('/api/strava/token', {
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken
     })
-
-    if (!response.ok) {
-      throw new Error('Failed to refresh token')
-    }
-
-    const data = await response.json()
 
     const refreshData = {
       strava_access_token: data.access_token,

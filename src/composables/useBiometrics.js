@@ -14,7 +14,7 @@
 
 import { ref, computed } from 'vue'
 import { useSupabase } from '@/composables/useSupabase'
-import { encryptCredentials } from '@/composables/useCredentialEncryption'
+import { storeIntegration } from '@/composables/useApi'
 
 // Eight Sleep API constants
 const EIGHT_SLEEP_API = 'https://client-api.8slp.net/v1'
@@ -167,18 +167,13 @@ export function useBiometrics() {
         }
       }
 
-      // 8. Store integration config (encrypted)
-      await db.from('integrations').upsert({
-        user_id: user.value.id,
-        provider: 'eight_sleep',
-        credentials: encryptCredentials({
-          email: credentials.email,
-          // Store encrypted token in production
-          token: auth.token,
-          userId: auth.userId
-        }),
-        last_sync: new Date().toISOString(),
-        sync_enabled: true
+      // 8. Store integration config server-side (AES-256-GCM with a
+      // server-only key — never readable from the browser). Eight Sleep
+      // has no OAuth, so the nightly sync needs email/password to log in.
+      await storeIntegration('eight_sleep', {
+        email: credentials.email,
+        password: credentials.password,
+        userId: auth.userId
       })
 
     } catch (e) {
@@ -202,7 +197,8 @@ export function useBiometrics() {
    * Sync sleep data from Google Fit REST API
    * Note: API deprecated end of 2026, migrating to Health Connect
    */
-  async function syncGoogleFit(accessToken, days = 14) {
+  async function syncGoogleFit(credentials, days = 14) {
+    const accessToken = credentials?.access_token || ''
     const startTime = Date.now()
     let recordsFetched = 0
     let recordsStored = 0
@@ -229,48 +225,49 @@ export function useBiometrics() {
         endTimeMillis: endTime
       }
 
-      const resp = await fetch(
-        'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(aggregateBody)
-        }
-      )
+      // Immediate sync needs an access token; with only a refresh
+      // token, data starts flowing on the next scheduled server sync
+      if (accessToken) {
+        const resp = await fetch(
+          'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(aggregateBody)
+          }
+        )
 
-      if (!resp.ok) {
-        throw new Error(`Google Fit API error: ${resp.status}`)
+        if (!resp.ok) {
+          throw new Error(`Google Fit API error: ${resp.status}`)
+        }
+
+        const data = await resp.json()
+        const { db, user } = useSupabase()
+
+        // Parse bucket data
+        for (const bucket of data.bucket || []) {
+          const date = new Date(bucket.startTimeMillis).toISOString().split('T')[0]
+          const entry = parseGoogleFitBucket(bucket, date)
+
+          if (entry) {
+            recordsFetched++
+            await db.from('biometrics').upsert({
+              user_id: user.value.id,
+              ...entry,
+              source: 'google_fit'
+            })
+            recordsStored++
+          }
+        }
       }
 
-      const data = await resp.json()
-      const { db, user } = useSupabase()
-
-      // Parse bucket data
-      for (const bucket of data.bucket || []) {
-        const date = new Date(bucket.startTimeMillis).toISOString().split('T')[0]
-        const entry = parseGoogleFitBucket(bucket, date)
-        
-        if (entry) {
-          recordsFetched++
-          await db.from('biometrics').upsert({
-            user_id: user.value.id,
-            ...entry,
-            source: 'google_fit'
-          })
-          recordsStored++
-        }
-      }
-
-      // Store integration
-      await db.from('integrations').upsert({
-        user_id: user.value.id,
-        provider: 'google_fit',
-        credentials: encryptCredentials({ access_token: accessToken }),
-        last_sync: new Date().toISOString(),
-        sync_enabled: true
+      // Store integration server-side (encrypted with a server-only key)
+      await storeIntegration('google_fit', {
+        access_token: accessToken || null,
+        refresh_token: credentials?.refresh_token || null
       })
 
     } catch (e) {
@@ -357,15 +354,10 @@ export function useBiometrics() {
         }
       }
 
-      await db.from('integrations').upsert({
-        user_id: user.value.id,
-        provider: 'garmin_connect',
-        credentials: encryptCredentials({ 
-          email: credentials.email,
-          access_token: credentials.accessToken 
-        }),
-        last_sync: new Date().toISOString(),
-        sync_enabled: true
+      // Store integration server-side (encrypted with a server-only key)
+      await storeIntegration('garmin_connect', {
+        email: credentials.email || null,
+        access_token: credentials.accessToken || null
       })
 
     } catch (e) {

@@ -15,6 +15,11 @@
 
 import { ref } from 'vue'
 import { useSupabase } from '@/composables/useSupabase'
+import { apiFetch, storeIntegration } from '@/composables/useApi'
+
+// Tokens for the current session only. Persisted credentials are
+// encrypted server-side and are not readable from the browser.
+const sessionTokens = ref(null)
 
 const GARMIN_OAUTH_URL = 'https://connect.garmin.com/oauthValidate'
 const GARMIN_API_BASE = 'https://apis.garmin.com/wellness-api/rest'
@@ -38,43 +43,28 @@ export function useGarminConnect() {
   }
 
   /**
-   * Exchange authorization code for tokens
+   * Exchange authorization code for tokens.
+   * Happens server-side (/api/garmin/token) so the client secret
+   * never reaches the browser.
    */
-  async function exchangeCode(code, clientId, clientSecret, redirectUri) {
+  async function exchangeCode(code, redirectUri) {
     loading.value = true
     try {
-      const resp = await fetch('https://connect.garmin.com/oauth/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': 'Basic ' + btoa(`${clientId}:${clientSecret}`)
-        },
-        body: new URLSearchParams({
-          grant_type: 'authorization_code',
-          code,
-          redirect_uri: redirectUri
-        })
+      const data = await apiFetch('/api/garmin/token', {
+        code,
+        redirect_uri: redirectUri
       })
 
-      if (!resp.ok) {
-        throw new Error(`Token exchange failed: ${resp.status}`)
+      const credentials = {
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+        expires_at: Date.now() + data.expires_in * 1000
       }
 
-      const data = await resp.json()
-      
-      // Store integration
-      const { db, user } = useSupabase()
-      await db.from('integrations').upsert({
-        user_id: user.value.id,
-        provider: 'garmin_connect',
-        credentials: {
-          access_token: data.access_token,
-          refresh_token: data.refresh_token,
-          expires_at: Date.now() + data.expires_in * 1000
-        },
-        last_sync: null,
-        sync_enabled: true
-      })
+      // Keep tokens for this session and persist them server-side
+      // (encrypted with a server-only key)
+      sessionTokens.value = credentials
+      await storeIntegration('garmin_connect', credentials)
 
       connected.value = true
       error.value = null
@@ -241,37 +231,19 @@ export function useGarminConnect() {
     loading.value = true
     try {
       const { db, user } = useSupabase()
-      
-      // Get stored credentials
-      const { data: integration } = await db
-        .from('integrations')
-        .select('*')
-        .eq('user_id', user.value.id)
-        .eq('provider', 'garmin_connect')
-        .single()
 
-      if (!integration) {
-        throw new Error('Garmin Connect not configured')
+      // Stored credentials are encrypted server-side and only usable by
+      // the scheduled sync. Browser-side sync works within the session
+      // where the user connected (tokens held in memory).
+      const tokens = sessionTokens.value
+      if (!tokens?.access_token) {
+        throw new Error('Garmin Connect not connected in this session — daily sync runs automatically, or reconnect to sync now')
       }
-
-      // Check token expiry and refresh if needed
-      let accessToken = integration.credentials.access_token
-      if (integration.credentials.expires_at && Date.now() > integration.credentials.expires_at) {
-        const refreshed = await refreshGarminToken(
-          integration.credentials.refresh_token,
-          // Need client ID/secret from env or secure storage
-        )
-        accessToken = refreshed.access_token
-        
-        // Update stored tokens
-        await db.from('integrations').update({
-          credentials: {
-            ...integration.credentials,
-            access_token: accessToken,
-            expires_at: Date.now() + refreshed.expires_in * 1000
-          }
-        }).eq('id', integration.id)
+      if (tokens.expires_at && Date.now() > tokens.expires_at) {
+        sessionTokens.value = null
+        throw new Error('Garmin session expired — reconnect to sync now')
       }
+      const accessToken = tokens.access_token
 
       // Fetch all data types in parallel
       const [sleepData, stressData, batteryData] = await Promise.allSettled([

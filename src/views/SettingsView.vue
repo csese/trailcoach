@@ -166,7 +166,7 @@ async function handleDisconnectStrava() {
           <div>
             <p class="text-sm text-yellow-500 font-medium">Strava not configured</p>
             <p class="text-xs text-text-muted mt-1">
-              Add VITE_STRAVA_CLIENT_ID and VITE_STRAVA_CLIENT_SECRET to your .env file to enable Strava integration.
+              Add VITE_STRAVA_CLIENT_ID to your .env file (and STRAVA_CLIENT_SECRET as a server-side environment variable) to enable Strava integration.
             </p>
           </div>
         </div>

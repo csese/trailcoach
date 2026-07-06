@@ -15,10 +15,14 @@
  */
 
 import { createClient } from '@supabase/supabase-js'
+import { decryptCredentials } from '../api/_lib/crypto.js'
+
+// Tolerate stray whitespace/escaped newlines in env values
+const cleanEnv = (v) => (v || '').replace(/\\n/g, '').trim()
 
 // Environment variables
-const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || ''
-const SUPABASE_SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE || ''
+const SUPABASE_URL = cleanEnv(process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL)
+const SUPABASE_SERVICE_ROLE = cleanEnv(process.env.SUPABASE_SERVICE_ROLE)
 const EIGHT_SLEEP_EMAIL = process.env.EIGHT_SLEEP_EMAIL || ''
 const EIGHT_SLEEP_PASSWORD = process.env.EIGHT_SLEEP_PASSWORD || ''
 const GOOGLE_FIT_REFRESH_TOKEN = process.env.GOOGLE_FIT_REFRESH_TOKEN || ''
@@ -134,41 +138,24 @@ async function syncUser(supabase, userId, integrations) {
 }
 
 /**
- * Decrypt credentials if encrypted
- */
-function decryptCredentials(credentials) {
-  // Handle encrypted format
-  if (credentials?.encrypted && credentials.data) {
-    const key = process.env.CREDENTIAL_ENCRYPTION_KEY
-    if (!key) {
-      console.error('CREDENTIAL_ENCRYPTION_KEY not set - cannot decrypt')
-      return credentials
-    }
-    try {
-      const CryptoJS = require('crypto-js')
-      const decrypted = CryptoJS.AES.decrypt(credentials.data, key)
-      return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8))
-    } catch (e) {
-      console.error('Decryption failed:', e.message)
-      return credentials
-    }
-  }
-  // Legacy plaintext support
-  return credentials
-}
-
-/**
  * Sync a single provider for a user
  */
 async function syncProvider(supabase, userId, integration) {
   const { provider, credentials: rawCredentials, last_sync } = integration
   const startTime = Date.now()
-  
+
   console.log(`  📡 Syncing ${provider}...`)
-  
-  // Decrypt credentials
-  const credentials = decryptCredentials(rawCredentials)
-  
+
+  // Decrypt credentials (AES-256-GCM; fails closed — a decryption
+  // error skips this provider rather than proceeding with bad data)
+  let credentials
+  try {
+    credentials = decryptCredentials(rawCredentials)
+  } catch (e) {
+    console.error(`    ❌ Cannot decrypt ${provider} credentials: ${e.message}`)
+    return { provider, fetched: 0, stored: 0, status: 'error', duration: Date.now() - startTime }
+  }
+
   let fetched = 0
   let stored = 0
   let status = 'success'
@@ -585,7 +572,7 @@ async function generateDailySummaries(supabase, userId) {
 async function logOrchestratorRun(supabase, results) {
   const timestamp = new Date().toISOString()
   const logEntry = {
-    user_id: 'system',
+    user_id: null,
     provider: 'orchestrator',
     operation: 'daily_sync_run',
     status: results.some(r => r.error) ? 'partial' : 'success',
@@ -596,7 +583,11 @@ async function logOrchestratorRun(supabase, results) {
     completed_at: timestamp
   }
   
-  await supabase.from('sync_logs').insert(logEntry)
+  try {
+    await supabase.from('sync_logs').insert(logEntry)
+  } catch (e) {
+    console.warn('Failed to write orchestrator log:', e.message)
+  }
 }
 
 // =====================
