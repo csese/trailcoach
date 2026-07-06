@@ -17,7 +17,7 @@
 import { createClient } from '@supabase/supabase-js'
 
 // Environment variables
-const SUPABASE_URL = process.env.SUPABASE_URL || ''
+const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || ''
 const SUPABASE_SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE || ''
 const EIGHT_SLEEP_EMAIL = process.env.EIGHT_SLEEP_EMAIL || ''
 const EIGHT_SLEEP_PASSWORD = process.env.EIGHT_SLEEP_PASSWORD || ''
