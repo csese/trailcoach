@@ -11,6 +11,7 @@ import {
   Settings,
   Mountain,
   Trophy,
+  HeartPulse,
   X
 } from 'lucide-vue-next'
 
@@ -31,6 +32,7 @@ const navigation = [
   { name: 'Calendar', path: '/calendar', icon: Calendar },
   { name: 'Phases', path: '/phases', icon: TrendingUp },
   { name: 'Stats', path: '/stats', icon: BarChart3 },
+  { name: 'Health', path: '/health', icon: HeartPulse },
   { name: 'Nutrition', path: '/nutrition', icon: UtensilsCrossed },
   { name: 'Settings', path: '/settings', icon: Settings }
 ]

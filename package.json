@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync": "bun scripts/sync-runner.js",
+    "sync:dry": "bun scripts/sync-runner.js --dry-run",
+    "sync:user": "bun scripts/sync-runner.js --user"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
