@@ -3,7 +3,6 @@
  * 
  * Pulls daily health metrics from:
  * - Eight Sleep (RHR, HRV, sleep stages)
- * - Google Fit (sleep data as fallback)
  * - Garmin Connect (stress, body battery, sleep)
  * 
  * Computes derived metrics:
@@ -92,13 +91,6 @@ export function useBiometrics() {
     return syncViaServer('eight_sleep', {
       email: credentials.email,
       password: credentials.password
-    })
-  }
-
-  function syncGoogleFit(credentials) {
-    return syncViaServer('google_fit', {
-      access_token: credentials?.access_token || null,
-      refresh_token: credentials?.refresh_token || null
     })
   }
 
@@ -368,7 +360,6 @@ export function useBiometrics() {
     
     // Sync functions
     syncEightSleep,
-    syncGoogleFit,
     syncGarminConnect,
     generateDailySummary,
     

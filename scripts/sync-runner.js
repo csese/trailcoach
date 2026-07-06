@@ -25,7 +25,6 @@ const SUPABASE_URL = cleanEnv(process.env.SUPABASE_URL || process.env.VITE_SUPAB
 const SUPABASE_SERVICE_ROLE = cleanEnv(process.env.SUPABASE_SERVICE_ROLE)
 const EIGHT_SLEEP_EMAIL = process.env.EIGHT_SLEEP_EMAIL || ''
 const EIGHT_SLEEP_PASSWORD = process.env.EIGHT_SLEEP_PASSWORD || ''
-const GOOGLE_FIT_REFRESH_TOKEN = process.env.GOOGLE_FIT_REFRESH_TOKEN || ''
 const GARMIN_EMAIL = process.env.GARMIN_EMAIL || ''
 const GARMIN_PASSWORD = process.env.GARMIN_PASSWORD || ''
 
@@ -177,13 +176,6 @@ async function syncProvider(supabase, userId, integration, triggeredBy = 'schedu
         break
       }
       
-      case 'google_fit': {
-        const result = await syncGoogleFit(supabase, userId, credentials)
-        fetched = result.fetched
-        stored = result.stored
-        break
-      }
-      
       case 'garmin_connect': {
         const result = await syncGarminConnect(supabase, userId, credentials)
         fetched = result.fetched
@@ -316,98 +308,6 @@ async function syncEightSleep(supabase, userId, credentials) {
     }
   }
   
-  return { fetched: fetchedCount, stored: storedCount }
-}
-
-/**
- * Google Fit sync
- */
-async function syncGoogleFit(supabase, userId, credentials) {
-  // Refresh token if needed (also when we only have a refresh token)
-  let accessToken = credentials.access_token
-
-  const needsRefresh = !accessToken ||
-    (credentials.expires_at && Date.now() > credentials.expires_at)
-
-  if (needsRefresh && credentials.refresh_token) {
-    // Refresh token
-    const refreshResp = await fetch('https://oauth2.googleapis.com/token', {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        client_id: process.env.GOOGLE_CLIENT_ID,
-        client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        refresh_token: credentials.refresh_token,
-        grant_type: 'refresh_token'
-      })
-    })
-    
-    if (refreshResp.ok) {
-      const tokenData = await refreshResp.json()
-      accessToken = tokenData.access_token
-      
-      // Update stored tokens
-      await supabase.from('integrations').update({
-        credentials: {
-          ...credentials,
-          access_token: accessToken,
-          expires_at: Date.now() + tokenData.expires_in * 1000
-        }
-      }).eq('user_id', userId).eq('provider', 'google_fit')
-    }
-  }
-  
-  // Fetch data
-  const endTime = Date.now()
-  const startTime = endTime - 3 * 86400000
-  
-  const aggregateBody = {
-    aggregateBy: [
-      { bucketByTime: { durationMillis: 86400000 }, dataSet: 'com.google.sleep.stage' },
-      { bucketByTime: { durationMillis: 86400000 }, dataSet: 'com.google.heart_rate.bpm' }
-    ],
-    startTimeMillis: startTime,
-    endTimeMillis: endTime
-  }
-  
-  const resp = await fetch(
-    'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(aggregateBody)
-    }
-  )
-  
-  if (!resp.ok) {
-    throw new Error(`Google Fit API error: ${resp.status}`)
-  }
-  
-  const data = await resp.json()
-  let fetchedCount = 0
-  let storedCount = 0
-  
-  for (const bucket of data.bucket || []) {
-    const date = new Date(bucket.startTimeMillis).toISOString().split('T')[0]
-    const entry = parseGoogleFitBucket(bucket, date)
-    
-    if (entry) {
-      fetchedCount++
-      if (!isDryRun) {
-        const { error } = await supabase.from('biometrics').upsert({
-          user_id: userId,
-          ...entry,
-          source: 'google_fit'
-        })
-        if (!error) storedCount++
-      }
-    }
-  }
-  
-  console.log(`    📊 Fetched ${fetchedCount} days from Google Fit`)
   return { fetched: fetchedCount, stored: storedCount }
 }
 
@@ -653,46 +553,6 @@ function calculateAvgHRFromInterval(interval) {
   
   const sum = nighttime.reduce((acc, [, hr]) => acc + (hr || 0), 0)
   return Math.round(sum / nighttime.length)
-}
-
-function parseGoogleFitBucket(bucket, date) {
-  let sleepMinutes = 0
-  let deepMinutes = 0
-  let remMinutes = 0
-  let avgHr = null
-  
-  for (const dataset of bucket.dataset || []) {
-    if (dataset.datasetId.includes('sleep.stage')) {
-      for (const point of dataset.point || []) {
-        const durationMin = (parseInt(point.endTimeNanos) - parseInt(point.startTimeNanos)) / 6e7
-        const value = point.value?.[0]?.intVal
-        
-        sleepMinutes += durationMin
-        if (value === 3) deepMinutes += durationMin
-        else if (value === 5) remMinutes += durationMin
-      }
-    }
-    
-    if (dataset.datasetId.includes('heart_rate.bpm')) {
-      const hrValues = []
-      for (const point of dataset.point || []) {
-        if (point.value?.[0]?.fpVal) hrValues.push(point.value[0].fpVal)
-      }
-      if (hrValues.length) {
-        avgHr = Math.round(hrValues.reduce((a, b) => a + b, 0) / hrValues.length)
-      }
-    }
-  }
-  
-  if (sleepMinutes === 0 && !avgHr) return null
-  
-  return {
-    entry_date: date,
-    resting_hr: avgHr,
-    google_sleep_minutes: Math.round(sleepMinutes),
-    google_sleep_deep_minutes: Math.round(deepMinutes),
-    google_sleep_rem_minutes: Math.round(remMinutes)
-  }
 }
 
 // Run if called directly

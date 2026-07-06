@@ -20,7 +20,6 @@ const {
   loading: bioLoading,
   error: bioError,
   syncEightSleep,
-  syncGoogleFit,
   syncGarminConnect,
   getIntegrationStatus
 } = useBiometrics()
@@ -29,11 +28,9 @@ const displayName = ref('')
 const hrZones = ref({})
 const integrations = ref([])
 const eightSleepForm = ref({ email: '', password: '' })
-const googleFitForm = ref({ refresh_token: '' })
 const garminForm = ref({ email: '', password: '' })
 const showForms = ref({
   eight_sleep: false,
-  google_fit: false,
   garmin_connect: false
 })
 
@@ -58,17 +55,6 @@ async function handleEightSleepSync() {
   if (result.status === 'success') {
     await loadIntegrations()
     showForms.value.eight_sleep = false
-  }
-}
-
-async function handleGoogleFitSync() {
-  const result = await syncGoogleFit({ 
-    refresh_token: googleFitForm.value.refresh_token,
-    access_token: '' 
-  })
-  if (result.status === 'success') {
-    await loadIntegrations()
-    showForms.value.google_fit = false
   }
 }
 
@@ -277,51 +263,6 @@ async function handleDisconnectStrava() {
               <span v-else>Sync Now</span>
             </button>
             <button @click="showForms.eight_sleep = false" class="btn-secondary">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Google Fit -->
-      <div class="border border-border rounded-xl p-4 mb-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <svg class="w-5 h-5 text-[#4285F4]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-            </svg>
-            <div>
-              <p class="font-medium text-text-primary">Google Fit</p>
-              <p class="text-sm text-text-muted">
-                <span v-if="getIntegration('google_fit')" class="text-status-ready">
-                  Connected • Last sync: {{ new Date(getIntegration('google_fit').last_sync).toLocaleDateString() }}
-                </span>
-                <span v-else>Not connected</span>
-              </p>
-            </div>
-          </div>
-          <button
-            v-if="!showForms.google_fit"
-            @click="showForms.google_fit = true"
-            class="btn-secondary flex items-center gap-2"
-          >
-            <Link2 class="w-4 h-4" />
-            {{ getIntegration('google_fit') ? 'Reconnect' : 'Connect' }}
-          </button>
-        </div>
-
-        <div v-if="showForms.google_fit" class="mt-4 pt-4 border-t border-border space-y-4">
-          <div>
-            <label class="block text-xs text-text-muted mb-1">Refresh Token</label>
-            <input v-model="googleFitForm.refresh_token" type="text" class="input" placeholder="Google Fit refresh token" />
-            <p class="text-xs text-text-muted mt-1">
-              Get a token using: bun scripts/get-google-fit-token.js
-            </p>
-          </div>
-          <div class="flex gap-2">
-            <button @click="handleGoogleFitSync" class="btn-primary flex items-center gap-2" :disabled="bioLoading">
-              <Loader2 v-if="bioLoading" class="w-4 h-4 animate-spin" />
-              <span v-else>Sync Now</span>
-            </button>
-            <button @click="showForms.google_fit = false" class="btn-secondary">Cancel</button>
           </div>
         </div>
       </div>

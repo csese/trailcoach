@@ -504,7 +504,6 @@ async function runFullSync() {
                 class="w-10 h-10 rounded-lg flex items-center justify-center"
                 :class="[
                   integration.provider === 'eight_sleep' ? 'bg-purple-500/20' :
-                  integration.provider === 'google_fit' ? 'bg-blue-500/20' :
                   integration.provider === 'garmin_connect' ? 'bg-red-500/20' :
                   'bg-accent-primary/20'
                 ]"
