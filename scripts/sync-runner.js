@@ -134,13 +134,40 @@ async function syncUser(supabase, userId, integrations) {
 }
 
 /**
+ * Decrypt credentials if encrypted
+ */
+function decryptCredentials(credentials) {
+  // Handle encrypted format
+  if (credentials?.encrypted && credentials.data) {
+    const key = process.env.CREDENTIAL_ENCRYPTION_KEY
+    if (!key) {
+      console.error('CREDENTIAL_ENCRYPTION_KEY not set - cannot decrypt')
+      return credentials
+    }
+    try {
+      const CryptoJS = require('crypto-js')
+      const decrypted = CryptoJS.AES.decrypt(credentials.data, key)
+      return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8))
+    } catch (e) {
+      console.error('Decryption failed:', e.message)
+      return credentials
+    }
+  }
+  // Legacy plaintext support
+  return credentials
+}
+
+/**
  * Sync a single provider for a user
  */
 async function syncProvider(supabase, userId, integration) {
-  const { provider, credentials, last_sync } = integration
+  const { provider, credentials: rawCredentials, last_sync } = integration
   const startTime = Date.now()
   
   console.log(`  📡 Syncing ${provider}...`)
+  
+  // Decrypt credentials
+  const credentials = decryptCredentials(rawCredentials)
   
   let fetched = 0
   let stored = 0

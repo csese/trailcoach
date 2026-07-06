@@ -14,6 +14,7 @@
 
 import { ref, computed } from 'vue'
 import { useSupabase } from '@/composables/useSupabase'
+import { encryptCredentials } from '@/composables/useCredentialEncryption'
 
 // Eight Sleep API constants
 const EIGHT_SLEEP_API = 'https://client-api.8slp.net/v1'
@@ -166,16 +167,16 @@ export function useBiometrics() {
         }
       }
 
-      // 8. Store integration config
+      // 8. Store integration config (encrypted)
       await db.from('integrations').upsert({
         user_id: user.value.id,
         provider: 'eight_sleep',
-        credentials: {
+        credentials: encryptCredentials({
           email: credentials.email,
           // Store encrypted token in production
           token: auth.token,
           userId: auth.userId
-        },
+        }),
         last_sync: new Date().toISOString(),
         sync_enabled: true
       })
@@ -267,7 +268,7 @@ export function useBiometrics() {
       await db.from('integrations').upsert({
         user_id: user.value.id,
         provider: 'google_fit',
-        credentials: { access_token: accessToken },
+        credentials: encryptCredentials({ access_token: accessToken }),
         last_sync: new Date().toISOString(),
         sync_enabled: true
       })
@@ -359,10 +360,10 @@ export function useBiometrics() {
       await db.from('integrations').upsert({
         user_id: user.value.id,
         provider: 'garmin_connect',
-        credentials: { 
+        credentials: encryptCredentials({ 
           email: credentials.email,
           access_token: credentials.accessToken 
-        },
+        }),
         last_sync: new Date().toISOString(),
         sync_enabled: true
       })
