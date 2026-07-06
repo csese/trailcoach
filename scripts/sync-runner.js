@@ -659,3 +659,6 @@ function parseGoogleFitBucket(bucket, date) {
 if (import.meta.main) {
   main()
 }
+
+// Export for use in Vercel cron API route
+export { main as runSync, isDryRun }
