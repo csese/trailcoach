@@ -24,18 +24,20 @@ export function useBiometrics() {
   async function loadBiometrics(days = 30) {
     loading.value = true
     try {
-      const { db, user } = useSupabase()
+      const { supabase, user, getUser } = useSupabase()
+      if (!user.value) await getUser()
       if (!user.value) return
 
       const since = new Date()
       since.setDate(since.getDate() - days)
 
-      const data = await db.from('biometrics')
+      const { data, error: qError } = await supabase.from('biometrics')
         .select('*')
         .eq('user_id', user.value.id)
         .gte('entry_date', since.toISOString().split('T')[0])
         .order('entry_date', { ascending: false })
 
+      if (qError) throw qError
       biometrics.value = data || []
       error.value = null
     } catch (e) {
@@ -227,27 +229,27 @@ export function useBiometrics() {
    * Generate daily summary combining biometrics + workout data
    */
   async function generateDailySummary(date = new Date()) {
-    const { db, user } = useSupabase()
+    const { supabase, user } = useSupabase()
     if (!user.value) return null
     
     const dateStr = date.toISOString().split('T')[0]
     
     // Get biometrics
-    const { data: bio } = await db.from('biometrics')
+    const { data: bio } = await supabase.from('biometrics')
       .select('*')
       .eq('user_id', user.value.id)
       .eq('entry_date', dateStr)
       .single()
     
     // Get workout log
-    const { data: log } = await db.from('workout_logs')
+    const { data: log } = await supabase.from('workout_logs')
       .select('*')
       .eq('user_id', user.value.id)
       .eq('completed_at', dateStr)
       .single()
     
     // Get readiness entry (if exists)
-    const { data: readiness } = await db.from('readiness_entries')
+    const { data: readiness } = await supabase.from('readiness_entries')
       .select('*')
       .eq('user_id', user.value.id)
       .eq('entry_date', dateStr)
@@ -295,7 +297,7 @@ export function useBiometrics() {
     }
     
     // Store summary
-    await db.from('daily_summaries').upsert(summary)
+    await supabase.from('daily_summaries').upsert(summary)
     
     return summary
   }
@@ -327,24 +329,26 @@ export function useBiometrics() {
   // =====================
 
   async function getIntegrationStatus() {
-    const { db, user } = useSupabase()
+    const { supabase, user, getUser } = useSupabase()
+    if (!user.value) await getUser()
     if (!user.value) return []
-    
-    const { data } = await db.from('integrations')
+
+    const { data } = await supabase.from('integrations')
       .select('*')
       .eq('user_id', user.value.id)
-    
+
     return data || []
   }
 
   async function getSyncHistory(days = 30) {
-    const { db, user } = useSupabase()
+    const { supabase, user, getUser } = useSupabase()
+    if (!user.value) await getUser()
     if (!user.value) return []
     
     const since = new Date()
     since.setDate(since.getDate() - days)
     
-    const { data } = await db.from('sync_logs')
+    const { data } = await supabase.from('sync_logs')
       .select('*')
       .eq('user_id', user.value.id)
       .gte('started_at', since.toISOString())

@@ -230,7 +230,7 @@ export function useGarminConnect() {
   async function syncGarminData(startDate, endDate) {
     loading.value = true
     try {
-      const { db, user } = useSupabase()
+      const { supabase, user } = useSupabase()
 
       // Stored credentials are encrypted server-side and only usable by
       // the scheduled sync. Browser-side sync works within the session
@@ -280,7 +280,7 @@ export function useGarminConnect() {
         // Only store if we have data
         const hasData = Object.values(entry).some(v => v !== null && v !== date && v !== 'garmin')
         if (hasData) {
-          const { error } = await db.from('biometrics').upsert({
+          const { error } = await supabase.from('biometrics').upsert({
             user_id: user.value.id,
             ...entry
           })
@@ -289,7 +289,7 @@ export function useGarminConnect() {
       }
 
       // Update last sync
-      await db.from('integrations').update({
+      await supabase.from('integrations').update({
         last_sync: new Date().toISOString()
       }).eq('user_id', user.value.id).eq('provider', 'garmin_connect')
 
@@ -318,8 +318,8 @@ export function useGarminConnect() {
    */
   async function disconnect() {
     try {
-      const { db, user } = useSupabase()
-      await db.from('integrations')
+      const { supabase, user } = useSupabase()
+      await supabase.from('integrations')
         .delete()
         .eq('user_id', user.value.id)
         .eq('provider', 'garmin_connect')
@@ -336,8 +336,8 @@ export function useGarminConnect() {
    */
   async function checkConnection() {
     try {
-      const { db, user } = useSupabase()
-      const { data } = await db
+      const { supabase, user } = useSupabase()
+      const { data } = await supabase
         .from('integrations')
         .select('*')
         .eq('user_id', user.value.id)
