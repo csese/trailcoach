@@ -140,7 +140,7 @@ async function syncUser(supabase, userId, integrations) {
 /**
  * Sync a single provider for a user
  */
-async function syncProvider(supabase, userId, integration) {
+async function syncProvider(supabase, userId, integration, triggeredBy = 'scheduled') {
   const { provider, credentials: rawCredentials, last_sync } = integration
   const startTime = Date.now()
 
@@ -153,7 +153,7 @@ async function syncProvider(supabase, userId, integration) {
     credentials = decryptCredentials(rawCredentials)
   } catch (e) {
     console.error(`    ❌ Cannot decrypt ${provider} credentials: ${e.message}`)
-    return { provider, fetched: 0, stored: 0, status: 'error', duration: Date.now() - startTime }
+    return { provider, fetched: 0, stored: 0, status: 'error', error: 'Could not decrypt stored credentials', duration: Date.now() - startTime }
   }
 
   let fetched = 0
@@ -214,7 +214,7 @@ async function syncProvider(supabase, userId, integration) {
       records_stored: stored,
       duration_ms: Date.now() - startTime,
       error_message: errorMsg,
-      triggered_by: 'scheduled'
+      triggered_by: triggeredBy
     })
     
     // Update last_sync timestamp
@@ -225,7 +225,7 @@ async function syncProvider(supabase, userId, integration) {
       .eq('provider', provider)
   }
   
-  return { provider, fetched, stored, status, duration: Date.now() - startTime }
+  return { provider, fetched, stored, status, error: errorMsg, duration: Date.now() - startTime }
 }
 
 /**
@@ -304,10 +304,13 @@ async function syncEightSleep(supabase, userId, credentials) {
  * Google Fit sync
  */
 async function syncGoogleFit(supabase, userId, credentials) {
-  // Refresh token if needed
+  // Refresh token if needed (also when we only have a refresh token)
   let accessToken = credentials.access_token
-  
-  if (credentials.expires_at && Date.now() > credentials.expires_at) {
+
+  const needsRefresh = !accessToken ||
+    (credentials.expires_at && Date.now() > credentials.expires_at)
+
+  if (needsRefresh && credentials.refresh_token) {
     // Refresh token
     const refreshResp = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
@@ -678,5 +681,5 @@ if (import.meta.main) {
   main()
 }
 
-// Export for use in Vercel cron API route
-export { main as runSync, isDryRun }
+// Export for use in Vercel API routes
+export { main as runSync, syncProvider, generateDailySummaries, isDryRun }

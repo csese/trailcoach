@@ -14,13 +14,7 @@
 
 import { ref, computed } from 'vue'
 import { useSupabase } from '@/composables/useSupabase'
-import { storeIntegration } from '@/composables/useApi'
-
-// Eight Sleep API constants
-const EIGHT_SLEEP_API = 'https://client-api.8slp.net/v1'
-
-// Garmin Connect API constants
-const GARMIN_API_BASE = 'https://apis.garmin.com/wellness-api/rest'
+import { apiFetch } from '@/composables/useApi'
 
 export function useBiometrics() {
   const biometrics = ref([])
@@ -62,314 +56,58 @@ export function useBiometrics() {
   }
 
   // =====================
-  // EIGHT SLEEP INTEGRATION
+  // PROVIDER SYNC (server-side)
+  //
+  // Provider APIs (Eight Sleep, Google Fit, Garmin) do not allow
+  // cross-origin browser calls, so manual sync runs through
+  // /api/integrations/sync — the same code path as the nightly cron.
+  // Credentials are encrypted server-side with a server-only key;
+  // the browser never stores or reads them back.
   // =====================
 
-  /**
-   * Authenticate with Eight Sleep and return session token
-   */
-  async function eightSleepLogin(email, password) {
-    const resp = await fetch(`${EIGHT_SLEEP_API}/login`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ email, password })
+  async function syncViaServer(provider, credentials) {
+    loading.value = true
+    error.value = null
+    try {
+      const result = await apiFetch('/api/integrations/sync', { provider, credentials })
+      if (result.status !== 'success') {
+        error.value = result.error || `${provider} sync failed`
+      }
+      return {
+        recordsFetched: result.fetched || 0,
+        recordsStored: result.stored || 0,
+        status: result.status,
+        error: result.error || null
+      }
+    } catch (e) {
+      console.error(`${provider} sync failed:`, e)
+      error.value = e.message
+      return { recordsFetched: 0, recordsStored: 0, status: 'error', error: e.message }
+    } finally {
+      loading.value = false
+    }
+  }
+
+  function syncEightSleep(credentials) {
+    return syncViaServer('eight_sleep', {
+      email: credentials.email,
+      password: credentials.password
     })
-
-    if (!resp.ok) {
-      throw new Error(`Eight Sleep auth failed: ${resp.status}`)
-    }
-
-    const data = await resp.json()
-    return {
-      token: data.session.token,
-      userId: data.session.userId,
-      expiresAt: new Date(data.session.expirationDate)
-    }
   }
 
-  /**
-   * Sync biometrics from Eight Sleep for the last N days
-   */
-  async function syncEightSleep(credentials, days = 14) {
-    const startTime = Date.now()
-    let recordsFetched = 0
-    let recordsStored = 0
-    let status = 'success'
-    let errorMsg = null
-
-    try {
-      // 1. Authenticate
-      const auth = await eightSleepLogin(
-        credentials.email,
-        credentials.password
-      )
-
-      const headers = { 'Session-Token': auth.token }
-
-      // 2. Get device ID
-      const meResp = await fetch(`${EIGHT_SLEEP_API}/users/me`, { headers })
-      const meData = await meResp.json()
-      const deviceId = meData.user.devices[0]
-
-      // 3. Get date range
-      const now = new Date()
-      const from = new Date(now.getTime() - days * 86400000)
-      const fromStr = from.toISOString().split('T')[0]
-      const toStr = now.toISOString().split('T')[0]
-
-      // 4. Fetch trends (sleep scores, HRV, stages)
-      const trendsUrl = `${EIGHT_SLEEP_API}/users/${auth.userId}/trends?from=${fromStr}&to=${toStr}`
-      const trendsResp = await fetch(trendsUrl, { headers })
-      const { days: trends } = await trendsResp.json()
-
-      // 5. Fetch intervals (heart rate timeseries)
-      const intervalsUrl = `${EIGHT_SLEEP_API}/users/${auth.userId}/intervals`
-      const intervalsResp = await fetch(intervalsUrl, { headers })
-      const { intervals } = await intervalsResp.json()
-
-      // 6. Map to biometrics and store
-      const mapped = trends.map(trend => {
-        recordsFetched++
-        const interval = findMatchingInterval(intervals, trend.day)
-        
-        return {
-          entry_date: trend.day,
-          resting_hr: calculateAvgHRFromInterval(interval),
-          hrv_rmssd: trend.sleepQualityScore?.hrv?.current || null,
-          hrv_lfn: trend.sleepQualityScore?.hrv?.lf || null,
-          hrv_hfn: trend.sleepQualityScore?.hrv?.hf || null,
-          sleep_score: trend.score || null,
-          sleep_total_minutes: Math.round((trend.presenceDuration || 0) / 60),
-          sleep_deep_minutes: Math.round((trend.deepDuration || 0) / 60),
-          sleep_rem_minutes: Math.round((trend.remDuration || 0) / 60),
-          sleep_light_minutes: Math.round((trend.lightDuration || 0) / 60),
-          sleep_awake_minutes: Math.round(
-            ((trend.presenceDuration || 0) - (trend.sleepDuration || 0)) / 60
-          ),
-          respiratory_rate: trend.sleepQualityScore?.respiratoryRate?.current || null,
-          toss_turns: trend.tnt || null,
-          source: 'eight_sleep',
-          raw_json: { trend, interval: interval || null }
-        }
-      }).filter(b => b.entry_date) // filter out entries without dates
-
-      // 7. Store in Supabase
-      const { db, user } = useSupabase()
-      for (const entry of mapped) {
-        try {
-          await db.from('biometrics').upsert({
-            user_id: user.value.id,
-            ...entry
-          })
-          recordsStored++
-        } catch (e) {
-          console.warn(`Failed to store biometric for ${entry.entry_date}:`, e)
-        }
-      }
-
-      // 8. Store integration config server-side (AES-256-GCM with a
-      // server-only key — never readable from the browser). Eight Sleep
-      // has no OAuth, so the nightly sync needs email/password to log in.
-      await storeIntegration('eight_sleep', {
-        email: credentials.email,
-        password: credentials.password,
-        userId: auth.userId
-      })
-
-    } catch (e) {
-      console.error('Eight Sleep sync failed:', e)
-      status = 'error'
-      errorMsg = e.message
-    }
-
-    // Log sync operation
-    await logSync('eight_sleep', 'full_sync', status, recordsFetched, recordsStored, 
-      Date.now() - startTime, errorMsg)
-    
-    return { recordsFetched, recordsStored, status, duration: Date.now() - startTime }
+  function syncGoogleFit(credentials) {
+    return syncViaServer('google_fit', {
+      access_token: credentials?.access_token || null,
+      refresh_token: credentials?.refresh_token || null
+    })
   }
 
-  // =====================
-  // GOOGLE FIT INTEGRATION
-  // =====================
-
-  /**
-   * Sync sleep data from Google Fit REST API
-   * Note: API deprecated end of 2026, migrating to Health Connect
-   */
-  async function syncGoogleFit(credentials, days = 14) {
-    const accessToken = credentials?.access_token || ''
-    const startTime = Date.now()
-    let recordsFetched = 0
-    let recordsStored = 0
-    let status = 'success'
-    let errorMsg = null
-
-    try {
-      const endTime = Date.now()
-      const startTimeMs = endTime - days * 86400000
-
-      // Aggregate sleep and HR data by day
-      const aggregateBody = {
-        aggregateBy: [
-          {
-            bucketByTime: { durationMillis: 86400000 },
-            dataSet: 'com.google.sleep.stage'
-          },
-          {
-            bucketByTime: { durationMillis: 86400000 },
-            dataSet: 'com.google.heart_rate.bpm'
-          }
-        ],
-        startTimeMillis: startTimeMs,
-        endTimeMillis: endTime
-      }
-
-      // Immediate sync needs an access token; with only a refresh
-      // token, data starts flowing on the next scheduled server sync
-      if (accessToken) {
-        const resp = await fetch(
-          'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
-          {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${accessToken}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(aggregateBody)
-          }
-        )
-
-        if (!resp.ok) {
-          throw new Error(`Google Fit API error: ${resp.status}`)
-        }
-
-        const data = await resp.json()
-        const { db, user } = useSupabase()
-
-        // Parse bucket data
-        for (const bucket of data.bucket || []) {
-          const date = new Date(bucket.startTimeMillis).toISOString().split('T')[0]
-          const entry = parseGoogleFitBucket(bucket, date)
-
-          if (entry) {
-            recordsFetched++
-            await db.from('biometrics').upsert({
-              user_id: user.value.id,
-              ...entry,
-              source: 'google_fit'
-            })
-            recordsStored++
-          }
-        }
-      }
-
-      // Store integration server-side (encrypted with a server-only key)
-      await storeIntegration('google_fit', {
-        access_token: accessToken || null,
-        refresh_token: credentials?.refresh_token || null
-      })
-
-    } catch (e) {
-      console.error('Google Fit sync failed:', e)
-      status = 'error'
-      errorMsg = e.message
-    }
-
-    await logSync('google_fit', 'full_sync', status, recordsFetched, recordsStored,
-      Date.now() - startTime, errorMsg)
-
-    return { recordsFetched, recordsStored, status, duration: Date.now() - startTime }
-  }
-
-  // =====================
-  // GARMIN CONNECT INTEGRATION
-  // =====================
-
-  /**
-   * Sync data from Garmin Connect
-   * Uses unofficial API (requires session cookie)
-   */
-  async function syncGarminConnect(credentials, days = 14) {
-    const startTime = Date.now()
-    let recordsFetched = 0
-    let recordsStored = 0
-    let status = 'success'
-    let errorMsg = null
-
-    try {
-      // Garmin API requires authentication via their OAuth flow
-      // This is a simplified version - full implementation needs OAuth
-      const headers = {
-        'Authorization': `Bearer ${credentials.accessToken}`,
-        'Accept': 'application/json'
-      }
-
-      const endDate = new Date().toISOString().split('T')[0]
-      const startDate = new Date(Date.now() - days * 86400000).toISOString().split('T')[0]
-
-      // Fetch sleep data
-      const sleepUrl = `${GARMIN_API_BASE}/sleepData/${startDate}/${endDate}`
-      const sleepResp = await fetch(sleepUrl, { headers })
-      const sleepData = await sleepResp.json()
-
-      // Fetch stress data
-      const stressUrl = `${GARMIN_API_BASE}/stressData/${startDate}/${endDate}`
-      const stressResp = await fetch(stressUrl, { headers })
-      const stressData = await stressResp.json()
-
-      const { db, user } = useSupabase()
-
-      // Combine and store
-      const allDates = new Set([
-        ...(sleepData.sleepScores || []).map(s => s.date),
-        ...(stressData.stressScores || []).map(s => s.date)
-      ])
-
-      for (const date of allDates) {
-        const sleepEntry = sleepData.sleepScores?.find(s => s.date === date)
-        const stressEntry = stressData.stressScores?.find(s => s.date === date)
-
-        if (sleepEntry || stressEntry) {
-          recordsFetched++
-          const entry = {
-            entry_date: date,
-            garmin_sleep_minutes: sleepEntry?.sleepTimeSegments?.reduce((sum, s) => 
-              sum + (s.duration || 0), 0) || null,
-            garmin_sleep_deep_minutes: sleepEntry?.sleepTimeSegments?.filter(
-              s => s.type === 'DEEP').reduce((sum, s) => sum + (s.duration || 0), 0) || null,
-            garmin_sleep_rem_minutes: sleepEntry?.sleepTimeSegments?.filter(
-              s => s.type === 'REM').reduce((sum, s) => sum + (s.duration || 0), 0) || null,
-            garmin_stress_score: stressEntry?.stressScore || null,
-            garmin_body_battery: stressEntry?.bodyBattery?.charge || null,
-            garmin_respiratory_rate: stressEntry?.respirationRate || null,
-            source: 'garmin'
-          }
-
-          await db.from('biometrics').upsert({
-            user_id: user.value.id,
-            ...entry
-          })
-          recordsStored++
-        }
-      }
-
-      // Store integration server-side (encrypted with a server-only key)
-      await storeIntegration('garmin_connect', {
-        email: credentials.email || null,
-        access_token: credentials.accessToken || null
-      })
-
-    } catch (e) {
-      console.error('Garmin sync failed:', e)
-      status = 'error'
-      errorMsg = e.message
-    }
-
-    await logSync('garmin_connect', 'full_sync', status, recordsFetched, recordsStored,
-      Date.now() - startTime, errorMsg)
-
-    return { recordsFetched, recordsStored, status, duration: Date.now() - startTime }
+  function syncGarminConnect(credentials) {
+    return syncViaServer('garmin_connect', {
+      email: credentials.email || null,
+      password: credentials.password || null,
+      access_token: credentials.accessToken || credentials.access_token || null
+    })
   }
 
   // =====================
@@ -566,32 +304,6 @@ export function useBiometrics() {
   }
 
   // =====================
-  // SYNC LOG HELPER
-  // =====================
-
-  async function logSync(provider, operation, status, fetched, stored, durationMs, errorMsg) {
-    try {
-      const { db, user } = useSupabase()
-      if (!user.value) return
-      
-      await db.from('sync_logs').insert({
-        user_id: user.value.id,
-        provider,
-        operation,
-        status,
-        records_fetched: fetched,
-        records_stored: stored,
-        duration_ms: durationMs,
-        error_message: errorMsg,
-        triggered_by: 'manual',
-        completed_at: new Date().toISOString()
-      })
-    } catch (e) {
-      console.warn('Failed to log sync:', e)
-    }
-  }
-
-  // =====================
   // COMPUTED PROPERTIES
   // =====================
 
@@ -674,81 +386,6 @@ export function useBiometrics() {
     // Integration management
     getIntegrationStatus,
     getSyncHistory
-  }
-}
-
-// =====================
-// HELPER FUNCTIONS
-// =====================
-
-function findMatchingInterval(intervals, dateStr) {
-  if (!intervals || !dateStr) return null
-  return intervals.find(interval => 
-    interval.ts?.startsWith(dateStr) || 
-    interval.date === dateStr
-  )
-}
-
-function calculateAvgHRFromInterval(interval) {
-  if (!interval?.timeseries?.heartRate) return null
-  
-  const hrData = interval.timeseries.heartRate
-  if (!hrData.length) return null
-  
-  // Take average of nighttime HR (last 6 hours of sleep)
-  const nighttime = hrData.slice(-360) // Last 360 readings (~6h at 1/min)
-  if (!nighttime.length) return null
-  
-  const sum = nighttime.reduce((acc, [, hr]) => acc + (hr || 0), 0)
-  return Math.round(sum / nighttime.length)
-}
-
-function parseGoogleFitBucket(bucket, date) {
-  let sleepMinutes = 0
-  let deepMinutes = 0
-  let remMinutes = 0
-  let lightMinutes = 0
-  let avgHr = null
-  
-  for (const dataset of bucket.dataset || []) {
-    if (dataset.datasetId.includes('sleep.stage')) {
-      for (const point of dataset.point || []) {
-        const startTime = parseInt(point.startTimeNanos) / 1e6 // to ms
-        const endTime = parseInt(point.endTimeNanos) / 1e6
-        const durationMin = (endTime - startTime) / 60000
-        
-        const value = point.value?.[0]?.intVal
-        sleepMinutes += durationMin
-        
-        // Sleep stage values: 1=awake, 2=sleep, 3=deep, 4=light, 5=REM
-        if (value === 3) deepMinutes += durationMin
-        else if (value === 4) lightMinutes += durationMin
-        else if (value === 5) remMinutes += durationMin
-      }
-    }
-    
-    if (dataset.datasetId.includes('heart_rate.bpm')) {
-      const hrValues = []
-      for (const point of dataset.point || []) {
-        if (point.value?.[0]?.fpVal) {
-          hrValues.push(point.value[0].fpVal)
-        }
-      }
-      if (hrValues.length) {
-        avgHr = Math.round(hrValues.reduce((a, b) => a + b, 0) / hrValues.length)
-      }
-    }
-  }
-  
-  if (sleepMinutes === 0 && !avgHr) return null
-  
-  return {
-    entry_date: date,
-    resting_hr: avgHr,
-    google_sleep_minutes: Math.round(sleepMinutes),
-    google_sleep_deep_minutes: Math.round(deepMinutes),
-    google_sleep_rem_minutes: Math.round(remMinutes),
-    google_sleep_light_minutes: Math.round(lightMinutes)
   }
 }
 

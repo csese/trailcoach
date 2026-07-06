@@ -18,6 +18,7 @@ const {
 
 const {
   loading: bioLoading,
+  error: bioError,
   syncEightSleep,
   syncGoogleFit,
   syncGarminConnect,
@@ -227,6 +228,12 @@ async function handleDisconnectStrava() {
       <p class="text-sm text-text-muted mb-4">
         Connect health data sources for automated daily sync via Vercel cron.
       </p>
+
+      <!-- Sync error -->
+      <div v-if="bioError" class="p-3 rounded-xl bg-red-500/10 border border-red-500/30 mb-4 flex items-start gap-2">
+        <AlertCircle class="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+        <p class="text-sm text-red-500">{{ bioError }}</p>
+      </div>
 
       <!-- Eight Sleep -->
       <div class="border border-border rounded-xl p-4 mb-4">
