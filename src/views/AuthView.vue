@@ -13,6 +13,7 @@ const password = ref('')
 const name = ref('')
 const loading = ref(false)
 const error = ref('')
+const confirmationSentTo = ref('') // set after signup when email confirmation is required
 
 onMounted(async () => {
   // Check if already logged in
@@ -34,10 +35,17 @@ async function handleSubmit() {
   try {
     if (mode.value === 'signin') {
       await signIn(email.value, password.value)
+      router.push('/')
     } else {
-      await signUp(email.value, password.value)
+      const data = await signUp(email.value, password.value, { name: name.value })
+      if (data.session) {
+        // Email confirmation disabled — signed in immediately
+        router.push('/')
+      } else {
+        // Confirmation required: show instructions instead of redirecting
+        confirmationSentTo.value = email.value
+      }
     }
-    router.push('/')
   } catch (err) {
     error.value = err.message || 'Authentication failed'
   } finally {
@@ -47,6 +55,13 @@ async function handleSubmit() {
 
 function toggleMode() {
   mode.value = mode.value === 'signin' ? 'signup' : 'signin'
+  error.value = ''
+}
+
+function backToSignIn() {
+  confirmationSentTo.value = ''
+  mode.value = 'signin'
+  password.value = ''
   error.value = ''
 }
 
@@ -81,8 +96,28 @@ function continueAsGuest() {
         </div>
       </div>
 
+      <!-- Signup confirmation notice -->
+      <div class="card" v-if="isConfigured && confirmationSentTo">
+        <div class="text-center py-4">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent-primary/10 mb-4">
+            <Mail class="w-6 h-6 text-accent-primary" />
+          </div>
+          <h2 class="text-xl font-semibold text-text-primary mb-2">Check your email</h2>
+          <p class="text-sm text-text-muted">
+            Your account was created. We sent a confirmation link to
+            <span class="text-text-primary font-medium">{{ confirmationSentTo }}</span>.
+          </p>
+          <p class="text-sm text-text-muted mt-2">
+            Click the link to verify your address, then sign in.
+          </p>
+          <button @click="backToSignIn" class="btn-primary mt-6">
+            Go to Sign In
+          </button>
+        </div>
+      </div>
+
       <!-- Auth form -->
-      <div class="card" v-if="isConfigured">
+      <div class="card" v-if="isConfigured && !confirmationSentTo">
         <h2 class="text-xl font-semibold text-text-primary mb-6">
           {{ mode === 'signin' ? 'Welcome back' : 'Create account' }}
         </h2>

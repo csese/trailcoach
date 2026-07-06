@@ -36,12 +36,18 @@ export function useSupabase() {
     }
   }
 
-  async function signUp(email, password) {
+  async function signUp(email, password, metadata = {}) {
     if (!supabase) throw new Error('Supabase not configured')
 
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        // Send the confirmation link back to this deployment,
+        // not the project's default Site URL
+        emailRedirectTo: `${window.location.origin}/auth`,
+        data: metadata
+      }
     })
 
     if (error) throw error
