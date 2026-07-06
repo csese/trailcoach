@@ -15,7 +15,7 @@ import { requireUser, adminClient } from '../_lib/supabase.js'
 import { encryptCredentials } from '../_lib/crypto.js'
 import { syncProvider, generateDailySummaries } from '../../scripts/sync-runner.js'
 
-const ALLOWED_PROVIDERS = ['eight_sleep', 'garmin_connect']
+const ALLOWED_PROVIDERS = ['eight_sleep', 'garmin_connect', 'google_health']
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

@@ -94,6 +94,11 @@ export function useBiometrics() {
     })
   }
 
+  function syncGoogleHealth() {
+    // Credentials are stored server-side during OAuth; nothing to send
+    return syncViaServer('google_health', undefined)
+  }
+
   function syncGarminConnect(credentials) {
     return syncViaServer('garmin_connect', {
       email: credentials.email || null,
@@ -360,6 +365,7 @@ export function useBiometrics() {
     
     // Sync functions
     syncEightSleep,
+    syncGoogleHealth,
     syncGarminConnect,
     generateDailySummary,
     

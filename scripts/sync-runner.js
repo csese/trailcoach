@@ -45,6 +45,10 @@ const EIGHT_SLEEP_AUTH_URL = 'https://auth-api.8slp.net/v1/tokens'
 const EIGHT_SLEEP_CLIENT_ID = process.env.EIGHT_SLEEP_CLIENT_ID || '0894c7f33bb94800a03f1f4df13a4f38'
 const EIGHT_SLEEP_CLIENT_SECRET = process.env.EIGHT_SLEEP_CLIENT_SECRET || 'f0954a3ed5763ba3d06834c73731a32f15f168f47d4f164751275def86db0c76'
 
+// Google Health API (successor to the Fitbit Web API)
+const GOOGLE_HEALTH_API = 'https://health.googleapis.com/v4'
+const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token'
+
 /**
  * Main orchestrator
  */
@@ -182,6 +186,13 @@ async function syncProvider(supabase, userId, integration, triggeredBy = 'schedu
         stored = result.stored
         break
       }
+
+      case 'google_health': {
+        const result = await syncGoogleHealth(supabase, userId, credentials)
+        fetched = result.fetched
+        stored = result.stored
+        break
+      }
       
       case 'strava': {
         // Strava sync is handled by the app already
@@ -308,6 +319,204 @@ async function syncEightSleep(supabase, userId, credentials) {
     }
   }
   
+  return { fetched: fetchedCount, stored: storedCount }
+}
+
+
+/**
+ * Google Health API sync (Fitbit devices via the Google Health app)
+ */
+async function safeText(resp) {
+  try { return (await resp.text()).slice(0, 200) } catch { return '' }
+}
+
+async function refreshGoogleHealthToken(refreshToken) {
+  const resp = await fetch(GOOGLE_TOKEN_URL, {
+    method: 'POST',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: cleanEnv(process.env.GOOGLE_HEALTH_CLIENT_ID),
+      client_secret: cleanEnv(process.env.GOOGLE_HEALTH_CLIENT_SECRET),
+      refresh_token: refreshToken,
+      grant_type: 'refresh_token'
+    })
+  })
+  if (!resp.ok) {
+    const hint = (resp.status === 400 || resp.status === 401)
+      ? ' — re-authorize in Settings (testing-mode Google tokens expire after ~7 days)'
+      : ''
+    throw new Error(`Google Health token refresh failed: ${resp.status}${hint}`)
+  }
+  const data = await resp.json()
+  if (!data?.access_token) throw new Error('Google Health token refresh returned no access token')
+  return data.access_token
+}
+
+async function fetchGoogleHealthDaily(headers, kebab, snake, startDate) {
+  // Daily data types: try date-based filter first, fall back to interval
+  const filters = [
+    `${snake}.date >= "${startDate}"`,
+    `${snake}.interval.civil_start_time >= "${startDate}T00:00:00"`
+  ]
+  let lastErr = null
+  for (const f of filters) {
+    const url = `${GOOGLE_HEALTH_API}/users/me/dataTypes/${kebab}/dataPoints?filter=${encodeURIComponent(f)}`
+    const resp = await fetch(url, { headers })
+    if (resp.ok) return (await resp.json())?.dataPoints || []
+    lastErr = `${kebab}: ${resp.status} ${await safeText(resp)}`
+    if (resp.status !== 400) break
+  }
+  throw new Error(lastErr || `${kebab}: request failed`)
+}
+
+function extractDailyValue(dp, camelKey) {
+  const payload = dp?.[camelKey]
+  if (!payload) return { date: null, value: null }
+
+  let date = null
+  const d = payload.date
+    || payload.interval?.civilStartTime?.date
+    || payload.sampleTime?.civilTime?.date
+  if (d?.year) {
+    date = `${d.year}-${String(d.month).padStart(2, '0')}-${String(d.day).padStart(2, '0')}`
+  } else if (payload.interval?.startTime) {
+    date = payload.interval.startTime.split('T')[0]
+  }
+
+  const timeKeys = ['interval', 'sampleTime', 'date', 'civilTime']
+  let value = null
+  const firstNumber = (obj) => {
+    for (const [k, v] of Object.entries(obj)) {
+      if (timeKeys.includes(k)) continue
+      if (typeof v === 'number') return v
+      if (typeof v === 'string' && v !== '' && !isNaN(Number(v))) return Number(v)
+      if (v && typeof v === 'object') {
+        const nested = firstNumber(v)
+        if (nested !== null) return nested
+      }
+    }
+    return null
+  }
+  value = firstNumber(payload)
+  return { date, value }
+}
+
+async function syncGoogleHealth(supabase, userId, credentials) {
+  if (!credentials?.refresh_token) {
+    throw new Error('Google Health not authorized — connect it in Settings')
+  }
+
+  const accessToken = await refreshGoogleHealthToken(credentials.refresh_token)
+  const headers = { 'authorization': `Bearer ${accessToken}`, 'accept': 'application/json' }
+
+  const endDate = new Date().toISOString().split('T')[0]
+  const startDate = new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0]
+  const byDate = {}
+  const warnings = []
+
+  // Sleep: reconciled stream, main sleep sessions
+  try {
+    const filter = encodeURIComponent(`sleep.interval.civil_end_time >= "${startDate}"`)
+    const resp = await fetch(
+      `${GOOGLE_HEALTH_API}/users/me/dataTypes/sleep/dataPoints:reconcile?filter=${filter}`,
+      { headers }
+    )
+    if (!resp.ok) throw new Error(`sleep: ${resp.status} ${await safeText(resp)}`)
+    const { dataPoints } = await resp.json()
+    for (const dp of dataPoints || []) {
+      const sleep = dp.sleep
+      if (!sleep?.summary || sleep.metadata?.main === false) continue
+      const date = (sleep.interval?.endTime || '').split('T')[0]
+      if (!date) continue
+      const stages = {}
+      for (const st of sleep.summary.stagesSummary || []) {
+        stages[st.type] = parseInt(st.minutes) || 0
+      }
+      byDate[date] = {
+        ...byDate[date],
+        google_sleep_minutes: parseInt(sleep.summary.minutesAsleep) || null,
+        google_sleep_deep_minutes: stages.DEEP ?? null,
+        google_sleep_rem_minutes: stages.REM ?? null,
+        google_sleep_light_minutes: stages.LIGHT ?? null
+      }
+    }
+  } catch (e) { warnings.push(e.message) }
+
+  // Daily resting heart rate
+  try {
+    const points = await fetchGoogleHealthDaily(headers, 'daily-resting-heart-rate', 'daily_resting_heart_rate', startDate)
+    for (const dp of points) {
+      const { date, value } = extractDailyValue(dp, 'dailyRestingHeartRate')
+      if (date && value !== null) {
+        byDate[date] = { ...byDate[date], fitbit_resting_hr: Math.round(value) }
+      }
+    }
+  } catch (e) { warnings.push(e.message) }
+
+  // Daily HRV
+  try {
+    const points = await fetchGoogleHealthDaily(headers, 'daily-heart-rate-variability', 'daily_heart_rate_variability', startDate)
+    for (const dp of points) {
+      const { date, value } = extractDailyValue(dp, 'dailyHeartRateVariability')
+      if (date && value !== null) {
+        byDate[date] = { ...byDate[date], fitbit_hrv_rmssd: Math.round(value * 10) / 10 }
+      }
+    }
+  } catch (e) { warnings.push(e.message) }
+
+  // Steps: daily roll-up
+  try {
+    const [sy, sm, sd] = startDate.split('-').map(Number)
+    const [ey, em, ed] = endDate.split('-').map(Number)
+    const resp = await fetch(`${GOOGLE_HEALTH_API}/users/me/dataTypes/steps/dataPoints:dailyRollUp`, {
+      method: 'POST',
+      headers: { ...headers, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        range: {
+          start: { date: { year: sy, month: sm, day: sd }, time: { hours: 0, minutes: 0, seconds: 0 } },
+          end: { date: { year: ey, month: em, day: ed }, time: { hours: 23, minutes: 59, seconds: 59 } }
+        },
+        windowSizeDays: 1
+      })
+    })
+    if (!resp.ok) throw new Error(`steps: ${resp.status} ${await safeText(resp)}`)
+    const { rollupDataPoints } = await resp.json()
+    for (const rp of rollupDataPoints || []) {
+      const d = rp.civilStartTime?.date
+      if (!d?.year) continue
+      const date = `${d.year}-${String(d.month).padStart(2, '0')}-${String(d.day).padStart(2, '0')}`
+      const count = parseInt(rp.steps?.countSum)
+      if (!isNaN(count)) byDate[date] = { ...byDate[date], steps: count }
+    }
+  } catch (e) { warnings.push(e.message) }
+
+  if (warnings.length) {
+    console.warn(`    ⚠️  Google Health partial fetch issues: ${warnings.join(' | ')}`)
+  }
+
+  let fetchedCount = 0
+  let storedCount = 0
+  for (const [date, entry] of Object.entries(byDate)) {
+    fetchedCount++
+    if (!isDryRun) {
+      const { error } = await supabase.from('biometrics').upsert(
+        { user_id: userId, entry_date: date, ...entry },
+        { onConflict: 'user_id,entry_date' }
+      )
+      if (error) {
+        console.warn(`    ⚠️  Failed to store ${date}:`, error.message)
+      } else {
+        storedCount++
+      }
+    }
+  }
+
+  // Surface fetch failures when nothing at all came back
+  if (fetchedCount === 0 && warnings.length) {
+    throw new Error(warnings.join(' | '))
+  }
+
+  console.log(`    📊 Fetched ${fetchedCount} days from Google Health`)
   return { fetched: fetchedCount, stored: storedCount }
 }
 

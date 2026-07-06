@@ -50,6 +50,12 @@ const routes = [
     meta: { title: 'Sign In' }
   },
   {
+    path: '/auth/google-health/callback',
+    name: 'google-health-callback',
+    component: () => import('@/views/GoogleHealthCallbackView.vue'),
+    meta: { title: 'Connecting Google Health' }
+  },
+  {
     path: '/auth/strava/callback',
     name: 'strava-callback',
     component: () => import('@/views/StravaCallbackView.vue'),

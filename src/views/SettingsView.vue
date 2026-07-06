@@ -20,6 +20,7 @@ const {
   loading: bioLoading,
   error: bioError,
   syncEightSleep,
+  syncGoogleHealth,
   syncGarminConnect,
   getIntegrationStatus
 } = useBiometrics()
@@ -48,6 +49,36 @@ async function loadIntegrations() {
 
 function getIntegration(provider) {
   return integrations.value.find(i => i.provider === provider)
+}
+
+const GOOGLE_HEALTH_SCOPES = [
+  'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+  'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+  'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly'
+].join(' ')
+
+function connectGoogleHealth() {
+  const clientId = import.meta.env.VITE_GOOGLE_HEALTH_CLIENT_ID
+  if (!clientId) {
+    alert('Add VITE_GOOGLE_HEALTH_CLIENT_ID to enable Google Health')
+    return
+  }
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: `${window.location.origin}/auth/google-health/callback`,
+    response_type: 'code',
+    scope: GOOGLE_HEALTH_SCOPES,
+    access_type: 'offline',
+    prompt: 'consent'
+  })
+  window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`
+}
+
+async function handleGoogleHealthSync() {
+  const result = await syncGoogleHealth()
+  if (result.status === 'success') {
+    await loadIntegrations()
+  }
 }
 
 async function handleEightSleepSync() {
@@ -263,6 +294,39 @@ async function handleDisconnectStrava() {
               <span v-else>Sync Now</span>
             </button>
             <button @click="showForms.eight_sleep = false" class="btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Health (Fitbit) -->
+      <div class="border border-border rounded-xl p-4 mb-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <Heart class="w-5 h-5 text-[#4285F4]" />
+            <div>
+              <p class="font-medium text-text-primary">Google Health (Fitbit)</p>
+              <p class="text-sm text-text-muted">
+                <span v-if="getIntegration('google_health')" class="text-status-ready">
+                  Connected • Last sync: {{ new Date(getIntegration('google_health').last_sync).toLocaleDateString() }}
+                </span>
+                <span v-else>Not connected</span>
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button
+              v-if="getIntegration('google_health')"
+              @click="handleGoogleHealthSync"
+              class="btn-secondary flex items-center gap-2"
+              :disabled="bioLoading"
+            >
+              <Loader2 v-if="bioLoading" class="w-4 h-4 animate-spin" />
+              <span v-else>Sync Now</span>
+            </button>
+            <button @click="connectGoogleHealth" class="btn-secondary flex items-center gap-2">
+              <Link2 class="w-4 h-4" />
+              {{ getIntegration('google_health') ? 'Reconnect' : 'Connect' }}
+            </button>
           </div>
         </div>
       </div>
