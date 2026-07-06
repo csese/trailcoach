@@ -38,6 +38,12 @@ const routes = [
     meta: { title: 'Settings' }
   },
   {
+    path: '/health',
+    name: 'health',
+    component: () => import('@/views/HealthDashboardView.vue'),
+    meta: { title: 'Health Dashboard' }
+  },
+  {
     path: '/auth',
     name: 'auth',
     component: () => import('@/views/AuthView.vue'),
