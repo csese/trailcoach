@@ -232,9 +232,6 @@ async function syncProvider(supabase, userId, integration, triggeredBy = 'schedu
  * Eight Sleep sync
  */
 async function syncEightSleep(supabase, userId, credentials) {
-  const fetched = 0
-  const stored = 0
-  
   // Login
   const loginResp = await fetch(`${EIGHT_SLEEP_API}/login`, {
     method: 'POST',
@@ -244,35 +241,41 @@ async function syncEightSleep(supabase, userId, credentials) {
       password: credentials.password
     })
   })
-  
+
   if (!loginResp.ok) {
     throw new Error(`Eight Sleep login failed: ${loginResp.status}`)
   }
-  
-  const { session } = await loginResp.json()
-  const token = session.token
-  const headers = { 'Session-Token': token }
-  
-  // Get device ID
-  const meResp = await fetch(`${EIGHT_SLEEP_API}/users/me`, { headers })
-  const meData = await meResp.json()
-  const deviceId = meData.user.devices[0]
-  
+
+  // The login response contains the Eight Sleep user id — no
+  // separate /users/me call needed
+  const loginData = await loginResp.json()
+  const session = loginData?.session
+  if (!session?.token || !session?.userId) {
+    throw new Error('Eight Sleep login returned an unexpected response')
+  }
+  const headers = { 'Session-Token': session.token }
+  const eightUserId = session.userId
+
   // Date range (last 3 days to catch any late-processing sleep)
   const now = new Date()
   const from = new Date(now.getTime() - 3 * 86400000)
   const fromStr = from.toISOString().split('T')[0]
   const toStr = now.toISOString().split('T')[0]
-  
+
   // Fetch trends
-  const trendsUrl = `${EIGHT_SLEEP_API}/users/${deviceId}/trends?from=${fromStr}&to=${toStr}`
+  const trendsUrl = `${EIGHT_SLEEP_API}/users/${eightUserId}/trends?tz=UTC&from=${fromStr}&to=${toStr}`
   const trendsResp = await fetch(trendsUrl, { headers })
-  const { days: trends } = await trendsResp.json()
-  
-  // Fetch intervals for HR data
-  const intervalsUrl = `${EIGHT_SLEEP_API}/users/${deviceId}/intervals`
+  if (!trendsResp.ok) {
+    throw new Error(`Eight Sleep trends request failed: ${trendsResp.status}`)
+  }
+  const trends = (await trendsResp.json())?.days || []
+
+  // Fetch intervals for HR data (optional — trends still stored without it)
+  const intervalsUrl = `${EIGHT_SLEEP_API}/users/${eightUserId}/intervals`
   const intervalsResp = await fetch(intervalsUrl, { headers })
-  const { intervals } = await intervalsResp.json()
+  const intervals = intervalsResp.ok
+    ? (await intervalsResp.json())?.intervals || []
+    : []
   
   console.log(`    📊 Found ${trends.length} sleep sessions`)
   
